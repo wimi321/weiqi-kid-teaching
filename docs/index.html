@@ -422,6 +422,7 @@
             <div><span class="dot green"></span>绿点：更稳、更好的选择</div>
             <div><span class="dot orange"></span>橙圈：这题正确下一手（教学模式显示）</div>
             <div><span class="dot blue"></span>蓝点：你在小测验里点的位置</div>
+            <div><span class="dot blue"></span>蓝点/编号：后续变化（推荐下法）</div>
           </div>
         </div>
       </aside>
@@ -467,6 +468,7 @@
       let quizMode = false;
       let guessed = null;
       let attempt = 0;
+      const PV_MARK_LIMIT = 6;
 
       metaPill.textContent = `学生：${data.student_id} · 示例：${data.examples.length} 题`;
 
@@ -476,6 +478,11 @@
 
       function toPlayStoneName(toPlay) {
         return toPlay === "B" ? "黑棋" : toPlay === "W" ? "白棋" : "未知";
+      }
+
+      function formatPvText(ex, limit = 3) {
+        if (!Array.isArray(ex.pv) || ex.pv.length === 0) return "后续变化：-";
+        return `后续变化：${ex.pv.slice(0, limit).join("→")}`;
       }
 
       const buttons = data.examples.map((ex, i) => {
@@ -514,6 +521,7 @@
 
       function updatePanel() {
         const ex = data.examples[current];
+        const bestText = ex.best || "-";
         phaseChip.textContent = `阶段：${ex.phase}`;
         zoneChip.textContent = `区域：${ex.zone}`;
         contextChip.textContent = `局势：${ex.context}`;
@@ -522,8 +530,12 @@
         fixText.textContent = ex.fix;
         actionText.textContent = ex.action;
         studentColorText.textContent = toPlayLabel(ex.to_play);
-        bestMoveText.textContent = ex.best || "-";
+        bestMoveText.textContent = bestText;
         impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${toPlayStoneName(ex.to_play)}走）。`;
+        if (showBest && !quizMode) {
+          statusBox.className = "status";
+          statusBox.textContent = `绿点是更稳、更好的选择。当前应走：${bestText}；${formatPvText(ex)}`;
+        }
       }
 
       function drawStone(x, y, step, pad, color) {
@@ -598,6 +610,26 @@
         }
       }
 
+      function drawPvNumberAt(x, y, n, step, pad) {
+        if (x == null || y == null) return;
+        const cx = pad + x * step;
+        const cy = pad + y * step;
+        ctx.save();
+        ctx.fillStyle = "#2b79ff";
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = Math.max(1.5, step * 0.06);
+        ctx.beginPath();
+        ctx.arc(cx, cy, step * 0.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = `700 ${Math.max(10, step * 0.22)}px sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(String(n), cx, cy);
+        ctx.restore();
+      }
+
       function renderBoard() {
         const ex = data.examples[current];
         const size = ex.board_size || 19;
@@ -667,6 +699,12 @@
         if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
         if (!quizMode && !showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
         if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
+        if (showBest && Array.isArray(ex.pv_xy)) {
+          ex.pv_xy.slice(0, PV_MARK_LIMIT).forEach((xy, i) => {
+            if (!Array.isArray(xy) || xy.length < 2) return;
+            drawPvNumberAt(xy[0], xy[1], i + 1, step, pad);
+          });
+        }
         if (guessed) markAt(guessed.x, guessed.y, step, pad, "guess");
       }
 
@@ -732,9 +770,7 @@
         showWrong = false;
         showBest = true;
         guessed = null;
-        const ex = data.examples[current];
-        statusBox.className = "status";
-        statusBox.textContent = `绿点是更稳、更好的选择。当前应走：${ex.best || "-"}`;
+        updatePanel();
         refreshButtons();
         renderBoard();
       });
@@ -745,7 +781,7 @@
         guessed = null;
         const ex = data.examples[current];
         statusBox.className = "status";
-        statusBox.textContent = `红绿对比：看清“哪里容易错，哪里更稳”。当前应走：${ex.best || "-"}`;
+        statusBox.textContent = `红绿对比：看清“哪里容易错，哪里更稳”。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
         refreshButtons();
         renderBoard();
       });
