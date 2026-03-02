@@ -329,6 +329,16 @@
       background: var(--sun);
     }
 
+    .dot.black {
+      background: #1a1a1a;
+    }
+
+    .dot.white {
+      background: #ffffff;
+      border: 1px solid #c3b496;
+      box-sizing: border-box;
+    }
+
     @media (max-width: 1100px) {
       .layout {
         grid-template-columns: 1fr;
@@ -422,7 +432,8 @@
             <div><span class="dot green"></span>绿点：更稳、更好的选择</div>
             <div><span class="dot orange"></span>橙圈：这题正确下一手（教学模式显示）</div>
             <div><span class="dot blue"></span>蓝点：你在小测验里点的位置</div>
-            <div><span class="dot blue"></span>蓝点/编号：后续变化（推荐下法）</div>
+            <div><span class="dot green"></span>PV第1步：当前正确落子（绿色标记）</div>
+            <div><span class="dot black"></span><span class="dot white"></span>PV后续：黑白棋子交替显示（真实棋子）</div>
           </div>
         </div>
       </aside>
@@ -480,9 +491,23 @@
         return toPlay === "B" ? "黑棋" : toPlay === "W" ? "白棋" : "未知";
       }
 
+      function oppositeStone(color) {
+        return color === "B" ? "W" : color === "W" ? "B" : null;
+      }
+
+      function pvStoneColor(toPlay, index) {
+        if (toPlay !== "B" && toPlay !== "W") return null;
+        return index % 2 === 0 ? toPlay : oppositeStone(toPlay);
+      }
+
       function formatPvText(ex, limit = 3) {
-        if (!Array.isArray(ex.pv) || ex.pv.length === 0) return "后续变化：-";
-        return `后续变化：${ex.pv.slice(0, limit).join("→")}`;
+        if (!Array.isArray(ex.pv_xy) || ex.pv_xy.length === 0) return "后续变化：-";
+        const seq = ex.pv_xy
+          .slice(0, limit)
+          .map((_, i) => toPlayStoneName(pvStoneColor(ex.to_play, i)))
+          .join("→");
+        const suffix = ex.pv_xy.length > limit ? "..." : "";
+        return `后续变化：${seq}${suffix}`;
       }
 
       const buttons = data.examples.map((ex, i) => {
@@ -610,26 +635,6 @@
         }
       }
 
-      function drawPvNumberAt(x, y, n, step, pad) {
-        if (x == null || y == null) return;
-        const cx = pad + x * step;
-        const cy = pad + y * step;
-        ctx.save();
-        ctx.fillStyle = "#2b79ff";
-        ctx.strokeStyle = "#ffffff";
-        ctx.lineWidth = Math.max(1.5, step * 0.06);
-        ctx.beginPath();
-        ctx.arc(cx, cy, step * 0.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = "#ffffff";
-        ctx.font = `700 ${Math.max(10, step * 0.22)}px sans-serif`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(String(n), cx, cy);
-        ctx.restore();
-      }
-
       function renderBoard() {
         const ex = data.examples[current];
         const size = ex.board_size || 19;
@@ -700,9 +705,11 @@
         if (!quizMode && !showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
         if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
         if (showBest && Array.isArray(ex.pv_xy)) {
-          ex.pv_xy.slice(0, PV_MARK_LIMIT).forEach((xy, i) => {
+          ex.pv_xy.slice(1, PV_MARK_LIMIT).forEach((xy, i) => {
             if (!Array.isArray(xy) || xy.length < 2) return;
-            drawPvNumberAt(xy[0], xy[1], i + 1, step, pad);
+            const color = pvStoneColor(ex.to_play, i + 1);
+            if (!color) return;
+            drawStone(xy[0], xy[1], step, pad, color);
           });
         }
         if (guessed) markAt(guessed.x, guessed.y, step, pad, "guess");

@@ -1,0 +1,20 @@
+2026-03-02 00:22:20+0800: Running with following config:
+logDir = analysis_logs
+maxVisits = 500
+nnCacheSizePowerOfTwo = 23
+nnMaxBatchSize = 64
+nnMutexPoolSizePowerOfTwo = 17
+nnRandomize = true
+numAnalysisThreads = 2
+numSearchThreads = 16
+reportAnalysisWinratesAs = BLACK
+
+2026-03-02 00:22:20+0800: Analysis Engine starting...
+2026-03-02 00:22:20+0800: KataGo v1.16.4
+2026-03-02 00:22:20+0800: nnRandSeed0 = 2626962118942228064
+2026-03-02 00:22:20+0800: After dedups: nnModelFile0 = /Users/haoc/.katago/models/latest-kata1.bin.gz useFP16 auto useNHWC auto
+2026-03-02 00:22:20+0800: Initializing neural net buffer to be size 19 * 19 allowing smaller boards
+2026-03-02 00:22:21+0800: Loaded config /Users/haoc/.katago/configs/analysis_example.cfg
+2026-03-02 00:22:21+0800: Loaded model /Users/haoc/.katago/models/latest-kata1.bin.gz
+2026-03-02 00:22:21+0800: Analyzing up to 2 positions at a time in parallel
+2026-03-02 00:22:21+0800: Started, ready to begin handling requests

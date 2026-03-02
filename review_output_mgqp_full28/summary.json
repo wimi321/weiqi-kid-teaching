@@ -1,0 +1,824 @@
+{
+  "overall": {
+    "games": 28,
+    "student_moves": 2653,
+    "issues": 845,
+    "issue_rate": 0.3185073501696193,
+    "severe": 772,
+    "major": 36,
+    "minor": 37
+  },
+  "phase_stats": {
+    "布局": {
+      "moves": 700,
+      "issues": 237,
+      "issue_rate": 0.3385714285714286
+    },
+    "中盘": {
+      "moves": 1697,
+      "issues": 551,
+      "issue_rate": 0.3246906305244549
+    },
+    "官子": {
+      "moves": 256,
+      "issues": 57,
+      "issue_rate": 0.22265625
+    }
+  },
+  "context_stats": {
+    "优势失误": {
+      "issues": 775,
+      "share": 0.9171597633136095
+    },
+    "均势失误": {
+      "issues": 52,
+      "share": 0.06153846153846154
+    },
+    "逆风失误": {
+      "issues": 18,
+      "share": 0.021301775147928994
+    },
+    "未知局势": {
+      "issues": 0,
+      "share": 0.0
+    }
+  },
+  "zone_stats": {
+    "角部": {
+      "issues": 37,
+      "share": 0.04378698224852071
+    },
+    "边上": {
+      "issues": 297,
+      "share": 0.3514792899408284
+    },
+    "中腹": {
+      "issues": 511,
+      "share": 0.6047337278106509
+    },
+    "未知": {
+      "issues": 0,
+      "share": 0.0
+    }
+  },
+  "weakness_signals": [
+    "布局阶段问题手率较高（33.9%）",
+    "严重失误占比较高（91.4%），需优先降低单步大亏损",
+    "官子稳定性偏弱，后半盘容易被逆转",
+    "布局阶段方向感有待加强",
+    "中盘战斗判断波动较大",
+    "领先后守成稳定性不足，优势局面有回送倾向"
+  ],
+  "top_issues": [
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 146,
+      "actual": "S1",
+      "best": "K14",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999965667,
+      "score_drop": 150.4392584,
+      "before_winrate": 0.99997924,
+      "context": "优势失误",
+      "zone": "角部",
+      "pv": [
+        "K14",
+        "B18",
+        "D14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 148,
+      "actual": "Q1",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999960694,
+      "score_drop": 161.5911865,
+      "before_winrate": 0.99997597,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "B18",
+        "D19"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 154,
+      "actual": "D7",
+      "best": "K14",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9999570799999999,
+      "score_drop": 143.9396645,
+      "before_winrate": 0.999979007,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "K14",
+        "B18",
+        "D14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 150,
+      "actual": "T10",
+      "best": "K14",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999948578,
+      "score_drop": 151.05839220000001,
+      "before_winrate": 0.999977073,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "K14",
+        "B18",
+        "D14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 152,
+      "actual": "C7",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999945464,
+      "score_drop": 141.1886738,
+      "before_winrate": 0.999974706,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "B18",
+        "D14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 144,
+      "actual": "S3",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999945447,
+      "score_drop": 138.460906,
+      "before_winrate": 0.999972831,
+      "context": "优势失误",
+      "zone": "角部",
+      "pv": [
+        "M16",
+        "B18",
+        "D14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 142,
+      "actual": "F17",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999930138,
+      "score_drop": 136.069203,
+      "before_winrate": 0.999952458,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "B18",
+        "D14",
+        "E14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 118,
+      "actual": "E4",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999927364,
+      "score_drop": 104.32097830000001,
+      "before_winrate": 0.999946863,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "M16",
+        "S8",
+        "N17"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 120,
+      "actual": "J15",
+      "best": "T10",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999900832,
+      "score_drop": 104.5787024,
+      "before_winrate": 0.999959335,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "T10",
+        "S8",
+        "S7"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 114,
+      "actual": "C9",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999890214,
+      "score_drop": 98.23574740000001,
+      "before_winrate": 0.999921512,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "N16"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 110,
+      "actual": "N2",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9998807559999999,
+      "score_drop": 100.43848729999999,
+      "before_winrate": 0.999919514,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "S8",
+        "N17"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 140,
+      "actual": "F18",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999879937,
+      "score_drop": 120.42648369999999,
+      "before_winrate": 0.999937102,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "B18",
+        "B17",
+        "D19"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 134,
+      "actual": "K18",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999878768,
+      "score_drop": 101.7130262,
+      "before_winrate": 0.999944647,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M16",
+        "S8",
+        "S7",
+        "S5"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 112,
+      "actual": "R2",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999852205,
+      "score_drop": 95.5543158,
+      "before_winrate": 0.999924689,
+      "context": "优势失误",
+      "zone": "角部",
+      "pv": [
+        "M16",
+        "S8",
+        "N17"
+      ]
+    },
+    {
+      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+      "move_no": 164,
+      "actual": "J7",
+      "best": "E2",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999850825,
+      "score_drop": 132.549971,
+      "before_winrate": 0.999896093,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "E2",
+        "S13",
+        "S14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 138,
+      "actual": "H16",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999846153,
+      "score_drop": 105.41176540000001,
+      "before_winrate": 0.999927743,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "M16",
+        "S8",
+        "D14"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 130,
+      "actual": "L17",
+      "best": "K18",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999845534,
+      "score_drop": 98.901839,
+      "before_winrate": 0.999896188,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "K18",
+        "K16",
+        "L16",
+        "S8"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 104,
+      "actual": "P4",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999820597,
+      "score_drop": 90.6088147,
+      "before_winrate": 0.999899856,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "M16",
+        "S8",
+        "N17"
+      ]
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 98,
+      "actual": "E11",
+      "best": "D12",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.99981867,
+      "score_drop": 88.6866426,
+      "before_winrate": 0.999913142,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "D12",
+        "B12",
+        "C13",
+        "E10"
+      ]
+    },
+    {
+      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+      "move_no": 168,
+      "actual": "L6",
+      "best": "E2",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9998128900000001,
+      "score_drop": 128.84975609999998,
+      "before_winrate": 0.999910132,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "E2",
+        "S13",
+        "S14"
+      ]
+    }
+  ],
+  "turning_points": [
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 146,
+      "actual": "S1",
+      "best": "K14",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999965667,
+      "score_drop": 150.4392584,
+      "before_winrate": 0.99997924,
+      "context": "优势失误",
+      "zone": "角部",
+      "pv": [
+        "K14",
+        "B18",
+        "D14"
+      ],
+      "cluster_size": 12
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 118,
+      "actual": "E4",
+      "best": "M16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999927364,
+      "score_drop": 104.32097830000001,
+      "before_winrate": 0.999946863,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "M16",
+        "S8",
+        "N17"
+      ],
+      "cluster_size": 8
+    },
+    {
+      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+      "move_no": 164,
+      "actual": "J7",
+      "best": "E2",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999850825,
+      "score_drop": 132.549971,
+      "before_winrate": 0.999896093,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "E2",
+        "S13",
+        "S14"
+      ],
+      "cluster_size": 6
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 98,
+      "actual": "E11",
+      "best": "D12",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.99981867,
+      "score_drop": 88.6866426,
+      "before_winrate": 0.999913142,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "D12",
+        "B12",
+        "C13",
+        "E10"
+      ],
+      "cluster_size": 4
+    },
+    {
+      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+      "move_no": 132,
+      "actual": "J8",
+      "best": "S10",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999774746,
+      "score_drop": 128.43393830000002,
+      "before_winrate": 0.999893758,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "S10",
+        "S6",
+        "R9"
+      ],
+      "cluster_size": 17
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 76,
+      "actual": "H6",
+      "best": "D1",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9997703069999999,
+      "score_drop": 79.2792542,
+      "before_winrate": 0.999876366,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "D1",
+        "D2",
+        "F16"
+      ],
+      "cluster_size": 8
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 243,
+      "actual": "M17",
+      "best": "G1",
+      "phase": "官子",
+      "severity": "严重",
+      "winrate_drop": 0.99976826,
+      "score_drop": 41.4866538,
+      "before_winrate": 0.999863668,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "G1",
+        "F1",
+        "A7",
+        "A8"
+      ],
+      "cluster_size": 1
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 253,
+      "actual": "J3",
+      "best": "F9",
+      "phase": "官子",
+      "severity": "严重",
+      "winrate_drop": 0.9997620239999999,
+      "score_drop": 40.437608299999994,
+      "before_winrate": 0.999864664,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "F9",
+        "B15",
+        "R6"
+      ],
+      "cluster_size": 1
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 225,
+      "actual": "P9",
+      "best": "Q9",
+      "phase": "官子",
+      "severity": "严重",
+      "winrate_drop": 0.9995817010000001,
+      "score_drop": 38.5693895,
+      "before_winrate": 0.999779862,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "Q9",
+        "G3",
+        "P8"
+      ],
+      "cluster_size": 2
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 185,
+      "actual": "K12",
+      "best": "T10",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999552249,
+      "score_drop": 43.535547199999996,
+      "before_winrate": 0.999840054,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "T10",
+        "E16"
+      ],
+      "cluster_size": 1
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 201,
+      "actual": "R9",
+      "best": "A2",
+      "phase": "官子",
+      "severity": "严重",
+      "winrate_drop": 0.999432176,
+      "score_drop": 42.518915199999995,
+      "before_winrate": 0.999737077,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "A2",
+        "E16"
+      ],
+      "cluster_size": 3
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 193,
+      "actual": "R12",
+      "best": "M11",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.999332998,
+      "score_drop": 44.2390072,
+      "before_winrate": 0.999731436,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "M11",
+        "P10",
+        "J9"
+      ],
+      "cluster_size": 1
+    },
+    {
+      "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
+      "move_no": 195,
+      "actual": "T13",
+      "best": "J3",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9993167040000001,
+      "score_drop": 50.0360964,
+      "before_winrate": 0.999730005,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "J3",
+        "E3",
+        "K2"
+      ],
+      "cluster_size": 16
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 263,
+      "actual": "K15",
+      "best": "N2",
+      "phase": "官子",
+      "severity": "严重",
+      "winrate_drop": 0.99924936,
+      "score_drop": 38.923903,
+      "before_winrate": 0.99975817,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "N2",
+        "N3",
+        "R6"
+      ],
+      "cluster_size": 1
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 52,
+      "actual": "S19",
+      "best": "K3",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.998987402,
+      "score_drop": 61.6436123,
+      "before_winrate": 0.999369618,
+      "context": "优势失误",
+      "zone": "角部",
+      "pv": [
+        "K3",
+        "K4",
+        "L4",
+        "L3"
+      ],
+      "cluster_size": 1
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 143,
+      "actual": "Q19",
+      "best": "O16",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.998953694,
+      "score_drop": 67.6430548,
+      "before_winrate": 0.999506646,
+      "context": "优势失误",
+      "zone": "边上",
+      "pv": [
+        "O16",
+        "Q15",
+        "Q16",
+        "L14"
+      ],
+      "cluster_size": 2
+    },
+    {
+      "game": "[xxj随手]vs[芒果25437]1772019095030032783.sgf",
+      "move_no": 172,
+      "actual": "K14",
+      "best": "S2",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9988051910000001,
+      "score_drop": 48.4925291,
+      "before_winrate": 0.999225656,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "S2",
+        "P2",
+        "O2",
+        "R2"
+      ],
+      "cluster_size": 2
+    },
+    {
+      "game": "[芒果25437]vs[张荣干18]1771828178030031446.sgf",
+      "move_no": 171,
+      "actual": "H7",
+      "best": "J3",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.9987223540000001,
+      "score_drop": 38.7998897,
+      "before_winrate": 0.999350155,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "J3",
+        "O13",
+        "P14"
+      ],
+      "cluster_size": 2
+    },
+    {
+      "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
+      "move_no": 175,
+      "actual": "O15",
+      "best": "J3",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.998715014,
+      "score_drop": 42.0672019,
+      "before_winrate": 0.99912323,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "J3",
+        "H2"
+      ],
+      "cluster_size": 3
+    },
+    {
+      "game": "[芒果25437]vs[a500448780]1771127213030043280.sgf",
+      "move_no": 127,
+      "actual": "G12",
+      "best": "K11",
+      "phase": "中盘",
+      "severity": "严重",
+      "winrate_drop": 0.998624132,
+      "score_drop": 30.5695146,
+      "before_winrate": 0.999357535,
+      "context": "优势失误",
+      "zone": "中腹",
+      "pv": [
+        "K11",
+        "J11",
+        "J12",
+        "K10",
+        "L12"
+      ],
+      "cluster_size": 11
+    }
+  ]
+}

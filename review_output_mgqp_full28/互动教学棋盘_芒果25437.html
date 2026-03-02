@@ -241,44 +241,6 @@
       font-weight: 600;
     }
 
-    .focus-card {
-      border-color: #e8cc92;
-      background: #fff7e5;
-    }
-
-    .focus-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .focus-item {
-      border: 1px solid #ecd9b0;
-      border-radius: 10px;
-      background: #fffdf8;
-      padding: 8px;
-    }
-
-    .focus-item .label {
-      font-size: 12px;
-      font-weight: 700;
-      color: #7a5734;
-      margin-bottom: 3px;
-    }
-
-    .focus-item .value {
-      font-size: 16px;
-      font-weight: 900;
-      color: #3f2c0e;
-      line-height: 1.3;
-    }
-
-    .focus-item .value.move {
-      color: #16683b;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      letter-spacing: 0.4px;
-    }
-
     .chips {
       display: flex;
       flex-wrap: wrap;
@@ -325,32 +287,12 @@
       background: #2b79ff;
     }
 
-    .dot.orange {
-      background: var(--sun);
-    }
-
-    .dot.black {
-      background: #1a1a1a;
-    }
-
-    .dot.white {
-      background: #ffffff;
-      border: 1px solid #c3b496;
-      box-sizing: border-box;
-    }
-
     @media (max-width: 1100px) {
       .layout {
         grid-template-columns: 1fr;
       }
       .lesson-list {
         max-height: none;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .focus-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -394,19 +336,6 @@
             <span class="chip" id="zoneChip">区域</span>
             <span class="chip" id="contextChip">局势</span>
           </div>
-          <div class="card focus-card">
-            <div class="k">这题先看两件事</div>
-            <div class="focus-grid">
-              <div class="focus-item">
-                <div class="label">你现在执子</div>
-                <div class="value" id="studentColorText">-</div>
-              </div>
-              <div class="focus-item">
-                <div class="label">正确下一手（GTP）</div>
-                <div class="value move" id="bestMoveText">-</div>
-              </div>
-            </div>
-          </div>
           <div class="card">
             <div class="k">这关口号</div>
             <div class="v" id="sloganText">-</div>
@@ -430,10 +359,7 @@
           <div class="legend">
             <div><span class="dot red"></span>红点：这盘里容易下错的位置</div>
             <div><span class="dot green"></span>绿点：更稳、更好的选择</div>
-            <div><span class="dot orange"></span>橙圈：这题正确下一手（教学模式显示）</div>
             <div><span class="dot blue"></span>蓝点：你在小测验里点的位置</div>
-            <div><span class="dot green"></span>PV第1步：当前正确落子（绿色标记）</div>
-            <div><span class="dot black"></span><span class="dot white"></span>PV后续：黑白棋子交替显示（真实棋子）</div>
           </div>
         </div>
       </aside>
@@ -461,8 +387,6 @@
       const fixText = document.getElementById("fixText");
       const actionText = document.getElementById("actionText");
       const impactText = document.getElementById("impactText");
-      const studentColorText = document.getElementById("studentColorText");
-      const bestMoveText = document.getElementById("bestMoveText");
 
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
@@ -479,45 +403,15 @@
       let quizMode = false;
       let guessed = null;
       let attempt = 0;
-      const PV_MARK_LIMIT = 6;
 
       metaPill.textContent = `学生：${data.student_id} · 示例：${data.examples.length} 题`;
 
-      function toPlayLabel(toPlay) {
-        return toPlay === "B" ? "执黑（黑棋）" : toPlay === "W" ? "执白（白棋）" : "执子未知";
-      }
-
-      function toPlayStoneName(toPlay) {
-        return toPlay === "B" ? "黑棋" : toPlay === "W" ? "白棋" : "未知";
-      }
-
-      function oppositeStone(color) {
-        return color === "B" ? "W" : color === "W" ? "B" : null;
-      }
-
-      function pvStoneColor(toPlay, index) {
-        if (toPlay !== "B" && toPlay !== "W") return null;
-        return index % 2 === 0 ? toPlay : oppositeStone(toPlay);
-      }
-
-      function formatPvText(ex, limit = 3) {
-        if (!Array.isArray(ex.pv_xy) || ex.pv_xy.length === 0) return "后续变化：-";
-        const seq = ex.pv_xy
-          .slice(0, limit)
-          .map((_, i) => toPlayStoneName(pvStoneColor(ex.to_play, i)))
-          .join("→");
-        const suffix = ex.pv_xy.length > limit ? "..." : "";
-        return `后续变化：${seq}${suffix}`;
-      }
-
       const buttons = data.examples.map((ex, i) => {
         const btn = document.createElement("button");
-        const colorText = ex.to_play === "B" ? "执黑" : ex.to_play === "W" ? "执白" : "执子?";
-        const bestText = ex.best || "-";
         btn.className = "lesson-btn";
         btn.innerHTML =
           `<div class="t">第${i + 1}题 · ${ex.title}</div>` +
-          `<div class="s">${ex.phase} / ${ex.zone} / 第${ex.move_no}手 · ${colorText} · 正解 ${bestText}</div>`;
+          `<div class="s">${ex.phase} / ${ex.zone} / 第${ex.move_no}手</div>`;
         btn.addEventListener("click", () => selectExample(i));
         lessonList.appendChild(btn);
         return btn;
@@ -534,9 +428,7 @@
         renderBoard();
         refreshButtons();
         statusBox.className = "status";
-        const ex = data.examples[current];
-        const bestText = ex.best || "-";
-        statusBox.textContent = `${ex.quiz_prompt} 现在轮到${toPlayStoneName(ex.to_play)}，推荐下一手：${bestText}`;
+        statusBox.textContent = data.examples[current].quiz_prompt;
       }
 
       function refreshButtons() {
@@ -546,7 +438,6 @@
 
       function updatePanel() {
         const ex = data.examples[current];
-        const bestText = ex.best || "-";
         phaseChip.textContent = `阶段：${ex.phase}`;
         zoneChip.textContent = `区域：${ex.zone}`;
         contextChip.textContent = `局势：${ex.context}`;
@@ -554,13 +445,7 @@
         problemText.textContent = ex.problem;
         fixText.textContent = ex.fix;
         actionText.textContent = ex.action;
-        studentColorText.textContent = toPlayLabel(ex.to_play);
-        bestMoveText.textContent = bestText;
-        impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${toPlayStoneName(ex.to_play)}走）。`;
-        if (showBest && !quizMode) {
-          statusBox.className = "status";
-          statusBox.textContent = `绿点是更稳、更好的选择。当前应走：${bestText}；${formatPvText(ex)}`;
-        }
+        impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${ex.to_play === "B" ? "黑棋" : "白棋"}走）。`;
       }
 
       function drawStone(x, y, step, pad, color) {
@@ -620,18 +505,6 @@
           ctx.beginPath();
           ctx.arc(cx, cy, step * 0.28, 0, Math.PI * 2);
           ctx.stroke();
-          return;
-        }
-        if (mode === "target") {
-          ctx.strokeStyle = "#ff9f1c";
-          ctx.lineWidth = Math.max(2, step * 0.09);
-          ctx.beginPath();
-          ctx.arc(cx, cy, step * 0.36, 0, Math.PI * 2);
-          ctx.stroke();
-          ctx.fillStyle = "#ff9f1c";
-          ctx.beginPath();
-          ctx.arc(cx, cy, step * 0.09, 0, Math.PI * 2);
-          ctx.fill();
         }
       }
 
@@ -702,16 +575,7 @@
         ex.stones.forEach((s) => drawStone(s.x, s.y, step, pad, s.c));
 
         if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
-        if (!quizMode && !showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
         if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
-        if (showBest && Array.isArray(ex.pv_xy)) {
-          ex.pv_xy.slice(1, PV_MARK_LIMIT).forEach((xy, i) => {
-            if (!Array.isArray(xy) || xy.length < 2) return;
-            const color = pvStoneColor(ex.to_play, i + 1);
-            if (!color) return;
-            drawStone(xy[0], xy[1], step, pad, color);
-          });
-        }
         if (guessed) markAt(guessed.x, guessed.y, step, pad, "guess");
       }
 
@@ -766,9 +630,8 @@
         showWrong = true;
         showBest = false;
         guessed = null;
-        const ex = data.examples[current];
         statusBox.className = "status";
-        statusBox.textContent = `红点是这盘容易踩坑的位置。轮到${toPlayStoneName(ex.to_play)}走，推荐下一手是 ${ex.best || "-"}`;
+        statusBox.textContent = "红点是这盘容易踩坑的位置。";
         refreshButtons();
         renderBoard();
       });
@@ -777,7 +640,8 @@
         showWrong = false;
         showBest = true;
         guessed = null;
-        updatePanel();
+        statusBox.className = "status";
+        statusBox.textContent = "绿点是更稳、更好的选择。";
         refreshButtons();
         renderBoard();
       });
@@ -786,9 +650,8 @@
         showWrong = true;
         showBest = true;
         guessed = null;
-        const ex = data.examples[current];
         statusBox.className = "status";
-        statusBox.textContent = `红绿对比：看清“哪里容易错，哪里更稳”。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
+        statusBox.textContent = "红绿对比：看清“哪里容易错，哪里更稳”。";
         refreshButtons();
         renderBoard();
       });

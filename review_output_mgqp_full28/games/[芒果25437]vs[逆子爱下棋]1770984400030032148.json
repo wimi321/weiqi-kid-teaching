@@ -1,0 +1,144 @@
+{
+  "game_path": "/Users/haoc/Developer/wq20260301/data/mgqp_raw/mgqp/[芒果25437]vs[逆子爱下棋]1770984400030032148.sgf",
+  "black": "芒果25437",
+  "white": "逆子爱下棋",
+  "result": "W+R",
+  "date": "2026-02-13",
+  "student_color": "B",
+  "student_moves": 64,
+  "issue_count": 5,
+  "issue_rate": 0.078125,
+  "severe_count": 4,
+  "major_count": 1,
+  "minor_count": 0,
+  "avg_drop": 0.3412999994,
+  "phase_move_counts": {
+    "布局": 25,
+    "中盘": 39,
+    "官子": 0
+  },
+  "phase_issue_counts": {
+    "布局": 5,
+    "中盘": 0,
+    "官子": 0
+  },
+  "context_issue_counts": {
+    "优势失误": 4,
+    "均势失误": 1,
+    "逆风失误": 0,
+    "未知局势": 0
+  },
+  "zone_issue_counts": {
+    "角部": 0,
+    "边上": 3,
+    "中腹": 2,
+    "未知": 0
+  },
+  "issues": [
+    {
+      "move_no": 5,
+      "color": "B",
+      "actual": "C6",
+      "best": "C15",
+      "pv": [
+        "C15",
+        "P17",
+        "Q14",
+        "R12"
+      ],
+      "winrate_drop": 0.532725087,
+      "score_drop": 4.91226363,
+      "phase": "布局",
+      "severity": "严重",
+      "before_winrate": 0.778364579,
+      "context": "优势失误",
+      "zone": "边上"
+    },
+    {
+      "move_no": 15,
+      "color": "B",
+      "actual": "G5",
+      "best": "D3",
+      "pv": [
+        "D3",
+        "C3",
+        "E3",
+        "C4",
+        "C9",
+        "E17",
+        "E18"
+      ],
+      "winrate_drop": 0.439893478,
+      "score_drop": 4.30897192,
+      "phase": "布局",
+      "severity": "严重",
+      "before_winrate": 0.751968075,
+      "context": "优势失误",
+      "zone": "中腹"
+    },
+    {
+      "move_no": 17,
+      "color": "B",
+      "actual": "F6",
+      "best": "E3",
+      "pv": [
+        "E3",
+        "D6",
+        "D7",
+        "C5",
+        "E6",
+        "D5",
+        "F17",
+        "C7"
+      ],
+      "winrate_drop": 0.32015061,
+      "score_drop": 3.15627643,
+      "phase": "布局",
+      "severity": "严重",
+      "before_winrate": 0.711272086,
+      "context": "优势失误",
+      "zone": "中腹"
+    },
+    {
+      "move_no": 31,
+      "color": "B",
+      "actual": "D3",
+      "best": "B5",
+      "pv": [
+        "B5",
+        "C3",
+        "C10",
+        "H4",
+        "H5",
+        "J4"
+      ],
+      "winrate_drop": 0.31564238599999994,
+      "score_drop": 2.9413782499999996,
+      "phase": "布局",
+      "severity": "严重",
+      "before_winrate": 0.732890167,
+      "context": "优势失误",
+      "zone": "边上"
+    },
+    {
+      "move_no": 33,
+      "color": "B",
+      "actual": "D2",
+      "best": "C10",
+      "pv": [
+        "C10",
+        "G17",
+        "E16",
+        "F15",
+        "E15"
+      ],
+      "winrate_drop": 0.09808843600000006,
+      "score_drop": 0.987839878,
+      "phase": "布局",
+      "severity": "较大",
+      "before_winrate": 0.563439202,
+      "context": "均势失误",
+      "zone": "边上"
+    }
+  ]
+}

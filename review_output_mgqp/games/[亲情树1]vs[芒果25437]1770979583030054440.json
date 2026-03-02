@@ -1,0 +1,979 @@
+{
+  "game_path": "/Users/haoc/Developer/wq20260301/data/mgqp_raw/mgqp/[亲情树1]vs[芒果25437]1770979583030054440.sgf",
+  "black": "亲情树1",
+  "white": "芒果25437",
+  "result": "W+0.25",
+  "date": "2026-02-13",
+  "student_color": "W",
+  "student_moves": 155,
+  "issue_count": 59,
+  "issue_rate": 0.38064516129032255,
+  "severe_count": 58,
+  "major_count": 1,
+  "minor_count": 0,
+  "avg_drop": 0.8644850018813559,
+  "phase_move_counts": {
+    "布局": 25,
+    "中盘": 75,
+    "官子": 55
+  },
+  "phase_issue_counts": {
+    "布局": 7,
+    "中盘": 32,
+    "官子": 20
+  },
+  "issues": [
+    {
+      "move_no": 2,
+      "color": "W",
+      "actual": "R16",
+      "best": "D16",
+      "pv": [
+        "D16",
+        "D4",
+        "Q16",
+        "C17",
+        "C16"
+      ],
+      "winrate_drop": 0.566973325,
+      "score_drop": 5.422641130000001,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 10,
+      "color": "W",
+      "actual": "Q14",
+      "best": "Q17",
+      "pv": [
+        "Q17",
+        "C3",
+        "D3",
+        "C4",
+        "D5"
+      ],
+      "winrate_drop": 0.522757589,
+      "score_drop": 5.08049443,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 12,
+      "color": "W",
+      "actual": "F17",
+      "best": "R3",
+      "pv": [
+        "R3",
+        "Q3",
+        "R4"
+      ],
+      "winrate_drop": 0.6615435829999999,
+      "score_drop": 6.49256639,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 24,
+      "color": "W",
+      "actual": "H18",
+      "best": "R3",
+      "pv": [
+        "R3",
+        "R4",
+        "Q3"
+      ],
+      "winrate_drop": 0.855898568,
+      "score_drop": 11.115214420000001,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 28,
+      "color": "W",
+      "actual": "R3",
+      "best": "O3",
+      "pv": [
+        "O3",
+        "Q6",
+        "R3",
+        "Q3",
+        "R4"
+      ],
+      "winrate_drop": 0.909123645,
+      "score_drop": 13.187775030000001,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 42,
+      "color": "W",
+      "actual": "R5",
+      "best": "S5",
+      "pv": [
+        "S5",
+        "T2",
+        "Q9",
+        "Q8"
+      ],
+      "winrate_drop": 0.963925076,
+      "score_drop": 19.4058105,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 44,
+      "color": "W",
+      "actual": "T3",
+      "best": "Q9",
+      "pv": [
+        "Q9",
+        "Q8",
+        "P8"
+      ],
+      "winrate_drop": 0.978663152,
+      "score_drop": 24.4184725,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 54,
+      "color": "W",
+      "actual": "R10",
+      "best": "P16",
+      "pv": [
+        "P16",
+        "T1",
+        "O16",
+        "P8",
+        "R10",
+        "Q10"
+      ],
+      "winrate_drop": 0.82755366,
+      "score_drop": 11.05886297,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 60,
+      "color": "W",
+      "actual": "T5",
+      "best": "P9",
+      "pv": [
+        "P9",
+        "C3",
+        "C4"
+      ],
+      "winrate_drop": 0.91395294,
+      "score_drop": 14.45104474,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 66,
+      "color": "W",
+      "actual": "Q7",
+      "best": "N5",
+      "pv": [
+        "N5",
+        "O8",
+        "P9",
+        "Q7",
+        "N7"
+      ],
+      "winrate_drop": 0.89801096,
+      "score_drop": 15.95276856,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 76,
+      "color": "W",
+      "actual": "K14",
+      "best": "M6",
+      "pv": [
+        "M6",
+        "T8",
+        "T10",
+        "T6",
+        "S6"
+      ],
+      "winrate_drop": 0.09775658100000001,
+      "score_drop": 1.2065428800000002,
+      "phase": "中盘",
+      "severity": "较大"
+    },
+    {
+      "move_no": 78,
+      "color": "W",
+      "actual": "P10",
+      "best": "M6",
+      "pv": [
+        "M6",
+        "T8"
+      ],
+      "winrate_drop": 0.22365810299999994,
+      "score_drop": 4.309978709999999,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 84,
+      "color": "W",
+      "actual": "G13",
+      "best": "F13",
+      "pv": [
+        "F13",
+        "M6",
+        "M5",
+        "L5"
+      ],
+      "winrate_drop": 0.619711013,
+      "score_drop": 7.26578497,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 86,
+      "color": "W",
+      "actual": "F13",
+      "best": "M6",
+      "pv": [
+        "M6",
+        "M7",
+        "K6"
+      ],
+      "winrate_drop": 0.47955206699999997,
+      "score_drop": 6.350869123,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 88,
+      "color": "W",
+      "actual": "E14",
+      "best": "L5",
+      "pv": [
+        "L5",
+        "K17",
+        "F11",
+        "J16",
+        "J15"
+      ],
+      "winrate_drop": 0.6455379400000001,
+      "score_drop": 7.26384297,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 90,
+      "color": "W",
+      "actual": "E15",
+      "best": "L5",
+      "pv": [
+        "L5",
+        "T8",
+        "T10",
+        "T6",
+        "S6"
+      ],
+      "winrate_drop": 0.810995418,
+      "score_drop": 17.76301918,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 92,
+      "color": "W",
+      "actual": "G14",
+      "best": "L5",
+      "pv": [
+        "L5",
+        "G15",
+        "H15",
+        "F14"
+      ],
+      "winrate_drop": 0.993292392,
+      "score_drop": 31.885889900000002,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 94,
+      "color": "W",
+      "actual": "C6",
+      "best": "M6",
+      "pv": [
+        "M6",
+        "T8",
+        "T10",
+        "M7"
+      ],
+      "winrate_drop": 0.992413204,
+      "score_drop": 28.670107,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 96,
+      "color": "W",
+      "actual": "C9",
+      "best": "M6",
+      "pv": [
+        "M6",
+        "M7",
+        "L7"
+      ],
+      "winrate_drop": 0.987649726,
+      "score_drop": 27.603392200000002,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 98,
+      "color": "W",
+      "actual": "G12",
+      "best": "L5",
+      "pv": [
+        "L5",
+        "R7",
+        "Q6",
+        "T8"
+      ],
+      "winrate_drop": 0.9927127609999999,
+      "score_drop": 31.4796562,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 108,
+      "color": "W",
+      "actual": "L3",
+      "best": "E3",
+      "pv": [
+        "E3",
+        "L6",
+        "L5"
+      ],
+      "winrate_drop": 0.975160398,
+      "score_drop": 14.8878417,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 114,
+      "color": "W",
+      "actual": "Q18",
+      "best": "K7",
+      "pv": [
+        "K7",
+        "J18",
+        "K17"
+      ],
+      "winrate_drop": 0.9912487189999999,
+      "score_drop": 18.12692233,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 120,
+      "color": "W",
+      "actual": "L18",
+      "best": "K7",
+      "pv": [
+        "K7",
+        "J4",
+        "J5"
+      ],
+      "winrate_drop": 0.959331237,
+      "score_drop": 10.87818666,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 122,
+      "color": "W",
+      "actual": "K18",
+      "best": "G3",
+      "pv": [
+        "G3",
+        "G4",
+        "F4",
+        "E4"
+      ],
+      "winrate_drop": 0.974722074,
+      "score_drop": 12.21996481,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 126,
+      "color": "W",
+      "actual": "J10",
+      "best": "G3",
+      "pv": [
+        "G3",
+        "G4",
+        "F4"
+      ],
+      "winrate_drop": 0.982213761,
+      "score_drop": 15.33099031,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 128,
+      "color": "W",
+      "actual": "K9",
+      "best": "G3",
+      "pv": [
+        "G3",
+        "G4",
+        "F4",
+        "E4"
+      ],
+      "winrate_drop": 0.989600522,
+      "score_drop": 18.67139,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 130,
+      "color": "W",
+      "actual": "K8",
+      "best": "B10",
+      "pv": [
+        "B10",
+        "B11",
+        "G3"
+      ],
+      "winrate_drop": 0.9925679199999999,
+      "score_drop": 21.44236291,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 132,
+      "color": "W",
+      "actual": "H8",
+      "best": "J4",
+      "pv": [
+        "J4",
+        "H3",
+        "G4"
+      ],
+      "winrate_drop": 0.9966774700000001,
+      "score_drop": 27.525685099999997,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 134,
+      "color": "W",
+      "actual": "H9",
+      "best": "J4",
+      "pv": [
+        "J4",
+        "H4",
+        "H5",
+        "G4"
+      ],
+      "winrate_drop": 0.997245147,
+      "score_drop": 35.4460042,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 138,
+      "color": "W",
+      "actual": "H7",
+      "best": "J4",
+      "pv": [
+        "J4",
+        "H4",
+        "H5"
+      ],
+      "winrate_drop": 0.99611846,
+      "score_drop": 38.9447068,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 140,
+      "color": "W",
+      "actual": "G6",
+      "best": "F4",
+      "pv": [
+        "F4",
+        "L5",
+        "L4",
+        "R7"
+      ],
+      "winrate_drop": 0.997849808,
+      "score_drop": 42.9597171,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 154,
+      "color": "W",
+      "actual": "K11",
+      "best": "F10",
+      "pv": [
+        "F10",
+        "E11",
+        "H11"
+      ],
+      "winrate_drop": 0.9981669369999999,
+      "score_drop": 80.0459826,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 162,
+      "color": "W",
+      "actual": "M10",
+      "best": "F10",
+      "pv": [
+        "F10",
+        "E11",
+        "F11",
+        "F9"
+      ],
+      "winrate_drop": 0.995658769,
+      "score_drop": 78.7252733,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 164,
+      "color": "W",
+      "actual": "M9",
+      "best": "F10",
+      "pv": [
+        "F10",
+        "E11",
+        "F11",
+        "F9"
+      ],
+      "winrate_drop": 0.996182252,
+      "score_drop": 84.5333385,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 168,
+      "color": "W",
+      "actual": "F9",
+      "best": "F10",
+      "pv": [
+        "F10",
+        "E11",
+        "F11",
+        "C7",
+        "B7"
+      ],
+      "winrate_drop": 0.996150621,
+      "score_drop": 74.0982475,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 192,
+      "color": "W",
+      "actual": "L5",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "R7"
+      ],
+      "winrate_drop": 0.997186534,
+      "score_drop": 32.4710552,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 196,
+      "color": "W",
+      "actual": "L2",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "R7",
+        "Q6"
+      ],
+      "winrate_drop": 0.996741981,
+      "score_drop": 27.0875521,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 198,
+      "color": "W",
+      "actual": "N4",
+      "best": "J4",
+      "pv": [
+        "J4",
+        "A10",
+        "H4"
+      ],
+      "winrate_drop": 0.989513589,
+      "score_drop": 22.53377797,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 200,
+      "color": "W",
+      "actual": "R7",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A9"
+      ],
+      "winrate_drop": 0.995200466,
+      "score_drop": 25.4329477,
+      "phase": "中盘",
+      "severity": "严重"
+    },
+    {
+      "move_no": 204,
+      "color": "W",
+      "actual": "L4",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A9"
+      ],
+      "winrate_drop": 0.9964055789999999,
+      "score_drop": 28.161590599999997,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 206,
+      "color": "W",
+      "actual": "M17",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "N18"
+      ],
+      "winrate_drop": 0.996733337,
+      "score_drop": 30.724559999999997,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 208,
+      "color": "W",
+      "actual": "N18",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A12",
+        "K10"
+      ],
+      "winrate_drop": 0.9976935699999999,
+      "score_drop": 29.9970214,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 210,
+      "color": "W",
+      "actual": "M19",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A9",
+        "K10"
+      ],
+      "winrate_drop": 0.99819925,
+      "score_drop": 33.2202755,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 212,
+      "color": "W",
+      "actual": "M17",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A12",
+        "A13"
+      ],
+      "winrate_drop": 0.998365022,
+      "score_drop": 33.1036485,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 216,
+      "color": "W",
+      "actual": "C17",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A12",
+        "A13"
+      ],
+      "winrate_drop": 0.997501393,
+      "score_drop": 34.7118383,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 218,
+      "color": "W",
+      "actual": "D18",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A9",
+        "A12"
+      ],
+      "winrate_drop": 0.996352031,
+      "score_drop": 29.546685099999998,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 222,
+      "color": "W",
+      "actual": "B19",
+      "best": "B18",
+      "pv": [
+        "B18",
+        "J18",
+        "E18",
+        "A10",
+        "B8"
+      ],
+      "winrate_drop": 0.98189074,
+      "score_drop": 17.89233943,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 232,
+      "color": "W",
+      "actual": "Q13",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A12",
+        "B12",
+        "A9"
+      ],
+      "winrate_drop": 0.349354183,
+      "score_drop": 1.478073749,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 234,
+      "color": "W",
+      "actual": "A16",
+      "best": "A11",
+      "pv": [
+        "A11",
+        "A10",
+        "A12",
+        "A13"
+      ],
+      "winrate_drop": 0.508040269,
+      "score_drop": 1.9216660679,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 246,
+      "color": "W",
+      "actual": "O12",
+      "best": "J4",
+      "pv": [
+        "J4",
+        "H4",
+        "L16",
+        "M17",
+        "O12",
+        "O13",
+        "N11"
+      ],
+      "winrate_drop": 0.29701392299999996,
+      "score_drop": 0.340999493,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 248,
+      "color": "W",
+      "actual": "K5",
+      "best": "L16",
+      "pv": [
+        "L16",
+        "M17",
+        "J4",
+        "H4",
+        "N11",
+        "E19",
+        "A19",
+        "E11"
+      ],
+      "winrate_drop": 0.6363395589999999,
+      "score_drop": 1.724267714,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 250,
+      "color": "W",
+      "actual": "Q11",
+      "best": "J19",
+      "pv": [
+        "J19",
+        "H18",
+        "L16",
+        "M17",
+        "N11",
+        "E19"
+      ],
+      "winrate_drop": 0.73254957,
+      "score_drop": 2.00721212,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 252,
+      "color": "W",
+      "actual": "N10",
+      "best": "L16",
+      "pv": [
+        "L16",
+        "M17",
+        "N10",
+        "E19",
+        "A19"
+      ],
+      "winrate_drop": 0.937400492,
+      "score_drop": 3.15135431,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 264,
+      "color": "W",
+      "actual": "Q16",
+      "best": "L16",
+      "pv": [
+        "L16",
+        "O10",
+        "M17",
+        "O11",
+        "N9",
+        "L17",
+        "B15",
+        "A14"
+      ],
+      "winrate_drop": 0.927629395,
+      "score_drop": 4.78458045,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 268,
+      "color": "W",
+      "actual": "O10",
+      "best": "L16",
+      "pv": [
+        "L16",
+        "M17",
+        "O10",
+        "E11"
+      ],
+      "winrate_drop": 0.98301151,
+      "score_drop": 4.933684469999999,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 270,
+      "color": "W",
+      "actual": "N8",
+      "best": "L16",
+      "pv": [
+        "L16",
+        "M17",
+        "E11",
+        "D10",
+        "J19"
+      ],
+      "winrate_drop": 0.9845368250000001,
+      "score_drop": 5.202194110000001,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 272,
+      "color": "W",
+      "actual": "G7",
+      "best": "L16",
+      "pv": [
+        "L16",
+        "M17",
+        "E11",
+        "D10"
+      ],
+      "winrate_drop": 0.9902999969999999,
+      "score_drop": 6.4288018099999995,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 288,
+      "color": "W",
+      "actual": "B14",
+      "best": "J19",
+      "pv": [
+        "J19",
+        "H18",
+        "L16",
+        "M17",
+        "K16",
+        "K19"
+      ],
+      "winrate_drop": 0.957307178,
+      "score_drop": 3.17019979,
+      "phase": "官子",
+      "severity": "严重"
+    },
+    {
+      "move_no": 294,
+      "color": "W",
+      "actual": "K19",
+      "best": "J19",
+      "pv": [
+        "J19",
+        "H18",
+        "L16",
+        "M17",
+        "K16",
+        "K19"
+      ],
+      "winrate_drop": 0.97877292,
+      "score_drop": 4.53246316,
+      "phase": "官子",
+      "severity": "严重"
+    }
+  ]
+}

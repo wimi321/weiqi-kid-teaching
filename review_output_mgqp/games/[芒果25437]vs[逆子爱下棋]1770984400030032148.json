@@ -1,0 +1,130 @@
+{
+  "game_path": "/Users/haoc/Developer/wq20260301/data/mgqp_raw/mgqp/[芒果25437]vs[逆子爱下棋]1770984400030032148.sgf",
+  "black": "芒果25437",
+  "white": "逆子爱下棋",
+  "result": "W+R",
+  "date": "2026-02-13",
+  "student_color": "B",
+  "student_moves": 64,
+  "issue_count": 6,
+  "issue_rate": 0.09375,
+  "severe_count": 4,
+  "major_count": 1,
+  "minor_count": 1,
+  "avg_drop": 0.2902627556666667,
+  "phase_move_counts": {
+    "布局": 25,
+    "中盘": 39,
+    "官子": 0
+  },
+  "phase_issue_counts": {
+    "布局": 6,
+    "中盘": 0,
+    "官子": 0
+  },
+  "issues": [
+    {
+      "move_no": 5,
+      "color": "B",
+      "actual": "C6",
+      "best": "C15",
+      "pv": [
+        "C15",
+        "P17",
+        "Q14",
+        "D14"
+      ],
+      "winrate_drop": 0.537422971,
+      "score_drop": 5.0016260599999995,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 15,
+      "color": "B",
+      "actual": "G5",
+      "best": "E3",
+      "pv": [
+        "E3",
+        "D3",
+        "C9",
+        "E17",
+        "E18"
+      ],
+      "winrate_drop": 0.43038964600000007,
+      "score_drop": 4.17844315,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 17,
+      "color": "B",
+      "actual": "F6",
+      "best": "E3",
+      "pv": [
+        "E3",
+        "D6",
+        "D7",
+        "C5",
+        "E6",
+        "D5",
+        "F17",
+        "C7"
+      ],
+      "winrate_drop": 0.31934245000000006,
+      "score_drop": 3.15899882,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 29,
+      "color": "B",
+      "actual": "E3",
+      "best": "B5",
+      "pv": [
+        "B5",
+        "H4",
+        "H5",
+        "J4",
+        "J5"
+      ],
+      "winrate_drop": 0.058051404000000084,
+      "score_drop": 0.7587692700000002,
+      "phase": "布局",
+      "severity": "一般"
+    },
+    {
+      "move_no": 31,
+      "color": "B",
+      "actual": "D3",
+      "best": "B5",
+      "pv": [
+        "B5",
+        "C3",
+        "C10",
+        "H4",
+        "H5"
+      ],
+      "winrate_drop": 0.308068888,
+      "score_drop": 2.9080620159999997,
+      "phase": "布局",
+      "severity": "严重"
+    },
+    {
+      "move_no": 33,
+      "color": "B",
+      "actual": "D2",
+      "best": "B5",
+      "pv": [
+        "B5",
+        "D2",
+        "C10",
+        "F16"
+      ],
+      "winrate_drop": 0.08830117500000001,
+      "score_drop": 0.8666347699999999,
+      "phase": "布局",
+      "severity": "较大"
+    }
+  ]
+}
