@@ -166,84 +166,160 @@ def make_scenario(point: Dict[str, object]) -> Scenario:
     zone = str(point.get("zone", "中腹"))
     context = str(point.get("context", "均势失误"))
 
+    def to_float(v: object, default: float = 0.0) -> float:
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return default
+
+    def normalize_move(v: object) -> str:
+        move = str(v or "PASS").strip().upper()
+        return move if move else "PASS"
+
+    def move_label(move: str) -> str:
+        return "停一手" if move == "PASS" else move
+
+    def parse_gtp(move: str) -> Optional[Tuple[int, int]]:
+        if move == "PASS":
+            return None
+        if len(move) < 2 or move[0] not in LETTERS:
+            return None
+        try:
+            row = int(move[1:])
+        except ValueError:
+            return None
+        return LETTERS.index(move[0]), row
+
+    def severity_text(drop: float) -> str:
+        if drop >= 0.70:
+            return "这步太关键了！"
+        if drop >= 0.62:
+            return "这一步非常可惜！"
+        if drop >= 0.54:
+            return "这一步很可惜！"
+        if drop >= 0.47:
+            return "这手有点伤。"
+        return "这手还能更稳。"
+
+    def context_text(before_wr: float, ctx: str) -> str:
+        if ctx == "优势失误" or before_wr >= 0.65:
+            return "你当时本来是优势局面"
+        if ctx == "均势失误" or 0.47 <= before_wr <= 0.55:
+            return "你当时在五五开的胜负处"
+        if ctx == "逆风失误" or before_wr <= 0.40:
+            return "你当时在追分局面"
+        if before_wr >= 0.55:
+            return "你当时局面略优"
+        return "你当时局面接近"
+
+    def move_gap_text(actual_mv: str, best_mv: str) -> str:
+        a = parse_gtp(actual_mv)
+        b = parse_gtp(best_mv)
+        if a is None or b is None:
+            return "这手和推荐点的思路差异比较大。"
+        dist = abs(a[0] - b[0]) + abs(a[1] - b[1])
+        if dist <= 2:
+            return "落点离推荐点很近，主要差在次序和时机。"
+        if dist <= 6:
+            return "方向有些偏，先后手价值被对手拿走。"
+        return "方向偏得比较远，把关键大点让给了对手。"
+
+    actual = normalize_move(point.get("actual"))
+    best = normalize_move(point.get("best"))
+    pv_raw = point.get("pv", [])
+    pv = [
+        normalize_move(m)
+        for m in pv_raw
+        if isinstance(m, str) and normalize_move(m)
+    ]
+    drop = to_float(point.get("winrate_drop", 0.0), 0.0)
+    drop_pct = round(drop * 100, 1)
+    before_wr = to_float(point.get("before_winrate", 0.5), 0.5)
+
+    severity = severity_text(drop)
+    side = context_text(before_wr, context)
+    compare_line = (
+        f"实战下了{move_label(actual)}，KataGo更推荐{move_label(best)}，"
+        f"这手胜率掉了{drop_pct:.1f}%。"
+    )
+    if actual == best:
+        compare_line = f"KataGo认为这手效率偏低，胜率仍掉了{drop_pct:.1f}%。"
+    pv_line = ""
+    if pv:
+        seq = " -> ".join(move_label(m) for m in pv[:3])
+        suffix = " ..." if len(pv) > 3 else ""
+        pv_line = f"主线参考：{seq}{suffix}。"
+    gap = move_gap_text(actual, best)
+
     if phase == "布局" and zone == "边上":
         return Scenario(
-            template="开局边上太急",
-            title="开局别着急冲边",
-            slogan="先站稳，再出拳。",
-            problem="这手太急着打架，自己的地基还没站稳。",
-            fix="先把自己的棋连好、补厚，再去碰对手。",
-            action="下一盘前30手，只要想冲断，先问自己“我这块稳了吗？”",
+            template="布局边上稳形",
+            title="开局边上先稳形再扩张",
+            slogan="开局占边要稳，优势别扩张",
+            problem=f"{severity}{side}，{compare_line}开局边上先求稳形和连络，别急着把战线拉长。{gap}",
+            fix=f"先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑{move_label(best)}。{pv_line}",
+            action=f"前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
         )
     if phase == "布局" and zone == "中腹":
         return Scenario(
-            template="开局中间漂移",
-            title="开局先下角边",
-            slogan="角边是地基，中间是屋顶。",
-            problem="太早跑到中间，角和边的大场没先拿。",
-            fix="先占角边要点，等形势清楚再进中腹。",
-            action="前30手优先角边，除非中腹有必救棋。",
+            template="布局中腹稳重",
+            title="开局中腹别先开战",
+            slogan="开局占中要稳重，别急着战斗",
+            problem=f"{severity}{side}，{compare_line}布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。{gap}",
+            fix=f"先拿角边要点、搭好外势，再进中腹发力。推荐先走{move_label(best)}。{pv_line}",
+            action="前30手想下中腹前，先确认角边还有没有更大的点。",
         )
     if phase == "中盘" and zone == "边上":
         return Scenario(
-            template="边上次序错误",
-            title="边上先连回再冲断",
-            slogan="先连回，再断人。",
-            problem="边上次序走反了，容易被对手借力。",
-            fix="先把自己的断点补掉，再考虑冲断对手。",
-            action="边上接触战先看两件事：我有断点吗？我有气吗？",
+            template="中盘边上形状",
+            title="边上作战先看形和气",
+            slogan="边上作战看清形状，优势别冲动",
+            problem=f"{severity}{side}，{compare_line}中盘边上接触战最怕形状变薄、气紧被反打。{gap}",
+            fix=f"先补断点、抢要害气，再决定冲断或强杀。此题先手应考虑{move_label(best)}。{pv_line}",
+            action="边上接触战固定三问：我的断点在哪？双方气数谁紧？我有没有退路？",
         )
     if phase == "中盘" and zone == "中腹":
         return Scenario(
-            template="中腹判断漂",
-            title="中腹先看强弱",
-            slogan="先看谁弱，再想吃子。",
-            problem="中腹下得太飘，没先判断强弱和急所。",
-            fix="先处理弱棋，再走看起来“很大”的棋。",
-            action="每次想吃子前，先说出“我方最弱那块在哪”。",
-        )
-    if phase == "中盘" and context == "优势失误":
-        return Scenario(
-            template="领先还要硬杀",
-            title="领先局面不乱战",
-            slogan="领先不冒险，稳稳把家搬。",
-            problem="本来已经不错了，这手把局面又下复杂了。",
-            fix="领先时先补薄、先守空、先抢先手官子。",
-            action="一觉得“我领先”，就先找最稳的一手。",
+            template="中盘中腹强弱",
+            title="中腹开战先判强弱",
+            slogan="中腹战斗先判强弱，优势别浪战",
+            problem=f"{severity}{side}，{compare_line}中腹一旦乱战，强弱判断错了就会连锁崩塌。{gap}",
+            fix=f"先安定弱棋，再利用厚势发力；该简化就简化。此处更稳的是{move_label(best)}。{pv_line}",
+            action="每次想在中腹动手前，先说出盘上最弱的一块棋，再决定是否开战。",
         )
     if phase == "官子":
         return Scenario(
-            template="领先官子乱下",
-            title="官子要稳收",
-            slogan="领先收官子，不找新战事。",
-            problem="官子阶段还在找战斗，容易把优势送掉。",
-            fix="优先先手官子和收大官子，减少复杂变化。",
-            action="官子只做一件事：每手尽量先手、尽量大。",
+            template="官子稳收",
+            title="官子先收再战",
+            slogan="官子阶段稳稳收，优势别找事",
+            problem=f"{severity}{side}，{compare_line}官子阶段比的是目数和先后手，不是继续找复杂战斗。{gap}",
+            fix=f"先手官子和大官子优先，把可兑现的目数先收进口袋。推荐先走{move_label(best)}。{pv_line}",
+            action="官子每手先估目数，再看能否保持先手；没有把握时优先稳收。",
         )
     if context == "均势失误":
         return Scenario(
-            template="均势胜负手误判",
+            template="均势最大点",
             title="均势先抢最大点",
-            slogan="均势不逞强，先手最值钱。",
-            problem="胜负接近时，这手没有走在最大点上。",
-            fix="先比两点价值，再下手。",
-            action="落子前先想：我这手比对手最大点更大吗？",
+            slogan="均势不逞强，先手最值钱",
+            problem=f"{severity}{side}，{compare_line}均势阶段每一手都在比价值和先后手。{gap}",
+            fix=f"先比较双方最大点再落子，避免情绪手。此题建议先走{move_label(best)}。{pv_line}",
+            action="落子前先说出“对手下一手最想下哪里”，再看自己这手是否更大。",
         )
     if context == "逆风失误":
         return Scenario(
-            template="逆风一手翻盘梦",
-            title="逆风别赌命",
-            slogan="逆风先追分，不赌一步。",
-            problem="落后时太想一手翻盘，风险过大。",
-            fix="先抢最大点，连续追分，慢慢缩小差距。",
-            action="落后时优先“先手大官子 + 补弱”。",
+            template="逆风追分",
+            title="逆风先追分别豪赌",
+            slogan="逆风先追分，不赌一步",
+            problem=f"{severity}{side}，{compare_line}逆风时硬拼一步翻盘，通常会把形势继续拉开。{gap}",
+            fix=f"先拿稳定分、保持先手，连续追分比豪赌有效。优先考虑{move_label(best)}。{pv_line}",
+            action="逆风局每手目标是“缩小差距”，不是“一手翻盘”。",
         )
     return Scenario(
-        template="综合判断偏差",
+        template="综合判断",
         title="先稳后战",
-        slogan="不连错，就是赢。",
-        problem="这手没有走在当前最急的位置。",
-        fix="优先补弱、守空、抢先手，再考虑进攻。",
+        slogan="先把棋走厚，再谈攻击",
+        problem=f"{severity}{side}，{compare_line}这手没有走在当前最急的位置。{gap}",
+        fix=f"优先补弱、守空、抢先手，再考虑进攻。此题更稳的是{move_label(best)}。{pv_line}",
         action="每手先做三问：稳吗？大吗？先手吗？",
     )
 
