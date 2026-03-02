@@ -381,7 +381,6 @@
           <button class="btn" id="showWrongBtn">看红点（错误）</button>
           <button class="btn" id="showBestBtn">看绿点（推荐）</button>
           <button class="btn" id="showBothBtn">红绿对比</button>
-          <button class="btn primary" id="quizBtn">开始小测验</button>
         </div>
         <div class="status" id="statusBox">先点左边任意示例开始学习。</div>
       </main>
@@ -431,9 +430,8 @@
             <div><span class="dot red"></span>红点：这盘里容易下错的位置</div>
             <div><span class="dot green"></span>绿点：更稳、更好的选择</div>
             <div><span class="dot orange"></span>橙圈：这题正确下一手（教学模式显示）</div>
-            <div><span class="dot blue"></span>蓝点：你在小测验里点的位置</div>
-            <div><span class="dot green"></span>PV第1步：当前正确落子（绿色标记）</div>
-            <div><span class="dot black"></span><span class="dot white"></span>PV后续：黑白棋子交替显示（真实棋子）</div>
+            <div><span class="dot blue"></span>蓝点：你点击的选点</div>
+            <div><span class="dot black"></span><span class="dot white"></span>PV：点击棋盘后显示 1~4 手数字步序</div>
           </div>
         </div>
       </aside>
@@ -469,17 +467,14 @@
       const showWrongBtn = document.getElementById("showWrongBtn");
       const showBestBtn = document.getElementById("showBestBtn");
       const showBothBtn = document.getElementById("showBothBtn");
-      const quizBtn = document.getElementById("quizBtn");
 
       const canvas = document.getElementById("boardCanvas");
       const ctx = canvas.getContext("2d");
       let current = 0;
       let showWrong = true;
       let showBest = false;
-      let quizMode = false;
       let guessed = null;
-      let attempt = 0;
-      const PV_MARK_LIMIT = 6;
+      const PV_MARK_LIMIT = 4;
 
       metaPill.textContent = `学生：${data.student_id} · 示例：${data.examples.length} 题`;
 
@@ -527,9 +522,7 @@
         current = index;
         showWrong = true;
         showBest = false;
-        quizMode = false;
         guessed = null;
-        attempt = 0;
         updatePanel();
         renderBoard();
         refreshButtons();
@@ -541,7 +534,6 @@
 
       function refreshButtons() {
         buttons.forEach((b, i) => b.classList.toggle("active", i === current));
-        quizBtn.textContent = quizMode ? "退出小测验" : "开始小测验";
       }
 
       function updatePanel() {
@@ -557,7 +549,7 @@
         studentColorText.textContent = toPlayLabel(ex.to_play);
         bestMoveText.textContent = bestText;
         impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${toPlayStoneName(ex.to_play)}走）。`;
-        if (showBest && !quizMode) {
+        if (showBest) {
           statusBox.className = "status";
           statusBox.textContent = `绿点是更稳、更好的选择。当前应走：${bestText}；${formatPvText(ex)}`;
         }
@@ -635,6 +627,16 @@
         }
       }
 
+      function drawMoveNumber(x, y, step, pad, number, stoneColor) {
+        const cx = pad + x * step;
+        const cy = pad + y * step;
+        ctx.fillStyle = stoneColor === "B" ? "#f8f8f8" : "#1c1c1c";
+        ctx.font = `700 ${Math.max(12, step * 0.42)}px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(String(number), cx, cy);
+      }
+
       function renderBoard() {
         const ex = data.examples[current];
         const size = ex.board_size || 19;
@@ -701,15 +703,18 @@
         // Stones
         ex.stones.forEach((s) => drawStone(s.x, s.y, step, pad, s.c));
 
+        const showPvMoves = !!guessed;
+
         if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
-        if (!quizMode && !showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
+        if (!showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
         if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
-        if (showBest && Array.isArray(ex.pv_xy)) {
-          ex.pv_xy.slice(1, PV_MARK_LIMIT).forEach((xy, i) => {
+        if (showPvMoves && Array.isArray(ex.pv_xy)) {
+          ex.pv_xy.slice(0, PV_MARK_LIMIT).forEach((xy, i) => {
             if (!Array.isArray(xy) || xy.length < 2) return;
-            const color = pvStoneColor(ex.to_play, i + 1);
+            const color = pvStoneColor(ex.to_play, i);
             if (!color) return;
             drawStone(xy[0], xy[1], step, pad, color);
+            drawMoveNumber(xy[0], xy[1], step, pad, i + 1, color);
           });
         }
         if (guessed) markAt(guessed.x, guessed.y, step, pad, "guess");
@@ -737,24 +742,22 @@
       }
 
       canvas.addEventListener("click", (ev) => {
-        if (!quizMode) return;
         const rect = canvas.getBoundingClientRect();
         const p = nearestIntersection(ev.clientX - rect.left, ev.clientY - rect.top);
         if (!p) return;
         guessed = p;
-        attempt += 1;
         const ex = data.examples[current];
         if (equalXY(ex.best_xy, p)) {
           statusBox.className = "status good";
-          statusBox.textContent = "太棒了！你点的是绿点方向，稳稳加分。";
+          statusBox.textContent = "太棒了！你点中了推荐点，已显示 PV 第1~4手。";
           showBest = true;
         } else if (equalXY(ex.actual_xy, p)) {
           statusBox.className = "status bad";
-          statusBox.textContent = "这是红点错误位。别急，记住口号：" + ex.slogan;
+          statusBox.textContent = "这是红点错误位。已显示 PV 第1~4手，记住口号：" + ex.slogan;
           showWrong = true;
         } else {
           statusBox.className = "status";
-          statusBox.textContent = attempt < 2 ? "再想想：先看弱棋，再看最大点。" : "提示：这题更稳的点在 " + ex.zone + " 附近。";
+          statusBox.textContent = "已显示 PV 第1~4手，先看弱棋，再看最大点。";
         }
         renderBoard();
       });
@@ -762,7 +765,6 @@
       prevBtn.addEventListener("click", () => selectExample((current - 1 + data.examples.length) % data.examples.length));
       nextBtn.addEventListener("click", () => selectExample((current + 1) % data.examples.length));
       showWrongBtn.addEventListener("click", () => {
-        quizMode = false;
         showWrong = true;
         showBest = false;
         guessed = null;
@@ -773,7 +775,6 @@
         renderBoard();
       });
       showBestBtn.addEventListener("click", () => {
-        quizMode = false;
         showWrong = false;
         showBest = true;
         guessed = null;
@@ -782,31 +783,12 @@
         renderBoard();
       });
       showBothBtn.addEventListener("click", () => {
-        quizMode = false;
         showWrong = true;
         showBest = true;
         guessed = null;
         const ex = data.examples[current];
         statusBox.className = "status";
         statusBox.textContent = `红绿对比：看清“哪里容易错，哪里更稳”。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
-        refreshButtons();
-        renderBoard();
-      });
-      quizBtn.addEventListener("click", () => {
-        quizMode = !quizMode;
-        guessed = null;
-        attempt = 0;
-        if (quizMode) {
-          showWrong = false;
-          showBest = false;
-          statusBox.className = "status";
-          statusBox.textContent = data.examples[current].quiz_prompt;
-        } else {
-          showWrong = true;
-          showBest = false;
-          statusBox.className = "status";
-          statusBox.textContent = "退出小测验，回到讲解模式。";
-        }
         refreshButtons();
         renderBoard();
       });
