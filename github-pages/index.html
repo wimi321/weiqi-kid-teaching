@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>围棋互动教学 · 芒果25437</title>
+  <style>
+    :root {
+      --paper: #f8f3df;
+      --ink: #1e2b2f;
+      --board-a: #e9c682;
+      --board-b: #d6ab5d;
+      --line: #5b3f14;
+      --accent: #1f9d55;
+      --danger: #d94841;
+      --sun: #ff9f1c;
+      --sky: #87c4ff;
+      --card: #fffdf6;
+      --edge: #d7ccb2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%, #fff7d8 0%, #fff7d8 12%, transparent 12.5%),
+        radial-gradient(circle at 92% 18%, #e4f6ff 0%, #e4f6ff 10%, transparent 10.5%),
+        linear-gradient(160deg, #f8f3df 0%, #f3ead4 45%, #e8dec5 100%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(1300px, 100%);
+      margin: 0 auto;
+      padding: 16px 14px 26px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--edge);
+      border-radius: 18px;
+      background: linear-gradient(110deg, #fff7d9, #fffdf3);
+      box-shadow: 0 10px 28px rgba(76, 51, 17, 0.1);
+      padding: 14px 16px;
+    }
+
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: clamp(22px, 4vw, 34px);
+      letter-spacing: 0.4px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.88;
+    }
+
+    .pill {
+      border: 1px solid #f0cc73;
+      border-radius: 999px;
+      background: #ffe8a6;
+      color: #66460e;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .layout {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 300px minmax(320px, 1fr) 360px;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--edge);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(72, 50, 20, 0.09);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      background: linear-gradient(120deg, #fff5cc, #ffe6b8);
+      border-bottom: 1px solid var(--edge);
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .lesson-list {
+      max-height: 76vh;
+      overflow: auto;
+      padding: 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .lesson-btn {
+      text-align: left;
+      width: 100%;
+      border: 1px solid #e7d9bb;
+      border-radius: 12px;
+      background: #fffaf0;
+      padding: 9px 10px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .lesson-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(69, 47, 13, 0.12);
+      background: #fff1d8;
+    }
+
+    .lesson-btn.active {
+      border-color: #f4be59;
+      background: #ffe8ba;
+    }
+
+    .lesson-btn .t {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .lesson-btn .s {
+      font-size: 12px;
+      opacity: 0.82;
+    }
+
+    .board-shell {
+      padding: 12px;
+    }
+
+    .canvas-wrap {
+      border: 1px solid var(--edge);
+      border-radius: 14px;
+      background: #fff3d6;
+      padding: 8px;
+    }
+
+    #boardCanvas {
+      width: 100%;
+      max-height: 70vh;
+      aspect-ratio: 1 / 1;
+      display: block;
+      border-radius: 8px;
+      background: linear-gradient(145deg, var(--board-a), var(--board-b));
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      border: 1px solid #d9c39a;
+      border-radius: 11px;
+      background: #fff8e8;
+      padding: 9px 10px;
+      cursor: pointer;
+      font-weight: 700;
+      color: #513914;
+    }
+
+    .btn:hover {
+      background: #ffeec9;
+    }
+
+    .btn.primary {
+      background: #2d8f56;
+      border-color: #2d8f56;
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      background: #257847;
+    }
+
+    .status {
+      margin-top: 8px;
+      border: 1px dashed #d8c49d;
+      border-radius: 10px;
+      background: #fffdf3;
+      padding: 8px 9px;
+      min-height: 44px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .status.good {
+      border-color: #7aca96;
+      background: #effdf4;
+      color: #1e6e3d;
+    }
+
+    .status.bad {
+      border-color: #f0aaaa;
+      background: #fff3f2;
+      color: #8a2924;
+    }
+
+    .note {
+      padding: 12px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .card {
+      border: 1px solid #eadfc7;
+      border-radius: 12px;
+      background: #fffcf4;
+      padding: 9px 10px;
+    }
+
+    .card .k {
+      font-size: 12px;
+      font-weight: 800;
+      color: #7a5734;
+      margin-bottom: 4px;
+    }
+
+    .card .v {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid #e8d8b0;
+      background: #fff4d8;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6d4a1f;
+    }
+
+    .legend {
+      margin-top: 10px;
+      border-top: 1px dashed #deceb0;
+      padding-top: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #694d26;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: -1px;
+    }
+
+    .dot.red {
+      background: var(--danger);
+    }
+
+    .dot.green {
+      background: var(--accent);
+    }
+
+    .dot.blue {
+      background: #2b79ff;
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .lesson-list {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>围棋探险课堂</h1>
+        <p>给二年级小朋友的互动复盘：看红点哪里容易错，再找绿点怎样更稳。</p>
+      </div>
+      <div class="pill" id="metaPill">加载中...</div>
+    </section>
+
+    <section class="layout">
+      <aside class="panel">
+        <div class="panel-head">示例关卡（点击切换）</div>
+        <div class="lesson-list" id="lessonList"></div>
+      </aside>
+
+      <main class="panel board-shell">
+        <div class="canvas-wrap">
+          <canvas id="boardCanvas" width="900" height="900"></canvas>
+        </div>
+        <div class="controls">
+          <button class="btn" id="prevBtn">上一题</button>
+          <button class="btn" id="nextBtn">下一题</button>
+          <button class="btn" id="showWrongBtn">看红点（错误）</button>
+          <button class="btn" id="showBestBtn">看绿点（推荐）</button>
+          <button class="btn" id="showBothBtn">红绿对比</button>
+          <button class="btn primary" id="quizBtn">开始小测验</button>
+        </div>
+        <div class="status" id="statusBox">先点左边任意示例开始学习。</div>
+      </main>
+
+      <aside class="panel">
+        <div class="panel-head">小朋友讲解卡</div>
+        <div class="note">
+          <div class="chips">
+            <span class="chip" id="phaseChip">阶段</span>
+            <span class="chip" id="zoneChip">区域</span>
+            <span class="chip" id="contextChip">局势</span>
+          </div>
+          <div class="card">
+            <div class="k">这关口号</div>
+            <div class="v" id="sloganText">-</div>
+          </div>
+          <div class="card">
+            <div class="k">哪里容易错</div>
+            <div class="v" id="problemText">-</div>
+          </div>
+          <div class="card">
+            <div class="k">下次怎么做</div>
+            <div class="v" id="fixText">-</div>
+          </div>
+          <div class="card">
+            <div class="k">比赛小动作</div>
+            <div class="v" id="actionText">-</div>
+          </div>
+          <div class="card">
+            <div class="k">这手影响</div>
+            <div class="v" id="impactText">-</div>
+          </div>
+          <div class="legend">
+            <div><span class="dot red"></span>红点：这盘里容易下错的位置</div>
+            <div><span class="dot green"></span>绿点：更稳、更好的选择</div>
+            <div><span class="dot blue"></span>蓝点：你在小测验里点的位置</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script src="./kid_teaching_data.js"></script>
+  <script>
+    (function () {
+      const data = window.KID_TEACHING_DATA;
+      if (!data || !Array.isArray(data.examples) || data.examples.length === 0) {
+        document.getElementById("statusBox").textContent = "教学数据加载失败，请检查 kid_teaching_data.js";
+        return;
+      }
+
+      const lessonList = document.getElementById("lessonList");
+      const metaPill = document.getElementById("metaPill");
+      const statusBox = document.getElementById("statusBox");
+
+      const phaseChip = document.getElementById("phaseChip");
+      const zoneChip = document.getElementById("zoneChip");
+      const contextChip = document.getElementById("contextChip");
+      const sloganText = document.getElementById("sloganText");
+      const problemText = document.getElementById("problemText");
+      const fixText = document.getElementById("fixText");
+      const actionText = document.getElementById("actionText");
+      const impactText = document.getElementById("impactText");
+
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const showWrongBtn = document.getElementById("showWrongBtn");
+      const showBestBtn = document.getElementById("showBestBtn");
+      const showBothBtn = document.getElementById("showBothBtn");
+      const quizBtn = document.getElementById("quizBtn");
+
+      const canvas = document.getElementById("boardCanvas");
+      const ctx = canvas.getContext("2d");
+      let current = 0;
+      let showWrong = true;
+      let showBest = false;
+      let quizMode = false;
+      let guessed = null;
+      let attempt = 0;
+
+      metaPill.textContent = `学生：${data.student_id} · 示例：${data.examples.length} 题`;
+
+      const buttons = data.examples.map((ex, i) => {
+        const btn = document.createElement("button");
+        btn.className = "lesson-btn";
+        btn.innerHTML =
+          `<div class="t">第${i + 1}题 · ${ex.title}</div>` +
+          `<div class="s">${ex.phase} / ${ex.zone} / 第${ex.move_no}手</div>`;
+        btn.addEventListener("click", () => selectExample(i));
+        lessonList.appendChild(btn);
+        return btn;
+      });
+
+      function selectExample(index) {
+        current = index;
+        showWrong = true;
+        showBest = false;
+        quizMode = false;
+        guessed = null;
+        attempt = 0;
+        updatePanel();
+        renderBoard();
+        refreshButtons();
+        statusBox.className = "status";
+        statusBox.textContent = data.examples[current].quiz_prompt;
+      }
+
+      function refreshButtons() {
+        buttons.forEach((b, i) => b.classList.toggle("active", i === current));
+        quizBtn.textContent = quizMode ? "退出小测验" : "开始小测验";
+      }
+
+      function updatePanel() {
+        const ex = data.examples[current];
+        phaseChip.textContent = `阶段：${ex.phase}`;
+        zoneChip.textContent = `区域：${ex.zone}`;
+        contextChip.textContent = `局势：${ex.context}`;
+        sloganText.textContent = ex.slogan;
+        problemText.textContent = ex.problem;
+        fixText.textContent = ex.fix;
+        actionText.textContent = ex.action;
+        impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${ex.to_play === "B" ? "黑棋" : "白棋"}走）。`;
+      }
+
+      function drawStone(x, y, step, pad, color) {
+        const cx = pad + x * step;
+        const cy = pad + y * step;
+        const r = step * 0.44;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(cx - r * 0.25, cy - r * 0.3, r * 0.2, cx, cy, r);
+        if (color === "B") {
+          g.addColorStop(0, "#4a4a4a");
+          g.addColorStop(1, "#0f0f0f");
+        } else {
+          g.addColorStop(0, "#ffffff");
+          g.addColorStop(1, "#d8d8d8");
+        }
+        ctx.fillStyle = g;
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = color === "B" ? "#2f2f2f" : "#b3b3b3";
+        ctx.stroke();
+      }
+
+      function markAt(x, y, step, pad, mode) {
+        if (x == null || y == null) return;
+        const cx = pad + x * step;
+        const cy = pad + y * step;
+        if (mode === "wrong") {
+          ctx.strokeStyle = "#d94841";
+          ctx.lineWidth = Math.max(2, step * 0.08);
+          ctx.beginPath();
+          ctx.arc(cx, cy, step * 0.32, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(cx - step * 0.2, cy - step * 0.2);
+          ctx.lineTo(cx + step * 0.2, cy + step * 0.2);
+          ctx.moveTo(cx + step * 0.2, cy - step * 0.2);
+          ctx.lineTo(cx - step * 0.2, cy + step * 0.2);
+          ctx.stroke();
+          return;
+        }
+        if (mode === "best") {
+          ctx.strokeStyle = "#1f9d55";
+          ctx.lineWidth = Math.max(2, step * 0.08);
+          ctx.beginPath();
+          ctx.arc(cx, cy, step * 0.32, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.fillStyle = "#1f9d55";
+          ctx.beginPath();
+          ctx.arc(cx, cy, step * 0.08, 0, Math.PI * 2);
+          ctx.fill();
+          return;
+        }
+        if (mode === "guess") {
+          ctx.strokeStyle = "#2b79ff";
+          ctx.lineWidth = Math.max(2, step * 0.08);
+          ctx.beginPath();
+          ctx.arc(cx, cy, step * 0.28, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+
+      function renderBoard() {
+        const ex = data.examples[current];
+        const size = ex.board_size || 19;
+        const dpr = window.devicePixelRatio || 1;
+        const width = canvas.clientWidth;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(width * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, width, width);
+
+        const pad = Math.max(26, width * 0.07);
+        const step = (width - pad * 2) / (size - 1);
+
+        // Board lines
+        ctx.strokeStyle = "#5b3f14";
+        ctx.lineWidth = 1.2;
+        for (let i = 0; i < size; i++) {
+          const p = pad + i * step;
+          ctx.beginPath();
+          ctx.moveTo(pad, p);
+          ctx.lineTo(width - pad, p);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(p, pad);
+          ctx.lineTo(p, width - pad);
+          ctx.stroke();
+        }
+
+        // Hoshi points for 19x19
+        if (size === 19) {
+          const stars = [3, 9, 15];
+          ctx.fillStyle = "#4e3510";
+          for (const sx of stars) {
+            for (const sy of stars) {
+              ctx.beginPath();
+              ctx.arc(pad + sx * step, pad + sy * step, Math.max(2.5, step * 0.08), 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+
+        // Coordinates
+        ctx.fillStyle = "#664618";
+        ctx.font = `${Math.max(10, step * 0.22)}px sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        const letters = "ABCDEFGHJKLMNOPQRSTUVXYZ";
+        for (let i = 0; i < size; i++) {
+          const lx = pad + i * step;
+          const lyTop = pad - step * 0.55;
+          const lyBottom = width - pad + step * 0.55;
+          const label = letters[i] || "";
+          ctx.fillText(label, lx, lyTop);
+          ctx.fillText(label, lx, lyBottom);
+        }
+        ctx.textAlign = "right";
+        for (let i = 0; i < size; i++) {
+          const y = pad + i * step;
+          const label = String(size - i);
+          ctx.fillText(label, pad - step * 0.5, y);
+          ctx.fillText(label, width - pad + step * 1.0, y);
+        }
+
+        // Stones
+        ex.stones.forEach((s) => drawStone(s.x, s.y, step, pad, s.c));
+
+        if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
+        if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
+        if (guessed) markAt(guessed.x, guessed.y, step, pad, "guess");
+      }
+
+      function nearestIntersection(px, py) {
+        const ex = data.examples[current];
+        const size = ex.board_size || 19;
+        const width = canvas.clientWidth;
+        const pad = Math.max(26, width * 0.07);
+        const step = (width - pad * 2) / (size - 1);
+        const gx = Math.round((px - pad) / step);
+        const gy = Math.round((py - pad) / step);
+        if (gx < 0 || gx >= size || gy < 0 || gy >= size) return null;
+        const cx = pad + gx * step;
+        const cy = pad + gy * step;
+        const dist = Math.hypot(px - cx, py - cy);
+        if (dist > step * 0.45) return null;
+        return { x: gx, y: gy };
+      }
+
+      function equalXY(a, b) {
+        if (!a || !b) return false;
+        return a[0] === b.x && a[1] === b.y;
+      }
+
+      canvas.addEventListener("click", (ev) => {
+        if (!quizMode) return;
+        const rect = canvas.getBoundingClientRect();
+        const p = nearestIntersection(ev.clientX - rect.left, ev.clientY - rect.top);
+        if (!p) return;
+        guessed = p;
+        attempt += 1;
+        const ex = data.examples[current];
+        if (equalXY(ex.best_xy, p)) {
+          statusBox.className = "status good";
+          statusBox.textContent = "太棒了！你点的是绿点方向，稳稳加分。";
+          showBest = true;
+        } else if (equalXY(ex.actual_xy, p)) {
+          statusBox.className = "status bad";
+          statusBox.textContent = "这是红点错误位。别急，记住口号：" + ex.slogan;
+          showWrong = true;
+        } else {
+          statusBox.className = "status";
+          statusBox.textContent = attempt < 2 ? "再想想：先看弱棋，再看最大点。" : "提示：这题更稳的点在 " + ex.zone + " 附近。";
+        }
+        renderBoard();
+      });
+
+      prevBtn.addEventListener("click", () => selectExample((current - 1 + data.examples.length) % data.examples.length));
+      nextBtn.addEventListener("click", () => selectExample((current + 1) % data.examples.length));
+      showWrongBtn.addEventListener("click", () => {
+        quizMode = false;
+        showWrong = true;
+        showBest = false;
+        guessed = null;
+        statusBox.className = "status";
+        statusBox.textContent = "红点是这盘容易踩坑的位置。";
+        refreshButtons();
+        renderBoard();
+      });
+      showBestBtn.addEventListener("click", () => {
+        quizMode = false;
+        showWrong = false;
+        showBest = true;
+        guessed = null;
+        statusBox.className = "status";
+        statusBox.textContent = "绿点是更稳、更好的选择。";
+        refreshButtons();
+        renderBoard();
+      });
+      showBothBtn.addEventListener("click", () => {
+        quizMode = false;
+        showWrong = true;
+        showBest = true;
+        guessed = null;
+        statusBox.className = "status";
+        statusBox.textContent = "红绿对比：看清“哪里容易错，哪里更稳”。";
+        refreshButtons();
+        renderBoard();
+      });
+      quizBtn.addEventListener("click", () => {
+        quizMode = !quizMode;
+        guessed = null;
+        attempt = 0;
+        if (quizMode) {
+          showWrong = false;
+          showBest = false;
+          statusBox.className = "status";
+          statusBox.textContent = data.examples[current].quiz_prompt;
+        } else {
+          showWrong = true;
+          showBest = false;
+          statusBox.className = "status";
+          statusBox.textContent = "退出小测验，回到讲解模式。";
+        }
+        refreshButtons();
+        renderBoard();
+      });
+
+      window.addEventListener("resize", renderBoard);
+
+      selectExample(0);
+    })();
+  </script>
+</body>
+</html>
