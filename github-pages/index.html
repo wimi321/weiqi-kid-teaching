@@ -206,7 +206,7 @@
 
     .controls {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       margin-top: 10px;
     }
@@ -233,6 +233,17 @@
 
     .btn.primary:hover {
       background: #257847;
+    }
+
+    .btn.toggle-on {
+      background: #1f9d55;
+      border-color: #1f9d55;
+      color: #fff;
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
 
     .explain-only {
@@ -411,6 +422,9 @@
       .mode-bar {
         grid-template-columns: 1fr;
       }
+      .controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
       .focus-grid {
         grid-template-columns: 1fr;
       }
@@ -452,6 +466,9 @@
           <button class="btn explain-control" id="showWrongBtn">只看红点（错误）</button>
           <button class="btn explain-control" id="showBestBtn">只看绿点（推荐）</button>
           <button class="btn explain-control" id="showBothBtn">红绿对比</button>
+          <button class="btn" id="tryModeBtn">开启试下</button>
+          <button class="btn" id="trialUndoBtn">悔棋一步</button>
+          <button class="btn" id="trialClearBtn">清空试下</button>
         </div>
         <div class="status" id="statusBox">先点左边任意示例开始学习。</div>
       </main>
@@ -507,6 +524,7 @@
             <div><span class="dot orange"></span>橙圈：这题正确下一手（教学模式显示）</div>
             <div><span class="dot blue"></span>蓝点：你点击的选点</div>
             <div><span class="dot black"></span><span class="dot white"></span>PV：点击棋盘后显示 1~4 手数字步序</div>
+            <div>试下模式：点击棋盘可连续摆棋，支持悔棋和清空。</div>
           </div>
         </div>
       </aside>
@@ -549,6 +567,9 @@
       const showWrongBtn = document.getElementById("showWrongBtn");
       const showBestBtn = document.getElementById("showBestBtn");
       const showBothBtn = document.getElementById("showBothBtn");
+      const tryModeBtn = document.getElementById("tryModeBtn");
+      const trialUndoBtn = document.getElementById("trialUndoBtn");
+      const trialClearBtn = document.getElementById("trialClearBtn");
 
       const canvas = document.getElementById("boardCanvas");
       const ctx = canvas.getContext("2d");
@@ -559,6 +580,9 @@
       let revealAnswer = false;
       let guessed = null;
       let pvSource = "best";
+      let tryMode = false;
+      let trialMoves = [];
+      let lastTrial = null;
       const PV_MARK_LIMIT = 4;
 
       document.body.setAttribute("data-view-mode", viewMode);
@@ -621,6 +645,34 @@
         return `${formatGamePair(ex.game)} · 第${ex.move_no}手`;
       }
 
+      function xyToGtp(x, y, size) {
+        const letters = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+        if (x < 0 || y < 0 || x >= size || y >= size) return "";
+        return `${letters[x] || ""}${size - y}`;
+      }
+
+      function resetTrialMoves() {
+        trialMoves = [];
+        lastTrial = null;
+      }
+
+      function trialOccupied(ex, x, y) {
+        if (Array.isArray(ex.stones) && ex.stones.some((s) => s.x === x && s.y === y)) return true;
+        return trialMoves.some((m) => m.x === x && m.y === y);
+      }
+
+      function nextTrialColor(ex) {
+        if (trialMoves.length % 2 === 0) return ex.to_play;
+        return oppositeStone(ex.to_play);
+      }
+
+      function updateTrialButtons() {
+        tryModeBtn.classList.toggle("toggle-on", tryMode);
+        tryModeBtn.textContent = tryMode ? "退出试下" : "开启试下";
+        trialUndoBtn.disabled = trialMoves.length === 0;
+        trialClearBtn.disabled = trialMoves.length === 0;
+      }
+
       function updateModeShell() {
         const teaching = viewMode === "teach";
         document.body.setAttribute("data-view-mode", viewMode);
@@ -637,19 +689,29 @@
         const ex = data.examples[current];
         guessed = null;
         pvSource = "best";
+        resetTrialMoves();
+        updateTrialButtons();
         if (viewMode === "teach") {
           revealAnswer = false;
           showWrong = false;
           showBest = false;
           statusBox.className = "status";
-          statusBox.textContent = `现在轮到${toPlayStoneName(ex.to_play)}走，请先点你觉得最好的点。`;
+          if (tryMode) {
+            statusBox.textContent = `试下已开启：现在轮到${toPlayStoneName(nextTrialColor(ex))}走，点棋盘可摆棋。`;
+          } else {
+            statusBox.textContent = `现在轮到${toPlayStoneName(ex.to_play)}走，请先点你觉得最好的点。`;
+          }
           return;
         }
         revealAnswer = true;
         showWrong = true;
         showBest = true;
         statusBox.className = "status";
-        statusBox.textContent = `讲解模式：红点是实战，绿点是推荐。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
+        if (tryMode) {
+          statusBox.textContent = `试下已开启：现在轮到${toPlayStoneName(nextTrialColor(ex))}走，点棋盘可摆棋。`;
+        } else {
+          statusBox.textContent = `讲解模式：红点是实战，绿点是推荐。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
+        }
       }
 
       const buttons = data.examples.map((ex, i) => {
@@ -847,6 +909,10 @@
 
         // Stones
         ex.stones.forEach((s) => drawStone(s.x, s.y, step, pad, s.c));
+        trialMoves.forEach((m, i) => {
+          drawStone(m.x, m.y, step, pad, m.c);
+          drawMoveNumber(m.x, m.y, step, pad, i + 1, m.c);
+        });
 
         const showPvMoves = !!guessed;
         const pv = activePv(ex);
@@ -869,6 +935,9 @@
             drawStone(xy[0], xy[1], step, pad, color);
             drawMoveNumber(xy[0], xy[1], step, pad, i + 1, color);
           });
+        }
+        if (tryMode && lastTrial) {
+          markAt(lastTrial.x, lastTrial.y, step, pad, "guess");
         }
         if (guessed) markAt(guessed.x, guessed.y, step, pad, "guess");
       }
@@ -898,8 +967,25 @@
         const rect = canvas.getBoundingClientRect();
         const p = nearestIntersection(ev.clientX - rect.left, ev.clientY - rect.top);
         if (!p) return;
-        guessed = p;
         const ex = data.examples[current];
+        if (tryMode) {
+          if (trialOccupied(ex, p.x, p.y)) {
+            statusBox.className = "status";
+            statusBox.textContent = "这个位置已经有子了，换个交叉点再试。";
+            return;
+          }
+          const color = nextTrialColor(ex);
+          trialMoves.push({ x: p.x, y: p.y, c: color });
+          lastTrial = { x: p.x, y: p.y };
+          guessed = null;
+          const gtp = xyToGtp(p.x, p.y, ex.board_size || 19);
+          statusBox.className = "status";
+          statusBox.textContent = `试下第${trialMoves.length}手：${toPlayStoneName(color)} 下在 ${gtp || "该点"}。`;
+          updateTrialButtons();
+          renderBoard();
+          return;
+        }
+        guessed = p;
         if (viewMode === "explain") {
           statusBox.className = "status";
           if (equalXY(ex.actual_xy, p)) {
@@ -983,6 +1069,47 @@
         statusBox.className = "status";
         statusBox.textContent = `红绿对比：看清“哪里容易错，哪里更稳”。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
         refreshButtons();
+        renderBoard();
+      });
+
+      tryModeBtn.addEventListener("click", () => {
+        tryMode = !tryMode;
+        guessed = null;
+        const ex = data.examples[current];
+        if (tryMode) {
+          statusBox.className = "status";
+          statusBox.textContent = `试下已开启：现在轮到${toPlayStoneName(nextTrialColor(ex))}走，点棋盘可摆棋。`;
+        } else {
+          statusBox.className = "status";
+          statusBox.textContent = "试下已关闭。盘面试摆仍保留，可继续悔棋或清空。";
+        }
+        updateTrialButtons();
+        renderBoard();
+      });
+
+      trialUndoBtn.addEventListener("click", () => {
+        if (trialMoves.length === 0) return;
+        trialMoves.pop();
+        lastTrial = trialMoves.length > 0 ? trialMoves[trialMoves.length - 1] : null;
+        guessed = null;
+        const ex = data.examples[current];
+        statusBox.className = "status";
+        if (trialMoves.length === 0) {
+          statusBox.textContent = `已悔棋，试下盘面已清空。下一手轮到${toPlayStoneName(nextTrialColor(ex))}。`;
+        } else {
+          statusBox.textContent = `已悔棋一步。下一手轮到${toPlayStoneName(nextTrialColor(ex))}。`;
+        }
+        updateTrialButtons();
+        renderBoard();
+      });
+
+      trialClearBtn.addEventListener("click", () => {
+        const ex = data.examples[current];
+        resetTrialMoves();
+        guessed = null;
+        statusBox.className = "status";
+        statusBox.textContent = `已清空试下。下一手轮到${toPlayStoneName(nextTrialColor(ex))}。`;
+        updateTrialButtons();
         renderBoard();
       });
 
