@@ -585,7 +585,16 @@
         const actualPvOk = Array.isArray(ex.actual_pv_xy) && ex.actual_pv_xy.length > 0;
         const useActual = pvSource === "actual" && actualPvOk;
         const xy = useActual ? ex.actual_pv_xy : ex.pv_xy;
-        const startColor = useActual ? oppositeStone(ex.to_play) : ex.to_play;
+        const seq = useActual ? ex.actual_pv : ex.pv;
+        const expectedMove = useActual ? ex.actual : ex.best;
+        const firstMove = Array.isArray(seq) && seq.length > 0
+          ? String(seq[0]).trim().toUpperCase()
+          : "";
+        const expected = expectedMove ? String(expectedMove).trim().toUpperCase() : "";
+        let startColor = useActual ? oppositeStone(ex.to_play) : ex.to_play;
+        if (firstMove && expected && firstMove === expected) {
+          startColor = ex.to_play;
+        }
         const label = useActual ? "错误点后续变化" : "推荐点后续变化";
         return { xy, startColor, label };
       }
