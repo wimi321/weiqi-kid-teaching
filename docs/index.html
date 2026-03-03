@@ -76,6 +76,49 @@
       white-space: nowrap;
     }
 
+    .mode-bar {
+      margin-top: 12px;
+      border: 1px solid var(--edge);
+      border-radius: 14px;
+      background: #fff9ea;
+      box-shadow: 0 6px 16px rgba(72, 50, 20, 0.08);
+      padding: 8px 10px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      border: 1px solid #e0cca0;
+      border-radius: 999px;
+      background: #fff6de;
+      overflow: hidden;
+    }
+
+    .mode-btn {
+      border: 0;
+      background: transparent;
+      color: #66461a;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .mode-btn.active {
+      background: #2d8f56;
+      color: #fff;
+    }
+
+    .mode-tip {
+      font-size: 13px;
+      color: #6b4e27;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
     .layout {
       margin-top: 14px;
       display: grid;
@@ -190,6 +233,22 @@
 
     .btn.primary:hover {
       background: #257847;
+    }
+
+    .explain-only {
+      display: block;
+    }
+
+    body[data-view-mode="teach"] .explain-only {
+      display: none;
+    }
+
+    body[data-view-mode="teach"] .explain-control {
+      display: none;
+    }
+
+    body[data-view-mode="explain"] .teach-control {
+      display: none;
     }
 
     .status {
@@ -349,6 +408,9 @@
     }
 
     @media (max-width: 640px) {
+      .mode-bar {
+        grid-template-columns: 1fr;
+      }
       .focus-grid {
         grid-template-columns: 1fr;
       }
@@ -365,9 +427,17 @@
       <div class="pill" id="metaPill">加载中...</div>
     </section>
 
+    <section class="mode-bar">
+      <div class="mode-switch">
+        <button class="mode-btn active" id="teachModeBtn">教学模式</button>
+        <button class="mode-btn" id="explainModeBtn">讲解模式</button>
+      </div>
+      <div class="mode-tip" id="modeTip">教学模式：先自己选点，再公布答案。</div>
+    </section>
+
     <section class="layout">
       <aside class="panel">
-        <div class="panel-head">示例关卡（点击切换）</div>
+        <div class="panel-head" id="lessonHead">示例关卡（点击切换）</div>
         <div class="lesson-list" id="lessonList"></div>
       </aside>
 
@@ -378,15 +448,16 @@
         <div class="controls">
           <button class="btn" id="prevBtn">上一题</button>
           <button class="btn" id="nextBtn">下一题</button>
-          <button class="btn" id="showWrongBtn">看红点（错误）</button>
-          <button class="btn" id="showBestBtn">看绿点（推荐）</button>
-          <button class="btn" id="showBothBtn">红绿对比</button>
+          <button class="btn primary teach-control" id="revealBtn">公布答案</button>
+          <button class="btn explain-control" id="showWrongBtn">只看红点（错误）</button>
+          <button class="btn explain-control" id="showBestBtn">只看绿点（推荐）</button>
+          <button class="btn explain-control" id="showBothBtn">红绿对比</button>
         </div>
         <div class="status" id="statusBox">先点左边任意示例开始学习。</div>
       </main>
 
       <aside class="panel">
-        <div class="panel-head">小朋友讲解卡</div>
+        <div class="panel-head" id="noteHead">教学信息卡</div>
         <div class="note">
           <div class="chips">
             <span class="chip" id="phaseChip">阶段</span>
@@ -414,19 +485,19 @@
             <div class="k">这关口号</div>
             <div class="v" id="sloganText">-</div>
           </div>
-          <div class="card">
+          <div class="card explain-only">
             <div class="k">哪里容易错</div>
             <div class="v" id="problemText">-</div>
           </div>
-          <div class="card">
+          <div class="card explain-only">
             <div class="k">下次怎么做</div>
             <div class="v" id="fixText">-</div>
           </div>
-          <div class="card">
+          <div class="card explain-only">
             <div class="k">比赛小动作</div>
             <div class="v" id="actionText">-</div>
           </div>
-          <div class="card">
+          <div class="card explain-only">
             <div class="k">这手影响</div>
             <div class="v" id="impactText">-</div>
           </div>
@@ -452,8 +523,13 @@
       }
 
       const lessonList = document.getElementById("lessonList");
+      const lessonHead = document.getElementById("lessonHead");
+      const noteHead = document.getElementById("noteHead");
       const metaPill = document.getElementById("metaPill");
       const statusBox = document.getElementById("statusBox");
+      const modeTip = document.getElementById("modeTip");
+      const teachModeBtn = document.getElementById("teachModeBtn");
+      const explainModeBtn = document.getElementById("explainModeBtn");
 
       const phaseChip = document.getElementById("phaseChip");
       const zoneChip = document.getElementById("zoneChip");
@@ -469,6 +545,7 @@
 
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
+      const revealBtn = document.getElementById("revealBtn");
       const showWrongBtn = document.getElementById("showWrongBtn");
       const showBestBtn = document.getElementById("showBestBtn");
       const showBothBtn = document.getElementById("showBothBtn");
@@ -476,11 +553,14 @@
       const canvas = document.getElementById("boardCanvas");
       const ctx = canvas.getContext("2d");
       let current = 0;
-      let showWrong = true;
+      let viewMode = "teach";
+      let showWrong = false;
       let showBest = false;
+      let revealAnswer = false;
       let guessed = null;
       const PV_MARK_LIMIT = 4;
 
+      document.body.setAttribute("data-view-mode", viewMode);
       metaPill.textContent = `学生：${data.student_id} · 示例：${data.examples.length} 题`;
 
       function toPlayLabel(toPlay) {
@@ -521,15 +601,44 @@
         return `${formatGamePair(ex.game)} · 第${ex.move_no}手`;
       }
 
+      function updateModeShell() {
+        const teaching = viewMode === "teach";
+        document.body.setAttribute("data-view-mode", viewMode);
+        teachModeBtn.classList.toggle("active", teaching);
+        explainModeBtn.classList.toggle("active", !teaching);
+        modeTip.textContent = teaching
+          ? "教学模式：先自己选点，再公布答案。"
+          : "讲解模式：直接看红绿对比，再读详细原因。";
+        lessonHead.textContent = teaching ? "练习题（先做题）" : "讲解题（看思路）";
+        noteHead.textContent = teaching ? "教学信息卡（简版）" : "讲解信息卡（完整版）";
+      }
+
+      function resetExampleForMode() {
+        const ex = data.examples[current];
+        guessed = null;
+        if (viewMode === "teach") {
+          revealAnswer = false;
+          showWrong = false;
+          showBest = false;
+          statusBox.className = "status";
+          statusBox.textContent = `现在轮到${toPlayStoneName(ex.to_play)}走，请先点你觉得最好的点。`;
+          return;
+        }
+        revealAnswer = true;
+        showWrong = true;
+        showBest = true;
+        statusBox.className = "status";
+        statusBox.textContent = `讲解模式：红点是实战，绿点是推荐。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
+      }
+
       const buttons = data.examples.map((ex, i) => {
         const btn = document.createElement("button");
         const colorText = ex.to_play === "B" ? "执黑" : ex.to_play === "W" ? "执白" : "执子?";
-        const bestText = ex.best || "-";
         const sourceLine = formatSourceLine(ex);
         btn.className = "lesson-btn";
         btn.innerHTML =
           `<div class="t">第${i + 1}题 · ${ex.title}</div>` +
-          `<div class="s">${ex.phase} / ${ex.zone} · ${colorText} · 正解 ${bestText}</div>` +
+          `<div class="s">${ex.phase} / ${ex.zone} · ${colorText}</div>` +
           `<div class="s">来源：${sourceLine}</div>`;
         btn.title = ex.game || "";
         btn.addEventListener("click", () => selectExample(i));
@@ -539,16 +648,10 @@
 
       function selectExample(index) {
         current = index;
-        showWrong = true;
-        showBest = false;
-        guessed = null;
+        resetExampleForMode();
         updatePanel();
         renderBoard();
         refreshButtons();
-        statusBox.className = "status";
-        const ex = data.examples[current];
-        const bestText = ex.best || "-";
-        statusBox.textContent = `${ex.quiz_prompt} 现在轮到${toPlayStoneName(ex.to_play)}，推荐下一手：${bestText}`;
       }
 
       function refreshButtons() {
@@ -566,11 +669,11 @@
         fixText.textContent = ex.fix;
         actionText.textContent = ex.action;
         studentColorText.textContent = toPlayLabel(ex.to_play);
-        bestMoveText.textContent = bestText;
+        bestMoveText.textContent = viewMode === "teach" && !revealAnswer ? "先自己想一想" : bestText;
         sourceText.textContent = formatSourceLine(ex);
         sourceText.title = ex.game || "";
         impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${toPlayStoneName(ex.to_play)}走）。`;
-        if (showBest) {
+        if (viewMode === "explain" && showBest) {
           statusBox.className = "status";
           statusBox.textContent = `绿点是更稳、更好的选择。当前应走：${bestText}；${formatPvText(ex)}`;
         }
@@ -726,9 +829,16 @@
 
         const showPvMoves = !!guessed;
 
-        if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
-        if (!showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
-        if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
+        if (viewMode === "teach") {
+          if (revealAnswer) {
+            if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
+            if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
+          }
+        } else {
+          if (showWrong && ex.actual_xy) markAt(ex.actual_xy[0], ex.actual_xy[1], step, pad, "wrong");
+          if (!showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
+          if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
+        }
         if (showPvMoves && Array.isArray(ex.pv_xy)) {
           ex.pv_xy.slice(0, PV_MARK_LIMIT).forEach((xy, i) => {
             if (!Array.isArray(xy) || xy.length < 2) return;
@@ -768,24 +878,49 @@
         if (!p) return;
         guessed = p;
         const ex = data.examples[current];
+        if (viewMode === "explain") {
+          statusBox.className = "status";
+          statusBox.textContent = `讲解模式：已显示 PV 第1~4手。若要自己做题，请切到教学模式。`;
+          renderBoard();
+          return;
+        }
+        revealAnswer = true;
         if (equalXY(ex.best_xy, p)) {
           statusBox.className = "status good";
           statusBox.textContent = "太棒了！你点中了推荐点，已显示 PV 第1~4手。";
+          showWrong = false;
           showBest = true;
         } else if (equalXY(ex.actual_xy, p)) {
           statusBox.className = "status bad";
           statusBox.textContent = "这是红点错误位。已显示 PV 第1~4手，记住口号：" + ex.slogan;
           showWrong = true;
+          showBest = true;
         } else {
           statusBox.className = "status";
-          statusBox.textContent = "已显示 PV 第1~4手，先看弱棋，再看最大点。";
+          statusBox.textContent = "这个点还不够稳。已公布答案，对比红绿点再看一遍。";
+          showWrong = true;
+          showBest = true;
         }
+        updatePanel();
         renderBoard();
       });
 
       prevBtn.addEventListener("click", () => selectExample((current - 1 + data.examples.length) % data.examples.length));
       nextBtn.addEventListener("click", () => selectExample((current + 1) % data.examples.length));
+      revealBtn.addEventListener("click", () => {
+        if (viewMode !== "teach") return;
+        const ex = data.examples[current];
+        revealAnswer = true;
+        showWrong = true;
+        showBest = true;
+        guessed = null;
+        statusBox.className = "status";
+        statusBox.textContent = `已公布答案：红点是实战，绿点是推荐。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
+        updatePanel();
+        renderBoard();
+      });
       showWrongBtn.addEventListener("click", () => {
+        if (viewMode !== "explain") return;
         showWrong = true;
         showBest = false;
         guessed = null;
@@ -796,6 +931,7 @@
         renderBoard();
       });
       showBestBtn.addEventListener("click", () => {
+        if (viewMode !== "explain") return;
         showWrong = false;
         showBest = true;
         guessed = null;
@@ -804,6 +940,7 @@
         renderBoard();
       });
       showBothBtn.addEventListener("click", () => {
+        if (viewMode !== "explain") return;
         showWrong = true;
         showBest = true;
         guessed = null;
@@ -814,8 +951,22 @@
         renderBoard();
       });
 
+      function setMode(mode) {
+        if (mode !== "teach" && mode !== "explain") return;
+        if (mode === viewMode) return;
+        viewMode = mode;
+        updateModeShell();
+        resetExampleForMode();
+        updatePanel();
+        renderBoard();
+      }
+
+      teachModeBtn.addEventListener("click", () => setMode("teach"));
+      explainModeBtn.addEventListener("click", () => setMode("explain"));
+
       window.addEventListener("resize", renderBoard);
 
+      updateModeShell();
       selectExample(0);
     })();
   </script>
