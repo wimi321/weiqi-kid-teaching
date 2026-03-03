@@ -3,19 +3,30 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from go_review import GameRecord, parse_sgf
+from go_review import (
+    GameRecord,
+    KataGoAnalyzer,
+    context_for_before_wr,
+    detect_winrate_perspective,
+    opponent_color,
+    parse_sgf,
+    winrate_for_color,
+    zone_for_gtp,
+)
 
 
 ROOT = Path("/Users/haoc/Developer/wq20260301")
 CRITICAL_JSON = ROOT / "review_output_mgqp_full28" / "critical_turning_points.json"
 SGF_DIR = ROOT / "data" / "mgqp_raw" / "mgqp"
 OUT_JSON = ROOT / "review_output_mgqp_full28" / "kid_teaching_data.json"
+VERIFY_REPORT_JSON = ROOT / "review_output_mgqp_full28" / "kid_teaching_verification.json"
 
 LETTERS = "ABCDEFGHJKLMNOPQRSTUVWXYZ"
 
@@ -28,6 +39,42 @@ class Scenario:
     problem: str
     fix: str
     action: str
+
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="生成互动教学题并逐题KataGo复核跌幅")
+    p.add_argument("--critical-json", type=Path, default=CRITICAL_JSON, help="关键转折点JSON")
+    p.add_argument("--sgf-dir", type=Path, default=SGF_DIR, help="SGF目录")
+    p.add_argument("--out-json", type=Path, default=OUT_JSON, help="输出教学JSON")
+    p.add_argument(
+        "--verify-report-json",
+        type=Path,
+        default=VERIFY_REPORT_JSON,
+        help="复核报告JSON",
+    )
+    p.add_argument("--target", type=int, default=12, help="入选题数量")
+    p.add_argument("--katago-bin", type=Path, default=Path("/opt/homebrew/bin/katago"))
+    p.add_argument(
+        "--katago-config",
+        type=Path,
+        default=Path.home() / ".katago" / "configs" / "analysis_example.cfg",
+    )
+    p.add_argument(
+        "--katago-model",
+        type=Path,
+        default=Path.home() / ".katago" / "models" / "latest-kata1.bin.gz",
+    )
+    p.add_argument("--verify-visits", type=int, default=1200, help="复核时每步访问数")
+    p.add_argument("--verify-timeout-sec", type=int, default=150, help="复核超时秒数")
+    p.add_argument("--verify-rules", default="Chinese", help="复核规则")
+    p.add_argument(
+        "--winrate-perspective",
+        choices=["auto", "black", "white", "side_to_move"],
+        default="auto",
+        help="复核winrate视角",
+    )
+    p.add_argument("--skip-verify", action="store_true", help="跳过逐题KataGo复核")
+    return p.parse_args()
 
 
 def gtp_to_xy(move: str, size: int) -> Optional[Tuple[int, int]]:
@@ -324,9 +371,9 @@ def make_scenario(point: Dict[str, object]) -> Scenario:
     )
 
 
-def find_sgf_files() -> Dict[str, Path]:
+def find_sgf_files(sgf_dir: Path) -> Dict[str, Path]:
     files = {}
-    for p in SGF_DIR.rglob("*.sgf"):
+    for p in sgf_dir.rglob("*.sgf"):
         files[p.name] = p
     return files
 
@@ -334,7 +381,8 @@ def find_sgf_files() -> Dict[str, Path]:
 def select_points(
     points: List[Dict[str, object]], sgf_map: Dict[str, Path], target: int = 12
 ) -> List[Dict[str, object]]:
-    # Keep key teaching points diverse across phase/zone/context and games.
+    # Keep key teaching points useful and non-repetitive.
+    # Input points are expected to be pre-sorted by drop descending.
     out: List[Dict[str, object]] = []
     used_game: Dict[str, int] = {}
     used_key = set()
@@ -357,61 +405,310 @@ def select_points(
             str(p.get("color", "")).strip().upper(),
         )
 
-    for p in points:
-        bw = float(p.get("before_winrate", 0.5))
-        if not (0.2 <= bw <= 0.85):
-            continue
+    def in_bw_range(p: Dict[str, object]) -> bool:
+        try:
+            bw = float(p.get("before_winrate", 0.5))
+        except (TypeError, ValueError):
+            return False
+        return 0.2 <= bw <= 0.85
+
+    filtered = [p for p in points if in_bw_range(p)]
+
+    def can_pick(p: Dict[str, object], strict: bool) -> bool:
         game = str(p.get("game", ""))
         if used_game.get(game, 0) >= 2:
-            continue
+            return False
+        position_key = position_key_of(p)
+        if position_key in used_position:
+            return False
+        if not strict:
+            return True
         template = make_scenario(p).template
         if template in used_template:
-            continue
-        k = key_of(p)
-        if k in used_key:
-            continue
-        position_key = position_key_of(p)
-        if position_key in used_position:
-            continue
-        out.append(p)
-        used_game[game] = used_game.get(game, 0) + 1
-        used_key.add(k)
-        used_template.add(template)
-        used_position.add(position_key)
-        if len(out) >= target:
-            return out
+            return False
+        if key_of(p) in used_key:
+            return False
+        return True
 
-    for p in points:
-        if len(out) >= target:
-            break
-        game = str(p.get("game", ""))
-        if used_game.get(game, 0) >= 2:
-            continue
-        bw = float(p.get("before_winrate", 0.5))
-        if not (0.2 <= bw <= 0.85):
-            continue
-        position_key = position_key_of(p)
-        if position_key in used_position:
-            continue
+    def add_point(p: Dict[str, object], strict: bool) -> None:
         out.append(p)
+        game = str(p.get("game", ""))
         used_game[game] = used_game.get(game, 0) + 1
-        used_position.add(position_key)
+        used_position.add(position_key_of(p))
+        if strict:
+            used_template.add(make_scenario(p).template)
+            used_key.add(key_of(p))
+
+    def pick_one(strict: bool) -> bool:
+        for p in filtered:
+            if can_pick(p, strict=strict):
+                add_point(p, strict=strict)
+                return True
+        return False
+
+    # 1) Strict pass: enforce diversity by phase/zone/context/template.
+    while len(out) < target and pick_one(strict=True):
+        pass
+
+    # 2) Relaxed pass: fill remaining slots still ordered by drop.
+    while len(out) < target and pick_one(strict=False):
+        pass
+
     return out
 
 
+def build_prefix_moves(game: GameRecord, move_no: int) -> List[List[str]]:
+    out: List[List[str]] = []
+    for i, m in enumerate(game.moves, start=1):
+        if i >= move_no:
+            break
+        out.append([m.color, m.gtp_coord])
+    return out
+
+
+def verify_point_with_katago(
+    point: Dict[str, object],
+    game: GameRecord,
+    analyzer: KataGoAnalyzer,
+    winrate_perspective: str,
+) -> Dict[str, object]:
+    q = dict(point)
+    raw_drop = float(point.get("winrate_drop", 0.0))
+    move_no = int(point.get("move_no", 0))
+    idx = move_no - 1
+    if idx < 0 or idx >= len(game.moves):
+        q["verify_status"] = "invalid_move_no"
+        q["raw_winrate_drop"] = raw_drop
+        return q
+
+    move = game.moves[idx]
+    move_color = move.color
+    actual_move = move.gtp_coord
+    prefix_moves = build_prefix_moves(game, move_no)
+
+    before = analyzer.analyze_position(
+        size=game.size,
+        komi=game.komi,
+        moves=prefix_moves,
+        initial_stones=game.initial_stones,
+    )
+    root_before = before.get("rootInfo", {})
+    rbw = root_before.get("winrate")
+    before_wr = (
+        winrate_for_color(
+            raw_winrate=float(rbw),
+            perspective=winrate_perspective,
+            target_color=move_color,
+            side_to_move=move_color,
+        )
+        if isinstance(rbw, (int, float))
+        else None
+    )
+
+    move_infos = before.get("moveInfos", [])
+    scored_infos: List[Tuple[float, Dict[str, object]]] = []
+    for info in move_infos:
+        rw = info.get("winrate")
+        if not isinstance(rw, (int, float)):
+            continue
+        scored_infos.append(
+            (
+                winrate_for_color(
+                    raw_winrate=float(rw),
+                    perspective=winrate_perspective,
+                    target_color=move_color,
+                    side_to_move=move_color,
+                ),
+                info,
+            )
+        )
+    if not scored_infos:
+        q["verify_status"] = "no_move_infos"
+        q["raw_winrate_drop"] = raw_drop
+        return q
+
+    scored_infos.sort(key=lambda x: x[0], reverse=True)
+    best_wr, best_info = scored_infos[0]
+    best_move = str(best_info.get("move", "pass"))
+    best_lead = best_info.get("scoreLead")
+
+    actual_info = next(
+        (info for info in move_infos if str(info.get("move", "")) == actual_move),
+        None,
+    )
+    actual_wr: Optional[float] = None
+    actual_lead: Optional[float] = None
+    if actual_info is not None:
+        aw = actual_info.get("winrate")
+        if isinstance(aw, (int, float)):
+            actual_wr = winrate_for_color(
+                raw_winrate=float(aw),
+                perspective=winrate_perspective,
+                target_color=move_color,
+                side_to_move=move_color,
+            )
+        al = actual_info.get("scoreLead")
+        if isinstance(al, (int, float)):
+            actual_lead = float(al)
+    else:
+        after = analyzer.analyze_position(
+            size=game.size,
+            komi=game.komi,
+            moves=prefix_moves + [[move_color, actual_move]],
+            initial_stones=game.initial_stones,
+        )
+        root_after = after.get("rootInfo", {})
+        rw = root_after.get("winrate")
+        if isinstance(rw, (int, float)):
+            actual_wr = winrate_for_color(
+                raw_winrate=float(rw),
+                perspective=winrate_perspective,
+                target_color=move_color,
+                side_to_move=opponent_color(move_color),
+            )
+        rl = root_after.get("scoreLead")
+        if isinstance(rl, (int, float)):
+            actual_lead = -float(rl)
+
+    if actual_wr is None:
+        q["verify_status"] = "no_actual_winrate"
+        q["raw_winrate_drop"] = raw_drop
+        return q
+
+    verified_drop = float(best_wr) - float(actual_wr)
+    score_drop = None
+    if isinstance(best_lead, (int, float)) and actual_lead is not None:
+        score_drop = float(best_lead) - actual_lead
+
+    q["verify_status"] = "ok"
+    q["raw_winrate_drop"] = raw_drop
+    q["color"] = move_color
+    q["actual"] = actual_move
+    q["best"] = best_move
+    q["pv"] = (
+        best_info.get("pv", [])[:8]
+        if isinstance(best_info.get("pv"), list)
+        else []
+    )
+    q["before_winrate"] = before_wr
+    q["context"] = context_for_before_wr(before_wr)
+    q["zone"] = zone_for_gtp(actual_move, game.size)
+    q["winrate_drop"] = verified_drop
+    q["score_drop"] = score_drop
+    q["verify_best_winrate"] = float(best_wr)
+    q["verify_actual_winrate"] = float(actual_wr)
+    q["verify_drop_delta"] = verified_drop - raw_drop
+    return q
+
+
 def main() -> int:
-    points = json.loads(CRITICAL_JSON.read_text(encoding="utf-8"))
+    args = parse_args()
+    points = json.loads(args.critical_json.read_text(encoding="utf-8"))
     points = sorted(points, key=lambda x: float(x.get("winrate_drop", 0.0)), reverse=True)
-    sgf_map = find_sgf_files()
-    selected = select_points(points, sgf_map, target=12)
+    sgf_map = find_sgf_files(args.sgf_dir)
+    selected = select_points(points, sgf_map, target=args.target)
+
+    game_cache: Dict[str, GameRecord] = {}
+    verified_points: List[Dict[str, object]] = []
+    verify_summary = {
+        "enabled": not args.skip_verify,
+        "katago_bin": str(args.katago_bin),
+        "katago_config": str(args.katago_config),
+        "katago_model": str(args.katago_model),
+        "visits": args.verify_visits,
+        "winrate_perspective": args.winrate_perspective,
+        "verified_ok": 0,
+        "verified_failed": 0,
+        "items": [],
+    }
+
+    if args.skip_verify:
+        verified_points = selected
+    else:
+        if args.winrate_perspective == "auto":
+            perspective = detect_winrate_perspective(args.katago_config)
+        else:
+            perspective = args.winrate_perspective
+        verify_summary["winrate_perspective"] = perspective
+
+        with KataGoAnalyzer(
+            bin_path=args.katago_bin,
+            config_path=args.katago_config,
+            model_path=args.katago_model,
+            analysis_threads=0,
+            max_visits=args.verify_visits,
+            rules=args.verify_rules,
+            timeout_sec=args.verify_timeout_sec,
+        ) as analyzer:
+            for p in selected:
+                game_name = str(p.get("game", ""))
+                sgf_path = sgf_map.get(game_name)
+                if sgf_path is None:
+                    q = dict(p)
+                    q["verify_status"] = "missing_sgf"
+                    q["raw_winrate_drop"] = float(p.get("winrate_drop", 0.0))
+                    verified_points.append(q)
+                    verify_summary["verified_failed"] += 1
+                    verify_summary["items"].append(
+                        {
+                            "game": game_name,
+                            "move_no": p.get("move_no"),
+                            "status": "missing_sgf",
+                        }
+                    )
+                    continue
+                game = game_cache.get(game_name)
+                if game is None:
+                    game = parse_sgf(sgf_path)
+                    game_cache[game_name] = game
+                try:
+                    q = verify_point_with_katago(
+                        point=p,
+                        game=game,
+                        analyzer=analyzer,
+                        winrate_perspective=perspective,
+                    )
+                except Exception as exc:
+                    q = dict(p)
+                    q["verify_status"] = f"error:{exc}"
+                    q["raw_winrate_drop"] = float(p.get("winrate_drop", 0.0))
+                verified_points.append(q)
+                status = str(q.get("verify_status", ""))
+                if status == "ok":
+                    verify_summary["verified_ok"] += 1
+                else:
+                    verify_summary["verified_failed"] += 1
+                verify_summary["items"].append(
+                    {
+                        "game": game_name,
+                        "move_no": q.get("move_no"),
+                        "status": status,
+                        "raw_drop_pct": round(float(q.get("raw_winrate_drop", 0.0)) * 100, 2),
+                        "verified_drop_pct": round(float(q.get("winrate_drop", 0.0)) * 100, 2),
+                        "drop_delta_pct": round(
+                            (float(q.get("winrate_drop", 0.0)) - float(q.get("raw_winrate_drop", 0.0)))
+                            * 100,
+                            2,
+                        ),
+                    }
+                )
+
+    # Keep selected order by verified (or original) drop descending after verification.
+    verified_points.sort(
+        key=lambda x: float(x.get("winrate_drop", x.get("raw_winrate_drop", 0.0))),
+        reverse=True,
+    )
 
     examples = []
-    for idx, p in enumerate(selected, start=1):
+    for idx, p in enumerate(verified_points, start=1):
         game_name = str(p["game"])
         sgf_path = sgf_map.get(game_name)
         if sgf_path is None:
             continue
-        game = parse_sgf(sgf_path)
+        game = game_cache.get(game_name)
+        if game is None:
+            game = parse_sgf(sgf_path)
+            game_cache[game_name] = game
         move_no = int(p["move_no"])
         board = build_board_before(game, move_no)
         stones = [
@@ -449,6 +746,7 @@ def main() -> int:
                 "to_play": p.get("color", ""),
                 "before_winrate_pct": round(float(p.get("before_winrate", 0.0)) * 100, 1),
                 "drop_pct": round(float(p.get("winrate_drop", 0.0)) * 100, 1),
+                "raw_drop_pct": round(float(p.get("raw_winrate_drop", p.get("winrate_drop", 0.0))) * 100, 1),
                 "cluster_size": int(p.get("cluster_size", 1)),
                 "actual": actual,
                 "best": best,
@@ -458,6 +756,8 @@ def main() -> int:
                 "best_xy": gtp_to_xy(best, game.size),
                 "board_size": game.size,
                 "stones": stones,
+                "verify_status": p.get("verify_status", "skipped"),
+                "verify_drop_delta_pct": round(float(p.get("verify_drop_delta", 0.0)) * 100, 2),
                 "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！",
             }
         )
@@ -467,10 +767,19 @@ def main() -> int:
         "source_games": 28,
         "teaching_examples": len(examples),
         "generated_at": __import__("datetime").datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "verify": verify_summary,
         "examples": examples,
     }
-    OUT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[OK] wrote {OUT_JSON} with {len(examples)} examples")
+    args.out_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    args.verify_report_json.write_text(
+        json.dumps(verify_summary, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(f"[OK] wrote {args.out_json} with {len(examples)} examples")
+    print(
+        "[OK] verify summary: "
+        f"{verify_summary['verified_ok']} ok / {verify_summary['verified_failed']} failed"
+    )
+    print(f"[OK] wrote verify report: {args.verify_report_json}")
     return 0
 
 
