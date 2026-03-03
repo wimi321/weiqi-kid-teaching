@@ -3,9 +3,9 @@
   "katago_bin": "/opt/homebrew/bin/katago",
   "katago_config": "/Users/haoc/.katago/configs/analysis_example.cfg",
   "katago_model": "/Users/haoc/.katago/models/latest-kata1.bin.gz",
-  "visits": 1600,
+  "visits": 1200,
   "winrate_perspective": "black",
-  "verified_ok": 12,
+  "verified_ok": 20,
   "verified_failed": 0,
   "items": [
     {
@@ -13,96 +13,160 @@
       "move_no": 64,
       "status": "ok",
       "raw_drop_pct": 77.13,
-      "verified_drop_pct": 29.32,
-      "drop_delta_pct": -47.81
+      "verified_drop_pct": 29.4,
+      "drop_delta_pct": -47.73
     },
     {
       "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
       "move_no": 250,
       "status": "ok",
       "raw_drop_pct": 72.67,
-      "verified_drop_pct": 25.38,
-      "drop_delta_pct": -47.29
+      "verified_drop_pct": 25.42,
+      "drop_delta_pct": -47.25
     },
     {
       "game": "[diandian01]vs[芒果25437]1771934587030043231.sgf",
       "move_no": 170,
       "status": "ok",
       "raw_drop_pct": 71.01,
-      "verified_drop_pct": 17.8,
-      "drop_delta_pct": -53.22
+      "verified_drop_pct": 26.58,
+      "drop_delta_pct": -44.44
     },
     {
       "game": "[xxj随手]vs[芒果25437]1772019095030032783.sgf",
       "move_no": 22,
       "status": "ok",
       "raw_drop_pct": 63.98,
-      "verified_drop_pct": 6.99,
-      "drop_delta_pct": -57.0
+      "verified_drop_pct": 6.06,
+      "drop_delta_pct": -57.93
     },
     {
       "game": "[浠浠25]vs[芒果25437]1772073867030052815.sgf",
       "move_no": 164,
       "status": "ok",
       "raw_drop_pct": 63.22,
-      "verified_drop_pct": 31.33,
-      "drop_delta_pct": -31.9
+      "verified_drop_pct": 32.0,
+      "drop_delta_pct": -31.23
     },
     {
       "game": "[diandian01]vs[芒果25437]1771934587030043231.sgf",
       "move_no": 40,
       "status": "ok",
       "raw_drop_pct": 63.14,
-      "verified_drop_pct": 6.56,
-      "drop_delta_pct": -56.58
+      "verified_drop_pct": 6.64,
+      "drop_delta_pct": -56.5
     },
     {
       "game": "[浠浠25]vs[芒果25437]1772073867030052815.sgf",
       "move_no": 148,
       "status": "ok",
       "raw_drop_pct": 55.59,
-      "verified_drop_pct": 46.66,
-      "drop_delta_pct": -8.93
+      "verified_drop_pct": 45.11,
+      "drop_delta_pct": -10.48
     },
     {
       "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
       "move_no": 88,
       "status": "ok",
       "raw_drop_pct": 64.43,
-      "verified_drop_pct": 10.84,
-      "drop_delta_pct": -53.59
+      "verified_drop_pct": 10.95,
+      "drop_delta_pct": -53.48
     },
     {
       "game": "[陶醉陶然]vs[芒果25437]1771154298030053478.sgf",
       "move_no": 8,
       "status": "ok",
       "raw_drop_pct": 61.38,
-      "verified_drop_pct": 6.62,
-      "drop_delta_pct": -54.76
+      "verified_drop_pct": 7.01,
+      "drop_delta_pct": -54.37
     },
     {
       "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
       "move_no": 24,
       "status": "ok",
       "raw_drop_pct": 60.62,
-      "verified_drop_pct": 3.72,
-      "drop_delta_pct": -56.9
+      "verified_drop_pct": 3.77,
+      "drop_delta_pct": -56.85
     },
     {
       "game": "[44自在]vs[芒果25437]1771394303030021452.sgf",
       "move_no": 32,
       "status": "ok",
       "raw_drop_pct": 58.73,
-      "verified_drop_pct": 11.82,
-      "drop_delta_pct": -46.91
+      "verified_drop_pct": 11.99,
+      "drop_delta_pct": -46.75
     },
     {
       "game": "[44自在]vs[芒果25437]1771394303030021452.sgf",
       "move_no": 44,
       "status": "ok",
       "raw_drop_pct": 58.23,
-      "verified_drop_pct": 34.67,
-      "drop_delta_pct": -23.56
+      "verified_drop_pct": 34.23,
+      "drop_delta_pct": -24.01
+    },
+    {
+      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
+      "move_no": 2,
+      "status": "ok",
+      "raw_drop_pct": 57.26,
+      "verified_drop_pct": 1.2,
+      "drop_delta_pct": -56.06
+    },
+    {
+      "game": "[芒果25437]vs[44自在]1771393429030021951.sgf",
+      "move_no": 9,
+      "status": "ok",
+      "raw_drop_pct": 56.98,
+      "verified_drop_pct": 2.65,
+      "drop_delta_pct": -54.33
+    },
+    {
+      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+      "move_no": 2,
+      "status": "ok",
+      "raw_drop_pct": 56.61,
+      "verified_drop_pct": 1.27,
+      "drop_delta_pct": -55.34
+    },
+    {
+      "game": "[芒果25437]vs[V532790501]1771933948030031663.sgf",
+      "move_no": 7,
+      "status": "ok",
+      "raw_drop_pct": 54.9,
+      "verified_drop_pct": 3.98,
+      "drop_delta_pct": -50.91
+    },
+    {
+      "game": "[芒果25437]vs[曾时波]1771494230030051399.sgf",
+      "move_no": 7,
+      "status": "ok",
+      "raw_drop_pct": 54.51,
+      "verified_drop_pct": 2.91,
+      "drop_delta_pct": -51.61
+    },
+    {
+      "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
+      "move_no": 7,
+      "status": "ok",
+      "raw_drop_pct": 54.19,
+      "verified_drop_pct": 2.99,
+      "drop_delta_pct": -51.2
+    },
+    {
+      "game": "[芒果25437]vs[幸福的人20]1772180911030034963.sgf",
+      "move_no": 5,
+      "status": "ok",
+      "raw_drop_pct": 53.63,
+      "verified_drop_pct": 2.22,
+      "drop_delta_pct": -51.41
+    },
+    {
+      "game": "[芒果25437]vs[xyl1968030]1772076981030041544.sgf",
+      "move_no": 5,
+      "status": "ok",
+      "raw_drop_pct": 53.62,
+      "verified_drop_pct": 1.89,
+      "drop_delta_pct": -51.73
     }
   ]
 }

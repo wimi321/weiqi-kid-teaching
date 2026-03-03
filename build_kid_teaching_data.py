@@ -52,7 +52,7 @@ def parse_args() -> argparse.Namespace:
         default=VERIFY_REPORT_JSON,
         help="复核报告JSON",
     )
-    p.add_argument("--target", type=int, default=12, help="入选题数量")
+    p.add_argument("--target", type=int, default=20, help="入选题数量")
     p.add_argument("--katago-bin", type=Path, default=Path("/opt/homebrew/bin/katago"))
     p.add_argument(
         "--katago-config",

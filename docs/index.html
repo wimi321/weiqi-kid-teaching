@@ -407,6 +407,10 @@
             </div>
           </div>
           <div class="card">
+            <div class="k">题目来源</div>
+            <div class="v" id="sourceText">-</div>
+          </div>
+          <div class="card">
             <div class="k">这关口号</div>
             <div class="v" id="sloganText">-</div>
           </div>
@@ -461,6 +465,7 @@
       const impactText = document.getElementById("impactText");
       const studentColorText = document.getElementById("studentColorText");
       const bestMoveText = document.getElementById("bestMoveText");
+      const sourceText = document.getElementById("sourceText");
 
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
@@ -505,14 +510,28 @@
         return `后续变化：${seq}${suffix}`;
       }
 
+      function formatGamePair(gameName) {
+        if (typeof gameName !== "string" || !gameName) return "未知对局";
+        const m = gameName.match(/^\[([^\]]+)\]vs\[([^\]]+)\](?:\d+)?\.sgf$/i);
+        if (m) return `${m[1]} vs ${m[2]}`;
+        return gameName.replace(/\.sgf$/i, "");
+      }
+
+      function formatSourceLine(ex) {
+        return `${formatGamePair(ex.game)} · 第${ex.move_no}手`;
+      }
+
       const buttons = data.examples.map((ex, i) => {
         const btn = document.createElement("button");
         const colorText = ex.to_play === "B" ? "执黑" : ex.to_play === "W" ? "执白" : "执子?";
         const bestText = ex.best || "-";
+        const sourceLine = formatSourceLine(ex);
         btn.className = "lesson-btn";
         btn.innerHTML =
           `<div class="t">第${i + 1}题 · ${ex.title}</div>` +
-          `<div class="s">${ex.phase} / ${ex.zone} / 第${ex.move_no}手 · ${colorText} · 正解 ${bestText}</div>`;
+          `<div class="s">${ex.phase} / ${ex.zone} · ${colorText} · 正解 ${bestText}</div>` +
+          `<div class="s">来源：${sourceLine}</div>`;
+        btn.title = ex.game || "";
         btn.addEventListener("click", () => selectExample(i));
         lessonList.appendChild(btn);
         return btn;
@@ -548,6 +567,8 @@
         actionText.textContent = ex.action;
         studentColorText.textContent = toPlayLabel(ex.to_play);
         bestMoveText.textContent = bestText;
+        sourceText.textContent = formatSourceLine(ex);
+        sourceText.title = ex.game || "";
         impactText.textContent = `这一手让局面变化约 ${ex.drop_pct}%（第${ex.move_no}手，${toPlayStoneName(ex.to_play)}走）。`;
         if (showBest) {
           statusBox.className = "status";
