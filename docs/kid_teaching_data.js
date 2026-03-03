@@ -3,7 +3,7 @@ window.KID_TEACHING_DATA =
   "student_id": "芒果25437",
   "source_games": 28,
   "teaching_examples": 20,
-  "generated_at": "2026-03-03 21:21:02",
+  "generated_at": "2026-03-03 22:02:27",
   "verify": {
     "enabled": true,
     "katago_bin": "/opt/homebrew/bin/katago",
@@ -11,198 +11,1090 @@ window.KID_TEACHING_DATA =
     "katago_model": "/Users/haoc/.katago/models/latest-kata1.bin.gz",
     "visits": 1200,
     "winrate_perspective": "black",
-    "verified_ok": 20,
+    "candidate_pool_target": 60,
+    "candidate_pool_size": 38,
+    "min_verified_drop": 0.04,
+    "verified_ok": 38,
     "verified_failed": 0,
+    "verify_cache_enabled": true,
+    "verify_cache_json": "/Users/haoc/Developer/wq20260301/review_output_mgqp_full28/kid_teaching_verify_cache.json",
+    "verify_cache_hits": 38,
+    "verify_cache_misses": 0,
     "items": [
       {
         "game": "[xxj随手]vs[芒果25437]1772019095030032783.sgf",
         "move_no": 64,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 77.13,
-        "verified_drop_pct": 29.4,
-        "drop_delta_pct": -47.73
+        "verified_drop_pct": 28.99,
+        "drop_delta_pct": -48.14
       },
       {
         "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
         "move_no": 250,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 72.67,
-        "verified_drop_pct": 25.42,
-        "drop_delta_pct": -47.25
+        "verified_drop_pct": 24.03,
+        "drop_delta_pct": -48.65
       },
       {
         "game": "[diandian01]vs[芒果25437]1771934587030043231.sgf",
         "move_no": 170,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 71.01,
-        "verified_drop_pct": 26.58,
-        "drop_delta_pct": -44.44
+        "verified_drop_pct": 26.25,
+        "drop_delta_pct": -44.77
       },
       {
         "game": "[xxj随手]vs[芒果25437]1772019095030032783.sgf",
         "move_no": 22,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 63.98,
-        "verified_drop_pct": 6.06,
-        "drop_delta_pct": -57.93
+        "verified_drop_pct": 6.62,
+        "drop_delta_pct": -57.36
       },
       {
         "game": "[浠浠25]vs[芒果25437]1772073867030052815.sgf",
         "move_no": 164,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 63.22,
-        "verified_drop_pct": 32.0,
-        "drop_delta_pct": -31.23
+        "verified_drop_pct": 32.17,
+        "drop_delta_pct": -31.05
       },
       {
         "game": "[diandian01]vs[芒果25437]1771934587030043231.sgf",
         "move_no": 40,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 63.14,
-        "verified_drop_pct": 6.64,
-        "drop_delta_pct": -56.5
+        "verified_drop_pct": 6.71,
+        "drop_delta_pct": -56.43
       },
       {
         "game": "[浠浠25]vs[芒果25437]1772073867030052815.sgf",
         "move_no": 148,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 55.59,
-        "verified_drop_pct": 45.11,
-        "drop_delta_pct": -10.48
+        "verified_drop_pct": 44.55,
+        "drop_delta_pct": -11.04
       },
       {
         "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
         "move_no": 88,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 64.43,
-        "verified_drop_pct": 10.95,
-        "drop_delta_pct": -53.48
+        "verified_drop_pct": 12.83,
+        "drop_delta_pct": -51.6
       },
       {
         "game": "[陶醉陶然]vs[芒果25437]1771154298030053478.sgf",
         "move_no": 8,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 61.38,
-        "verified_drop_pct": 7.01,
-        "drop_delta_pct": -54.37
+        "verified_drop_pct": 6.89,
+        "drop_delta_pct": -54.5
       },
       {
         "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
         "move_no": 24,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 60.62,
-        "verified_drop_pct": 3.77,
-        "drop_delta_pct": -56.85
+        "verified_drop_pct": 3.57,
+        "drop_delta_pct": -57.05
       },
       {
         "game": "[44自在]vs[芒果25437]1771394303030021452.sgf",
         "move_no": 32,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 58.73,
-        "verified_drop_pct": 11.99,
-        "drop_delta_pct": -46.75
+        "verified_drop_pct": 11.87,
+        "drop_delta_pct": -46.86
       },
       {
         "game": "[44自在]vs[芒果25437]1771394303030021452.sgf",
         "move_no": 44,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 58.23,
-        "verified_drop_pct": 34.23,
-        "drop_delta_pct": -24.01
+        "verified_drop_pct": 33.04,
+        "drop_delta_pct": -25.19
       },
       {
         "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
         "move_no": 2,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 57.26,
-        "verified_drop_pct": 1.2,
-        "drop_delta_pct": -56.06
+        "verified_drop_pct": 1.49,
+        "drop_delta_pct": -55.77
       },
       {
         "game": "[芒果25437]vs[44自在]1771393429030021951.sgf",
         "move_no": 9,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 56.98,
-        "verified_drop_pct": 2.65,
-        "drop_delta_pct": -54.33
+        "verified_drop_pct": 2.7,
+        "drop_delta_pct": -54.28
       },
       {
         "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
         "move_no": 2,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 56.61,
-        "verified_drop_pct": 1.27,
-        "drop_delta_pct": -55.34
+        "verified_drop_pct": 1.42,
+        "drop_delta_pct": -55.19
       },
       {
         "game": "[芒果25437]vs[V532790501]1771933948030031663.sgf",
         "move_no": 7,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 54.9,
-        "verified_drop_pct": 3.98,
-        "drop_delta_pct": -50.91
+        "verified_drop_pct": 3.64,
+        "drop_delta_pct": -51.25
       },
       {
         "game": "[芒果25437]vs[曾时波]1771494230030051399.sgf",
         "move_no": 7,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 54.51,
-        "verified_drop_pct": 2.91,
-        "drop_delta_pct": -51.61
+        "verified_drop_pct": 2.95,
+        "drop_delta_pct": -51.57
       },
       {
         "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
         "move_no": 7,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 54.19,
-        "verified_drop_pct": 2.99,
-        "drop_delta_pct": -51.2
+        "verified_drop_pct": 3.02,
+        "drop_delta_pct": -51.17
       },
       {
         "game": "[芒果25437]vs[幸福的人20]1772180911030034963.sgf",
         "move_no": 5,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 53.63,
-        "verified_drop_pct": 2.22,
-        "drop_delta_pct": -51.41
+        "verified_drop_pct": 2.26,
+        "drop_delta_pct": -51.37
       },
       {
         "game": "[芒果25437]vs[xyl1968030]1772076981030041544.sgf",
         "move_no": 5,
         "status": "ok",
+        "cache": "hit",
         "raw_drop_pct": 53.62,
-        "verified_drop_pct": 1.89,
-        "drop_delta_pct": -51.73
+        "verified_drop_pct": 2.14,
+        "drop_delta_pct": -51.49
+      },
+      {
+        "game": "[芒果25437]vs[MichelleH]1772183836030033237.sgf",
+        "move_no": 23,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 53.58,
+        "verified_drop_pct": 8.14,
+        "drop_delta_pct": -45.44
+      },
+      {
+        "game": "[芒果25437]vs[我乃关羽]1771070039030022785.sgf",
+        "move_no": 7,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 53.54,
+        "verified_drop_pct": 3.25,
+        "drop_delta_pct": -50.29
+      },
+      {
+        "game": "[芒果25437]vs[逆子爱下棋]1770984400030032148.sgf",
+        "move_no": 5,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 53.27,
+        "verified_drop_pct": 2.39,
+        "drop_delta_pct": -50.88
+      },
+      {
+        "game": "[芒果25437]vs[猫猫爷爷]1771743408030043600.sgf",
+        "move_no": 5,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 53.1,
+        "verified_drop_pct": 2.34,
+        "drop_delta_pct": -50.75
+      },
+      {
+        "game": "[芒果25437]vs[a500448780]1771127213030043280.sgf",
+        "move_no": 5,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 53.07,
+        "verified_drop_pct": 1.53,
+        "drop_delta_pct": -51.54
+      },
+      {
+        "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+        "move_no": 72,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 52.75,
+        "verified_drop_pct": 12.11,
+        "drop_delta_pct": -40.64
+      },
+      {
+        "game": "[芒果25437]vs[1869867629]1771068359030012390.sgf",
+        "move_no": 5,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 51.89,
+        "verified_drop_pct": 3.33,
+        "drop_delta_pct": -48.56
+      },
+      {
+        "game": "[芒果25437]vs[吴骏霖]1771038966030021855.sgf",
+        "move_no": 5,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 51.43,
+        "verified_drop_pct": 3.71,
+        "drop_delta_pct": -47.71
+      },
+      {
+        "game": "[芒果25437]vs[小哈66]1772177605030044610.sgf",
+        "move_no": 5,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 50.91,
+        "verified_drop_pct": 3.45,
+        "drop_delta_pct": -47.46
+      },
+      {
+        "game": "[芒果25437]vs[曾时波]1771494230030051399.sgf",
+        "move_no": 69,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 50.89,
+        "verified_drop_pct": 49.31,
+        "drop_delta_pct": -1.58
+      },
+      {
+        "game": "[芒果25437]vs[吴骏霖]1771038966030021855.sgf",
+        "move_no": 11,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 50.31,
+        "verified_drop_pct": 2.25,
+        "drop_delta_pct": -48.06
+      },
+      {
+        "game": "[芒果25437]vs[风格特惠]1771214143030052424.sgf",
+        "move_no": 75,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 49.65,
+        "verified_drop_pct": 0.0,
+        "drop_delta_pct": -49.65
+      },
+      {
+        "game": "[芒果25437]vs[猫猫爷爷]1771743408030043600.sgf",
+        "move_no": 41,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 48.4,
+        "verified_drop_pct": 60.41,
+        "drop_delta_pct": 12.0
+      },
+      {
+        "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
+        "move_no": 67,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 48.03,
+        "verified_drop_pct": 16.71,
+        "drop_delta_pct": -31.32
+      },
+      {
+        "game": "[芒果25437]vs[xyl1968030]1772076981030041544.sgf",
+        "move_no": 13,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 46.66,
+        "verified_drop_pct": 8.01,
+        "drop_delta_pct": -38.64
+      },
+      {
+        "game": "[芒果25437]vs[a500448780]1771127213030043280.sgf",
+        "move_no": 19,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 46.09,
+        "verified_drop_pct": 9.05,
+        "drop_delta_pct": -37.04
+      },
+      {
+        "game": "[芒果25437]vs[风格特惠]1771214143030052424.sgf",
+        "move_no": 19,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 44.53,
+        "verified_drop_pct": 14.24,
+        "drop_delta_pct": -30.29
+      },
+      {
+        "game": "[芒果25437]vs[逆子爱下棋]1770984400030032148.sgf",
+        "move_no": 15,
+        "status": "ok",
+        "cache": "hit",
+        "raw_drop_pct": 43.99,
+        "verified_drop_pct": 6.15,
+        "drop_delta_pct": -37.84
       }
-    ]
+    ],
+    "verify_cache_entries_before": 38,
+    "verify_cache_entries_after": 38,
+    "eligible_points": 20,
+    "selected_points": 20,
+    "selected_target": 20
   },
   "examples": [
     {
       "id": 1,
+      "game": "[芒果25437]vs[猫猫爷爷]1771743408030043600.sgf",
+      "title": "开局边上先稳形再扩张",
+      "template": "布局边上稳形",
+      "slogan": "开局占边要稳，优势别扩张",
+      "problem": "这一步很可惜！你当时本来是优势局面，实战下了S9，KataGo更推荐R7，这手胜率掉了60.4%。开局边上先求稳形和连络，别急着把战线拉长。方向有些偏，先后手价值被对手拿走。",
+      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑R7。主线参考：R7 -> S9 -> S7 ...。",
+      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
+      "phase": "布局",
+      "zone": "边上",
+      "context": "优势失误",
+      "move_no": 41,
+      "to_play": "B",
+      "before_winrate_pct": 73.3,
+      "drop_pct": 60.4,
+      "raw_drop_pct": 48.4,
+      "cluster_size": 2,
+      "actual": "S9",
+      "best": "R7",
+      "pv": [
+        "R7",
+        "S9",
+        "S7",
+        "S6",
+        "Q7",
+        "N5",
+        "N7",
+        "P4"
+      ],
+      "pv_xy": [
+        [
+          16,
+          12
+        ],
+        [
+          17,
+          10
+        ],
+        [
+          17,
+          12
+        ],
+        [
+          17,
+          13
+        ],
+        [
+          15,
+          12
+        ],
+        [
+          12,
+          14
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          14,
+          15
+        ]
+      ],
+      "actual_xy": [
+        17,
+        10
+      ],
+      "best_xy": [
+        16,
+        12
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 9,
+          "y": 1,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 1,
+          "c": "B"
+        },
+        {
+          "x": 11,
+          "y": 1,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 9,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 16,
+          "c": "B"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": 12.0,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 2,
+      "game": "[芒果25437]vs[曾时波]1771494230030051399.sgf",
+      "title": "边上作战先看形和气",
+      "template": "中盘边上形状",
+      "slogan": "边上作战看清形状，优势别冲动",
+      "problem": "这手有点伤。你当时本来是优势局面，实战下了R4，KataGo更推荐D17，这手胜率掉了49.3%。中盘边上接触战最怕形状变薄、气紧被反打。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先补断点、抢要害气，再决定冲断或强杀。此题先手应考虑D17。主线参考：D17 -> E18 -> C17 ...。",
+      "action": "边上接触战固定三问：我的断点在哪？双方气数谁紧？我有没有退路？",
+      "phase": "中盘",
+      "zone": "边上",
+      "context": "优势失误",
+      "move_no": 69,
+      "to_play": "B",
+      "before_winrate_pct": 78.0,
+      "drop_pct": 49.3,
+      "raw_drop_pct": 50.9,
+      "cluster_size": 6,
+      "actual": "R4",
+      "best": "D17",
+      "pv": [
+        "D17",
+        "E18",
+        "C17",
+        "F18",
+        "B15",
+        "B14",
+        "B16",
+        "G13"
+      ],
+      "pv_xy": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "actual_xy": [
+        16,
+        15
+      ],
+      "best_xy": [
+        3,
+        2
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 4,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 7,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 8,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 7,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 11,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 6,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 7,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 8,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 9,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 12,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 12,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 17,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 7,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 16,
+          "c": "B"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -1.58,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 3,
       "game": "[浠浠25]vs[芒果25437]1772073867030052815.sgf",
       "title": "均势先抢最大点",
       "template": "均势最大点",
       "slogan": "均势不逞强，先手最值钱",
-      "problem": "这手还能更稳。你当时在五五开的胜负处，实战下了C18，KataGo更推荐N16，这手胜率掉了45.1%。均势阶段每一手都在比价值和先后手。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先比较双方最大点再落子，避免情绪手。此题建议先走N16。主线参考：N16 -> J8 -> N17 ...。",
+      "problem": "这手还能更稳。你当时在五五开的胜负处，实战下了C18，KataGo更推荐N16，这手胜率掉了44.5%。均势阶段每一手都在比价值和先后手。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先比较双方最大点再落子，避免情绪手。此题建议先走N16。主线参考：N16 -> K15 -> J14 ...。",
       "action": "落子前先说出“对手下一手最想下哪里”，再看自己这手是否更大。",
       "phase": "中盘",
       "zone": "角部",
       "context": "均势失误",
       "move_no": 148,
       "to_play": "W",
-      "before_winrate_pct": 47.6,
-      "drop_pct": 45.1,
+      "before_winrate_pct": 48.0,
+      "drop_pct": 44.5,
       "raw_drop_pct": 55.6,
       "cluster_size": 1,
       "actual": "C18",
       "best": "N16",
       "pv": [
         "N16",
-        "J8",
-        "N17",
         "K15",
         "J14",
+        "K14",
+        "N17",
         "C18",
         "F19",
         "G19"
@@ -213,20 +1105,20 @@ window.KID_TEACHING_DATA =
           3
         ],
         [
-          8,
-          11
-        ],
-        [
-          12,
-          2
-        ],
-        [
           9,
           4
         ],
         [
           8,
           5
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          12,
+          2
         ],
         [
           2,
@@ -973,16 +1865,16 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -10.48,
+      "verify_drop_delta_pct": -11.04,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 2,
+      "id": 4,
       "game": "[44自在]vs[芒果25437]1771394303030021452.sgf",
       "title": "开局边上先稳形再扩张",
       "template": "布局边上稳形",
       "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时在五五开的胜负处，实战下了R6，KataGo更推荐N5，这手胜率掉了34.2%。开局边上先求稳形和连络，别急着把战线拉长。方向有些偏，先后手价值被对手拿走。",
+      "problem": "这手还能更稳。你当时在五五开的胜负处，实战下了R6，KataGo更推荐N5，这手胜率掉了33.0%。开局边上先求稳形和连络，别急着把战线拉长。方向有些偏，先后手价值被对手拿走。",
       "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑N5。主线参考：N5 -> N9 -> O10 ...。",
       "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
       "phase": "布局",
@@ -990,8 +1882,8 @@ window.KID_TEACHING_DATA =
       "context": "均势失误",
       "move_no": 44,
       "to_play": "W",
-      "before_winrate_pct": 37.4,
-      "drop_pct": 34.2,
+      "before_winrate_pct": 36.2,
+      "drop_pct": 33.0,
       "raw_drop_pct": 58.2,
       "cluster_size": 3,
       "actual": "R6",
@@ -1004,7 +1896,7 @@ window.KID_TEACHING_DATA =
         "O11",
         "L4",
         "M12",
-        "K8"
+        "L10"
       ],
       "pv_xy": [
         [
@@ -1036,8 +1928,8 @@ window.KID_TEACHING_DATA =
           7
         ],
         [
-          9,
-          11
+          10,
+          9
         ]
       ],
       "actual_xy": [
@@ -1267,71 +2159,71 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -24.01,
+      "verify_drop_delta_pct": -25.19,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 3,
+      "id": 5,
       "game": "[浠浠25]vs[芒果25437]1772073867030052815.sgf",
       "title": "逆风先追分别豪赌",
       "template": "逆风追分",
       "slogan": "逆风先追分，不赌一步",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了C19，KataGo更推荐M12，这手胜率掉了32.0%。逆风时硬拼一步翻盘，通常会把形势继续拉开。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先拿稳定分、保持先手，连续追分比豪赌有效。优先考虑M12。主线参考：M12 -> M11 -> F19 ...。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了C19，KataGo更推荐O12，这手胜率掉了32.2%。逆风时硬拼一步翻盘，通常会把形势继续拉开。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先拿稳定分、保持先手，连续追分比豪赌有效。优先考虑O12。主线参考：O12 -> P16 -> P15 ...。",
       "action": "逆风局每手目标是“缩小差距”，不是“一手翻盘”。",
       "phase": "中盘",
       "zone": "角部",
       "context": "逆风失误",
       "move_no": 164,
       "to_play": "W",
-      "before_winrate_pct": 32.4,
-      "drop_pct": 32.0,
+      "before_winrate_pct": 32.7,
+      "drop_pct": 32.2,
       "raw_drop_pct": 63.2,
       "cluster_size": 1,
       "actual": "C19",
-      "best": "M12",
+      "best": "O12",
       "pv": [
+        "O12",
+        "P16",
+        "P15",
+        "O16",
+        "M13",
         "M12",
-        "M11",
-        "F19",
-        "G19",
-        "N12",
-        "C19",
-        "D17",
-        "B18"
+        "L12",
+        "L13"
       ],
       "pv_xy": [
         [
+          13,
+          7
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          14,
+          4
+        ],
+        [
+          13,
+          3
+        ],
+        [
+          11,
+          6
+        ],
+        [
           11,
           7
         ],
         [
-          11,
-          8
-        ],
-        [
-          5,
-          0
-        ],
-        [
-          6,
-          0
-        ],
-        [
-          12,
+          10,
           7
         ],
         [
-          2,
-          0
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          1,
-          1
+          10,
+          6
         ]
       ],
       "actual_xy": [
@@ -1339,7 +2231,7 @@ window.KID_TEACHING_DATA =
         0
       ],
       "best_xy": [
-        11,
+        13,
         7
       ],
       "board_size": 19,
@@ -2146,16 +3038,16 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -31.23,
+      "verify_drop_delta_pct": -31.05,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 4,
+      "id": 6,
       "game": "[xxj随手]vs[芒果25437]1772019095030032783.sgf",
       "title": "中腹开战先判强弱",
       "template": "中盘中腹强弱",
       "slogan": "中腹战斗先判强弱，优势别浪战",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了J6，KataGo更推荐O10，这手胜率掉了29.4%。中腹一旦乱战，强弱判断错了就会连锁崩塌。方向偏得比较远，把关键大点让给了对手。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了J6，KataGo更推荐O10，这手胜率掉了29.0%。中腹一旦乱战，强弱判断错了就会连锁崩塌。方向偏得比较远，把关键大点让给了对手。",
       "fix": "先安定弱棋，再利用厚势发力；该简化就简化。此处更稳的是O10。主线参考：O10 -> O5 -> K2 ...。",
       "action": "每次想在中腹动手前，先说出盘上最弱的一块棋，再决定是否开战。",
       "phase": "中盘",
@@ -2163,8 +3055,8 @@ window.KID_TEACHING_DATA =
       "context": "逆风失误",
       "move_no": 64,
       "to_play": "W",
-      "before_winrate_pct": 29.1,
-      "drop_pct": 29.4,
+      "before_winrate_pct": 29.0,
+      "drop_pct": 29.0,
       "raw_drop_pct": 77.1,
       "cluster_size": 1,
       "actual": "J6",
@@ -2176,8 +3068,8 @@ window.KID_TEACHING_DATA =
         "K7",
         "R6",
         "T9",
-        "O12",
-        "K5"
+        "M10",
+        "J3"
       ],
       "pv_xy": [
         [
@@ -2205,12 +3097,12 @@ window.KID_TEACHING_DATA =
           10
         ],
         [
-          13,
-          7
+          11,
+          9
         ],
         [
-          9,
-          14
+          8,
+          16
         ]
       ],
       "actual_xy": [
@@ -2535,16 +3427,16 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -47.73,
+      "verify_drop_delta_pct": -48.14,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 5,
+      "id": 7,
       "game": "[diandian01]vs[芒果25437]1771934587030043231.sgf",
       "title": "边上作战先看形和气",
       "template": "中盘边上形状",
       "slogan": "边上作战看清形状，优势别冲动",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了E18，KataGo更推荐B18，这手胜率掉了26.6%。中盘边上接触战最怕形状变薄、气紧被反打。方向有些偏，先后手价值被对手拿走。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了E18，KataGo更推荐B18，这手胜率掉了26.2%。中盘边上接触战最怕形状变薄、气紧被反打。方向有些偏，先后手价值被对手拿走。",
       "fix": "先补断点、抢要害气，再决定冲断或强杀。此题先手应考虑B18。主线参考：B18 -> B19 -> A18 ...。",
       "action": "边上接触战固定三问：我的断点在哪？双方气数谁紧？我有没有退路？",
       "phase": "中盘",
@@ -2552,8 +3444,8 @@ window.KID_TEACHING_DATA =
       "context": "逆风失误",
       "move_no": 170,
       "to_play": "W",
-      "before_winrate_pct": 26.9,
-      "drop_pct": 26.6,
+      "before_winrate_pct": 26.5,
+      "drop_pct": 26.2,
       "raw_drop_pct": 71.0,
       "cluster_size": 1,
       "actual": "E18",
@@ -3459,48 +4351,40 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -44.44,
+      "verify_drop_delta_pct": -44.77,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 6,
+      "id": 8,
       "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
       "title": "官子先收再战",
       "template": "官子稳收",
       "slogan": "官子阶段稳稳收，优势别找事",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了Q11，KataGo更推荐J19，这手胜率掉了25.4%。官子阶段比的是目数和先后手，不是继续找复杂战斗。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先手官子和大官子优先，把可兑现的目数先收进口袋。推荐先走J19。主线参考：J19 -> H18 -> L16 ...。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了Q11，KataGo更推荐L16，这手胜率掉了24.0%。官子阶段比的是目数和先后手，不是继续找复杂战斗。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先手官子和大官子优先，把可兑现的目数先收进口袋。推荐先走L16。主线参考：L16 -> M17 -> J19 ...。",
       "action": "官子每手先估目数，再看能否保持先手；没有把握时优先稳收。",
       "phase": "官子",
       "zone": "中腹",
       "context": "逆风失误",
       "move_no": 250,
       "to_play": "W",
-      "before_winrate_pct": 26.4,
-      "drop_pct": 25.4,
+      "before_winrate_pct": 26.1,
+      "drop_pct": 24.0,
       "raw_drop_pct": 72.7,
       "cluster_size": 3,
       "actual": "Q11",
-      "best": "J19",
+      "best": "L16",
       "pv": [
-        "J19",
-        "H18",
         "L16",
         "M17",
+        "J19",
+        "H18",
         "E11",
-        "D10",
-        "J4",
-        "H4"
+        "Q11",
+        "P11",
+        "Q12"
       ],
       "pv_xy": [
-        [
-          8,
-          0
-        ],
-        [
-          7,
-          1
-        ],
         [
           10,
           3
@@ -3510,20 +4394,28 @@ window.KID_TEACHING_DATA =
           2
         ],
         [
+          8,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
           4,
           8
         ],
         [
-          3,
-          9
+          15,
+          8
         ],
         [
-          8,
-          15
+          14,
+          8
         ],
         [
-          7,
-          15
+          15,
+          7
         ]
       ],
       "actual_xy": [
@@ -3531,8 +4423,8 @@ window.KID_TEACHING_DATA =
         8
       ],
       "best_xy": [
-        8,
-        0
+        10,
+        3
       ],
       "board_size": 19,
       "stones": [
@@ -4658,38 +5550,1494 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -47.25,
+      "verify_drop_delta_pct": -48.65,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 7,
+      "id": 9,
+      "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
+      "title": "中腹开战先判强弱",
+      "template": "中盘中腹强弱",
+      "slogan": "中腹战斗先判强弱，优势别浪战",
+      "problem": "这手还能更稳。你当时本来是优势局面，实战下了O16，KataGo更推荐B13，这手胜率掉了16.7%。中腹一旦乱战，强弱判断错了就会连锁崩塌。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先安定弱棋，再利用厚势发力；该简化就简化。此处更稳的是B13。主线参考：B13 -> D5 -> C12 ...。",
+      "action": "每次想在中腹动手前，先说出盘上最弱的一块棋，再决定是否开战。",
+      "phase": "中盘",
+      "zone": "中腹",
+      "context": "优势失误",
+      "move_no": 67,
+      "to_play": "B",
+      "before_winrate_pct": 83.5,
+      "drop_pct": 16.7,
+      "raw_drop_pct": 48.0,
+      "cluster_size": 3,
+      "actual": "O16",
+      "best": "B13",
+      "pv": [
+        "B13",
+        "D5",
+        "C12",
+        "P12",
+        "H6",
+        "H4",
+        "D3",
+        "D2"
+      ],
+      "pv_xy": [
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          14
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          3,
+          17
+        ]
+      ],
+      "actual_xy": [
+        13,
+        3
+      ],
+      "best_xy": [
+        1,
+        6
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 16,
+          "y": 1,
+          "c": "W"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 8,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 11,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 1,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 1,
+          "y": 8,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 8,
+          "c": "B"
+        },
+        {
+          "x": 0,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 1,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 1,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 6,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 1,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 18,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 1,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 16,
+          "c": "W"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -31.32,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 10,
+      "game": "[芒果25437]vs[风格特惠]1771214143030052424.sgf",
+      "title": "开局中腹别先开战",
+      "template": "布局中腹稳重",
+      "slogan": "开局占中要稳重，别急着战斗",
+      "problem": "这手还能更稳。你当时本来是优势局面，实战下了E6，KataGo更推荐G7，这手胜率掉了14.2%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向有些偏，先后手价值被对手拿走。",
+      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走G7。主线参考：G7 -> C15 -> R5 ...。",
+      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
+      "phase": "布局",
+      "zone": "中腹",
+      "context": "优势失误",
+      "move_no": 19,
+      "to_play": "B",
+      "before_winrate_pct": 78.7,
+      "drop_pct": 14.2,
+      "raw_drop_pct": 44.5,
+      "cluster_size": 2,
+      "actual": "E6",
+      "best": "G7",
+      "pv": [
+        "G7",
+        "C15",
+        "R5",
+        "P4",
+        "M3",
+        "P17",
+        "Q14",
+        "E16"
+      ],
+      "pv_xy": [
+        [
+          6,
+          12
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          16,
+          14
+        ],
+        [
+          14,
+          15
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "actual_xy": [
+        4,
+        13
+      ],
+      "best_xy": [
+        6,
+        12
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 3,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 16,
+          "c": "W"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -30.29,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 11,
+      "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
+      "title": "中腹开战先判强弱",
+      "template": "中盘中腹强弱",
+      "slogan": "中腹战斗先判强弱，优势别浪战",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了E14，KataGo更推荐L5，这手胜率掉了12.8%。中腹一旦乱战，强弱判断错了就会连锁崩塌。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先安定弱棋，再利用厚势发力；该简化就简化。此处更稳的是L5。主线参考：L5 -> C6 -> C9 ...。",
+      "action": "每次想在中腹动手前，先说出盘上最弱的一块棋，再决定是否开战。",
+      "phase": "中盘",
+      "zone": "中腹",
+      "context": "逆风失误",
+      "move_no": 88,
+      "to_play": "W",
+      "before_winrate_pct": 28.8,
+      "drop_pct": 12.8,
+      "raw_drop_pct": 64.4,
+      "cluster_size": 2,
+      "actual": "E14",
+      "best": "L5",
+      "pv": [
+        "L5",
+        "C6",
+        "C9",
+        "C11",
+        "F11",
+        "E6",
+        "C5",
+        "B6"
+      ],
+      "pv_xy": [
+        [
+          10,
+          14
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          4,
+          13
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          1,
+          13
+        ]
+      ],
+      "actual_xy": [
+        4,
+        5
+      ],
+      "best_xy": [
+        10,
+        14
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 5,
+          "y": 1,
+          "c": "B"
+        },
+        {
+          "x": 6,
+          "y": 1,
+          "c": "B"
+        },
+        {
+          "x": 7,
+          "y": 1,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 7,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 8,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 7,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 7,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 8,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 7,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 8,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 7,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 8,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 9,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 17,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 11,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 12,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 12,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 18,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 17,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 18,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 17,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 17,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 17,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 17,
+          "c": "B"
+        },
+        {
+          "x": 18,
+          "y": 17,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 18,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 18,
+          "c": "B"
+        },
+        {
+          "x": 18,
+          "y": 18,
+          "c": "B"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -51.6,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 12,
+      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
+      "title": "中腹开战先判强弱",
+      "template": "中盘中腹强弱",
+      "slogan": "中腹战斗先判强弱，优势别浪战",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了O14，KataGo更推荐R13，这手胜率掉了12.1%。中腹一旦乱战，强弱判断错了就会连锁崩塌。方向有些偏，先后手价值被对手拿走。",
+      "fix": "先安定弱棋，再利用厚势发力；该简化就简化。此处更稳的是R13。主线参考：R13 -> S13 -> S14 ...。",
+      "action": "每次想在中腹动手前，先说出盘上最弱的一块棋，再决定是否开战。",
+      "phase": "中盘",
+      "zone": "中腹",
+      "context": "逆风失误",
+      "move_no": 72,
+      "to_play": "W",
+      "before_winrate_pct": 31.8,
+      "drop_pct": 12.1,
+      "raw_drop_pct": 52.7,
+      "cluster_size": 1,
+      "actual": "O14",
+      "best": "R13",
+      "pv": [
+        "R13",
+        "S13",
+        "S14",
+        "S12",
+        "Q8",
+        "S6",
+        "R9",
+        "S8"
+      ],
+      "pv_xy": [
+        [
+          16,
+          6
+        ],
+        [
+          17,
+          6
+        ],
+        [
+          17,
+          5
+        ],
+        [
+          17,
+          7
+        ],
+        [
+          15,
+          11
+        ],
+        [
+          17,
+          13
+        ],
+        [
+          16,
+          10
+        ],
+        [
+          17,
+          11
+        ]
+      ],
+      "actual_xy": [
+        13,
+        5
+      ],
+      "best_xy": [
+        16,
+        6
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 4,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 6,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 6,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 7,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 7,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 10,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 11,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 12,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 12,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 8,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 9,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 11,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 13,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 6,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 7,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 8,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 11,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 15,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 6,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 9,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 13,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 14,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 10,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 12,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 13,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 17,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 17,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 17,
+          "c": "W"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -40.64,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 13,
       "game": "[44自在]vs[芒果25437]1771394303030021452.sgf",
       "title": "开局边上先稳形再扩张",
       "template": "布局边上稳形",
       "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了S8，KataGo更推荐D17，这手胜率掉了12.0%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑D17。主线参考：D17 -> C17 -> E17 ...。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了S8，KataGo更推荐D17，这手胜率掉了11.9%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑D17。主线参考：D17 -> E17 -> C17 ...。",
       "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
       "phase": "布局",
       "zone": "边上",
       "context": "逆风失误",
       "move_no": 32,
       "to_play": "W",
-      "before_winrate_pct": 27.0,
-      "drop_pct": 12.0,
+      "before_winrate_pct": 26.8,
+      "drop_pct": 11.9,
       "raw_drop_pct": 58.7,
       "cluster_size": 1,
       "actual": "S8",
       "best": "D17",
       "pv": [
         "D17",
-        "C17",
         "E17",
+        "C17",
         "E16",
-        "C18",
-        "C16",
-        "G17",
-        "B18"
+        "B15",
+        "C14",
+        "C15",
+        "D14"
       ],
       "pv_xy": [
         [
@@ -4697,32 +7045,32 @@ window.KID_TEACHING_DATA =
           2
         ],
         [
+          4,
+          2
+        ],
+        [
           2,
           2
         ],
         [
           4,
-          2
-        ],
-        [
-          4,
           3
-        ],
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          6,
-          2
         ],
         [
           1,
-          1
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
         ]
       ],
       "actual_xy": [
@@ -4892,480 +7240,513 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -46.75,
+      "verify_drop_delta_pct": -46.86,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 8,
-      "game": "[亲情树1]vs[芒果25437]1770979583030054440.sgf",
-      "title": "中腹开战先判强弱",
-      "template": "中盘中腹强弱",
-      "slogan": "中腹战斗先判强弱，优势别浪战",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了E14，KataGo更推荐M6，这手胜率掉了11.0%。中腹一旦乱战，强弱判断错了就会连锁崩塌。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先安定弱棋，再利用厚势发力；该简化就简化。此处更稳的是M6。主线参考：M6 -> C6 -> B15 ...。",
-      "action": "每次想在中腹动手前，先说出盘上最弱的一块棋，再决定是否开战。",
-      "phase": "中盘",
-      "zone": "中腹",
-      "context": "逆风失误",
-      "move_no": 88,
-      "to_play": "W",
-      "before_winrate_pct": 28.1,
-      "drop_pct": 11.0,
-      "raw_drop_pct": 64.4,
-      "cluster_size": 2,
-      "actual": "E14",
-      "best": "M6",
+      "id": 14,
+      "game": "[芒果25437]vs[a500448780]1771127213030043280.sgf",
+      "title": "开局边上先稳形再扩张",
+      "template": "布局边上稳形",
+      "slogan": "开局占边要稳，优势别扩张",
+      "problem": "这手还能更稳。你当时本来是优势局面，实战下了C9，KataGo更推荐E2，这手胜率掉了9.0%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑E2。主线参考：E2 -> F6 -> D3 ...。",
+      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
+      "phase": "布局",
+      "zone": "边上",
+      "context": "优势失误",
+      "move_no": 19,
+      "to_play": "B",
+      "before_winrate_pct": 77.2,
+      "drop_pct": 9.0,
+      "raw_drop_pct": 46.1,
+      "cluster_size": 3,
+      "actual": "C9",
+      "best": "E2",
       "pv": [
-        "M6",
-        "C6",
-        "B15",
-        "K17",
-        "F11",
-        "J16",
-        "J15",
-        "K16"
+        "E2",
+        "F6",
+        "D3",
+        "C3",
+        "E4",
+        "E5",
+        "C9",
+        "E3"
       ],
       "pv_xy": [
         [
-          11,
-          13
-        ],
-        [
-          2,
-          13
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          9,
-          2
+          4,
+          17
         ],
         [
           5,
-          8
+          13
         ],
         [
-          8,
-          3
+          3,
+          16
         ],
         [
-          8,
-          4
+          2,
+          16
         ],
         [
-          9,
-          3
+          4,
+          15
+        ],
+        [
+          4,
+          14
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          4,
+          16
         ]
       ],
       "actual_xy": [
-        4,
-        5
+        2,
+        10
       ],
       "best_xy": [
-        11,
+        4,
+        17
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 3,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 9,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 14,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 15,
+          "c": "B"
+        },
+        {
+          "x": 4,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 15,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 17,
+          "c": "B"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -37.04,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 15,
+      "game": "[芒果25437]vs[MichelleH]1772183836030033237.sgf",
+      "title": "开局中腹别先开战",
+      "template": "布局中腹稳重",
+      "slogan": "开局占中要稳重，别急着战斗",
+      "problem": "这手还能更稳。你当时本来是优势局面，实战下了Q5，KataGo更推荐R6，这手胜率掉了8.1%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。落点离推荐点很近，主要差在次序和时机。",
+      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走R6。主线参考：R6 -> S6 -> S5 ...。",
+      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
+      "phase": "布局",
+      "zone": "中腹",
+      "context": "优势失误",
+      "move_no": 23,
+      "to_play": "B",
+      "before_winrate_pct": 78.7,
+      "drop_pct": 8.1,
+      "raw_drop_pct": 53.6,
+      "cluster_size": 1,
+      "actual": "Q5",
+      "best": "R6",
+      "pv": [
+        "R6",
+        "S6",
+        "S5",
+        "R5",
+        "R4",
+        "R15",
+        "R14",
+        "Q5"
+      ],
+      "pv_xy": [
+        [
+          16,
+          13
+        ],
+        [
+          17,
+          13
+        ],
+        [
+          17,
+          14
+        ],
+        [
+          16,
+          14
+        ],
+        [
+          16,
+          15
+        ],
+        [
+          16,
+          4
+        ],
+        [
+          16,
+          5
+        ],
+        [
+          15,
+          14
+        ]
+      ],
+      "actual_xy": [
+        15,
+        14
+      ],
+      "best_xy": [
+        16,
         13
       ],
       "board_size": 19,
       "stones": [
         {
-          "x": 5,
+          "x": 9,
           "y": 1,
           "c": "B"
         },
         {
-          "x": 6,
+          "x": 10,
           "y": 1,
           "c": "B"
         },
         {
-          "x": 7,
+          "x": 11,
           "y": 1,
-          "c": "W"
-        },
-        {
-          "x": 5,
-          "y": 2,
-          "c": "W"
-        },
-        {
-          "x": 6,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 7,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 8,
-          "y": 2,
-          "c": "W"
-        },
-        {
-          "x": 10,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 4,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 5,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 6,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 7,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 5,
-          "y": 4,
-          "c": "W"
-        },
-        {
-          "x": 9,
-          "y": 4,
-          "c": "W"
-        },
-        {
-          "x": 13,
-          "y": 4,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 4,
-          "c": "B"
-        },
-        {
-          "x": 15,
-          "y": 4,
-          "c": "W"
-        },
-        {
-          "x": 9,
-          "y": 5,
-          "c": "W"
-        },
-        {
-          "x": 10,
-          "y": 5,
-          "c": "B"
-        },
-        {
-          "x": 13,
-          "y": 5,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 5,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 5,
-          "c": "W"
-        },
-        {
-          "x": 4,
-          "y": 6,
-          "c": "B"
-        },
-        {
-          "x": 5,
-          "y": 6,
-          "c": "W"
-        },
-        {
-          "x": 6,
-          "y": 6,
-          "c": "W"
-        },
-        {
-          "x": 7,
-          "y": 6,
-          "c": "W"
-        },
-        {
-          "x": 8,
-          "y": 6,
-          "c": "W"
-        },
-        {
-          "x": 9,
-          "y": 6,
-          "c": "B"
-        },
-        {
-          "x": 10,
-          "y": 6,
-          "c": "B"
-        },
-        {
-          "x": 4,
-          "y": 7,
-          "c": "B"
-        },
-        {
-          "x": 7,
-          "y": 7,
-          "c": "B"
-        },
-        {
-          "x": 8,
-          "y": 7,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 7,
-          "c": "W"
-        },
-        {
-          "x": 17,
-          "y": 8,
-          "c": "W"
-        },
-        {
-          "x": 14,
-          "y": 9,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 9,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 9,
-          "c": "W"
-        },
-        {
-          "x": 17,
-          "y": 9,
-          "c": "B"
-        },
-        {
-          "x": 13,
-          "y": 10,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 10,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 10,
-          "c": "B"
-        },
-        {
-          "x": 17,
-          "y": 10,
-          "c": "B"
-        },
-        {
-          "x": 13,
-          "y": 11,
-          "c": "W"
-        },
-        {
-          "x": 14,
-          "y": 11,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 11,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 11,
-          "c": "B"
-        },
-        {
-          "x": 12,
-          "y": 12,
-          "c": "B"
-        },
-        {
-          "x": 13,
-          "y": 12,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 12,
-          "c": "B"
-        },
-        {
-          "x": 15,
-          "y": 12,
-          "c": "W"
-        },
-        {
-          "x": 17,
-          "y": 12,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 13,
-          "c": "W"
-        },
-        {
-          "x": 12,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 14,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 17,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 18,
-          "y": 14,
           "c": "W"
         },
         {
           "x": 3,
-          "y": 15,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 9,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "c": "W"
+        },
+        {
+          "x": 11,
+          "y": 2,
           "c": "W"
         },
         {
           "x": 14,
-          "y": 15,
+          "y": 2,
           "c": "W"
         },
         {
           "x": 15,
-          "y": 15,
+          "y": 2,
           "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 14,
+          "y": 3,
+          "c": "W"
         },
         {
           "x": 16,
-          "y": 15,
+          "y": 3,
           "c": "B"
         },
         {
-          "x": 17,
-          "y": 15,
-          "c": "B"
+          "x": 2,
+          "y": 5,
+          "c": "W"
         },
         {
-          "x": 18,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 13,
-          "y": 16,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 16,
-          "c": "B"
-        },
-        {
-          "x": 17,
-          "y": 16,
-          "c": "B"
-        },
-        {
-          "x": 13,
-          "y": 17,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 17,
-          "c": "B"
+          "x": 11,
+          "y": 5,
+          "c": "W"
         },
         {
           "x": 15,
-          "y": 17,
+          "y": 5,
           "c": "B"
         },
         {
-          "x": 18,
-          "y": 17,
-          "c": "B"
+          "x": 3,
+          "y": 16,
+          "c": "W"
         },
         {
-          "x": 14,
-          "y": 18,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 18,
-          "c": "B"
-        },
-        {
-          "x": 18,
-          "y": 18,
+          "x": 15,
+          "y": 16,
           "c": "B"
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -53.48,
+      "verify_drop_delta_pct": -45.44,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 9,
+      "id": 16,
+      "game": "[芒果25437]vs[xyl1968030]1772076981030041544.sgf",
+      "title": "开局边上先稳形再扩张",
+      "template": "布局边上稳形",
+      "slogan": "开局占边要稳，优势别扩张",
+      "problem": "这手还能更稳。你当时本来是优势局面，实战下了G3，KataGo更推荐G2，这手胜率掉了8.0%。开局边上先求稳形和连络，别急着把战线拉长。落点离推荐点很近，主要差在次序和时机。",
+      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑G2。主线参考：G2 -> D15 -> B4 ...。",
+      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
+      "phase": "布局",
+      "zone": "边上",
+      "context": "优势失误",
+      "move_no": 13,
+      "to_play": "B",
+      "before_winrate_pct": 78.7,
+      "drop_pct": 8.0,
+      "raw_drop_pct": 46.7,
+      "cluster_size": 2,
+      "actual": "G3",
+      "best": "G2",
+      "pv": [
+        "G2",
+        "D15",
+        "B4",
+        "B5",
+        "B3",
+        "C17",
+        "P3",
+        "P17"
+      ],
+      "pv_xy": [
+        [
+          6,
+          17
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          14,
+          16
+        ],
+        [
+          14,
+          2
+        ]
+      ],
+      "actual_xy": [
+        6,
+        16
+      ],
+      "best_xy": [
+        6,
+        17
+      ],
+      "board_size": 19,
+      "stones": [
+        {
+          "x": 3,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 10,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 4,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 16,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 16,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 16,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 17,
+          "c": "B"
+        }
+      ],
+      "verify_status": "ok",
+      "verify_drop_delta_pct": -38.64,
+      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
+    },
+    {
+      "id": 17,
       "game": "[陶醉陶然]vs[芒果25437]1771154298030053478.sgf",
       "title": "开局边上先稳形再扩张",
       "template": "布局边上稳形",
       "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了C5，KataGo更推荐C6，这手胜率掉了7.0%。开局边上先求稳形和连络，别急着把战线拉长。落点离推荐点很近，主要差在次序和时机。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了C5，KataGo更推荐C6，这手胜率掉了6.9%。开局边上先求稳形和连络，别急着把战线拉长。落点离推荐点很近，主要差在次序和时机。",
       "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑C6。主线参考：C6 -> C5 -> D5 ...。",
       "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
       "phase": "布局",
@@ -5374,7 +7755,7 @@ window.KID_TEACHING_DATA =
       "move_no": 8,
       "to_play": "W",
       "before_winrate_pct": 22.7,
-      "drop_pct": 7.0,
+      "drop_pct": 6.9,
       "raw_drop_pct": 61.4,
       "cluster_size": 1,
       "actual": "C5",
@@ -5470,25 +7851,25 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -54.37,
+      "verify_drop_delta_pct": -54.5,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 10,
+      "id": 18,
       "game": "[diandian01]vs[芒果25437]1771934587030043231.sgf",
       "title": "开局中腹别先开战",
       "template": "布局中腹稳重",
       "slogan": "开局占中要稳重，别急着战斗",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了D13，KataGo更推荐M17，这手胜率掉了6.6%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走M17。主线参考：M17 -> J14 -> M15 ...。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了D13，KataGo更推荐M17，这手胜率掉了6.7%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向偏得比较远，把关键大点让给了对手。",
+      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走M17。主线参考：M17 -> J14 -> E12 ...。",
       "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
       "phase": "布局",
       "zone": "中腹",
       "context": "逆风失误",
       "move_no": 40,
       "to_play": "W",
-      "before_winrate_pct": 20.6,
-      "drop_pct": 6.6,
+      "before_winrate_pct": 20.7,
+      "drop_pct": 6.7,
       "raw_drop_pct": 63.1,
       "cluster_size": 2,
       "actual": "D13",
@@ -5496,12 +7877,12 @@ window.KID_TEACHING_DATA =
       "pv": [
         "M17",
         "J14",
-        "M15",
-        "R12",
         "E12",
-        "R16",
-        "R17",
-        "Q14"
+        "H2",
+        "D4",
+        "C3",
+        "H3",
+        "J3"
       ],
       "pv_xy": [
         [
@@ -5513,28 +7894,28 @@ window.KID_TEACHING_DATA =
           5
         ],
         [
-          11,
-          4
-        ],
-        [
-          16,
-          7
-        ],
-        [
           4,
           7
         ],
         [
-          16,
-          3
+          7,
+          17
         ],
         [
-          16,
-          2
+          3,
+          15
         ],
         [
-          15,
-          5
+          2,
+          16
+        ],
+        [
+          7,
+          16
+        ],
+        [
+          8,
+          16
         ]
       ],
       "actual_xy": [
@@ -5744,38 +8125,38 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -56.5,
+      "verify_drop_delta_pct": -56.43,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
-      "id": 11,
+      "id": 19,
       "game": "[xxj随手]vs[芒果25437]1772019095030032783.sgf",
       "title": "开局边上先稳形再扩张",
       "template": "布局边上稳形",
       "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了R5，KataGo更推荐P3，这手胜率掉了6.1%。开局边上先求稳形和连络，别急着把战线拉长。方向有些偏，先后手价值被对手拿走。",
-      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑P3。主线参考：P3 -> Q5 -> P4 ...。",
+      "problem": "这手还能更稳。你当时在追分局面，实战下了R5，KataGo更推荐P3，这手胜率掉了6.6%。开局边上先求稳形和连络，别急着把战线拉长。方向有些偏，先后手价值被对手拿走。",
+      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑P3。主线参考：P3 -> P4 -> Q5 ...。",
       "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
       "phase": "布局",
       "zone": "边上",
       "context": "逆风失误",
       "move_no": 22,
       "to_play": "W",
-      "before_winrate_pct": 22.4,
-      "drop_pct": 6.1,
+      "before_winrate_pct": 22.2,
+      "drop_pct": 6.6,
       "raw_drop_pct": 64.0,
       "cluster_size": 4,
       "actual": "R5",
       "best": "P3",
       "pv": [
         "P3",
-        "Q5",
         "P4",
+        "Q5",
         "R3",
-        "M3",
-        "E16",
-        "F16",
-        "K15"
+        "O3",
+        "N4",
+        "O4",
+        "P5"
       ],
       "pv_xy": [
         [
@@ -5783,32 +8164,32 @@ window.KID_TEACHING_DATA =
           16
         ],
         [
-          15,
-          14
-        ],
-        [
           14,
           15
+        ],
+        [
+          15,
+          14
         ],
         [
           16,
           16
         ],
         [
-          11,
+          13,
           16
         ],
         [
-          4,
-          3
+          12,
+          15
         ],
         [
-          5,
-          3
+          13,
+          15
         ],
         [
-          9,
-          4
+          14,
+          14
         ]
       ],
       "actual_xy": [
@@ -5928,1013 +8309,156 @@ window.KID_TEACHING_DATA =
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -57.93,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 12,
-      "game": "[芒果25437]vs[V532790501]1771933948030031663.sgf",
-      "title": "开局中腹别先开战",
-      "template": "布局中腹稳重",
-      "slogan": "开局占中要稳重，别急着战斗",
-      "problem": "这手还能更稳。你当时本来是优势局面，实战下了K16，KataGo更推荐O17，这手胜率掉了4.0%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向有些偏，先后手价值被对手拿走。",
-      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走O17。主线参考：O17 -> R5 -> O4 ...。",
-      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
-      "phase": "布局",
-      "zone": "中腹",
-      "context": "优势失误",
-      "move_no": 7,
-      "to_play": "B",
-      "before_winrate_pct": 78.8,
-      "drop_pct": 4.0,
-      "raw_drop_pct": 54.9,
-      "cluster_size": 2,
-      "actual": "K16",
-      "best": "O17",
-      "pv": [
-        "O17",
-        "R5",
-        "O4",
-        "C6",
-        "R9",
-        "H17",
-        "R4",
-        "Q16"
-      ],
-      "pv_xy": [
-        [
-          13,
-          2
-        ],
-        [
-          16,
-          14
-        ],
-        [
-          13,
-          15
-        ],
-        [
-          2,
-          13
-        ],
-        [
-          16,
-          10
-        ],
-        [
-          7,
-          2
-        ],
-        [
-          16,
-          15
-        ],
-        [
-          15,
-          3
-        ]
-      ],
-      "actual_xy": [
-        9,
-        3
-      ],
-      "best_xy": [
-        13,
-        2
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 5,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 2,
-          "y": 6,
-          "c": "W"
-        },
-        {
-          "x": 3,
-          "y": 15,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 16,
-          "c": "B"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -50.91,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 13,
-      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
-      "title": "开局中腹别先开战",
-      "template": "布局中腹稳重",
-      "slogan": "开局占中要稳重，别急着战斗",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了L5，KataGo更推荐J4，这手胜率掉了3.8%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向有些偏，先后手价值被对手拿走。",
-      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走J4。主线参考：J4 -> H3 -> O16 ...。",
-      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
-      "phase": "布局",
-      "zone": "中腹",
-      "context": "逆风失误",
-      "move_no": 24,
-      "to_play": "W",
-      "before_winrate_pct": 21.3,
-      "drop_pct": 3.8,
-      "raw_drop_pct": 60.6,
-      "cluster_size": 2,
-      "actual": "L5",
-      "best": "J4",
-      "pv": [
-        "J4",
-        "H3",
-        "O16",
-        "R8",
-        "R7",
-        "R11",
-        "R13",
-        "O11"
-      ],
-      "pv_xy": [
-        [
-          8,
-          15
-        ],
-        [
-          7,
-          16
-        ],
-        [
-          13,
-          3
-        ],
-        [
-          16,
-          11
-        ],
-        [
-          16,
-          12
-        ],
-        [
-          16,
-          8
-        ],
-        [
-          16,
-          6
-        ],
-        [
-          13,
-          8
-        ]
-      ],
-      "actual_xy": [
-        10,
-        14
-      ],
-      "best_xy": [
-        8,
-        15
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 11,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 2,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 4,
-          "c": "W"
-        },
-        {
-          "x": 12,
-          "y": 12,
-          "c": "W"
-        },
-        {
-          "x": 13,
-          "y": 12,
-          "c": "W"
-        },
-        {
-          "x": 14,
-          "y": 12,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 12,
-          "c": "W"
-        },
-        {
-          "x": 12,
-          "y": 13,
-          "c": "W"
-        },
-        {
-          "x": 13,
-          "y": 13,
-          "c": "B"
-        },
-        {
-          "x": 14,
-          "y": 13,
-          "c": "B"
-        },
-        {
-          "x": 15,
-          "y": 13,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 13,
-          "c": "W"
-        },
-        {
-          "x": 11,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 12,
-          "y": 14,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 2,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 11,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 12,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 15,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 8,
-          "y": 16,
-          "c": "B"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -56.85,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 14,
-      "game": "[芒果25437]vs[V322074652]1771154970030041783.sgf",
-      "title": "开局中腹别先开战",
-      "template": "布局中腹稳重",
-      "slogan": "开局占中要稳重，别急着战斗",
-      "problem": "这手还能更稳。你当时本来是优势局面，实战下了E6，KataGo更推荐C14，这手胜率掉了3.0%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走C14。主线参考：C14 -> P17 -> Q15 ...。",
-      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
-      "phase": "布局",
-      "zone": "中腹",
-      "context": "优势失误",
-      "move_no": 7,
-      "to_play": "B",
-      "before_winrate_pct": 78.3,
-      "drop_pct": 3.0,
-      "raw_drop_pct": 54.2,
-      "cluster_size": 3,
-      "actual": "E6",
-      "best": "C14",
-      "pv": [
-        "C14",
-        "P17",
-        "Q15",
-        "O3",
-        "M17",
-        "F3",
-        "C4",
-        "C3"
-      ],
-      "pv_xy": [
-        [
-          2,
-          5
-        ],
-        [
-          14,
-          2
-        ],
-        [
-          15,
-          4
-        ],
-        [
-          13,
-          16
-        ],
-        [
-          11,
-          2
-        ],
-        [
-          5,
-          16
-        ],
-        [
-          2,
-          15
-        ],
-        [
-          2,
-          16
-        ]
-      ],
-      "actual_xy": [
-        4,
-        13
-      ],
-      "best_xy": [
-        2,
-        5
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 3,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 2,
-          "y": 11,
-          "c": "W"
-        },
-        {
-          "x": 2,
-          "y": 13,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 15,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 15,
-          "c": "W"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -51.2,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 15,
-      "game": "[芒果25437]vs[曾时波]1771494230030051399.sgf",
-      "title": "开局中腹别先开战",
-      "template": "布局中腹稳重",
-      "slogan": "开局占中要稳重，别急着战斗",
-      "problem": "这手还能更稳。你当时本来是优势局面，实战下了F15，KataGo更推荐O17，这手胜率掉了2.9%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走O17。主线参考：O17 -> R5 -> P4 ...。",
-      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
-      "phase": "布局",
-      "zone": "中腹",
-      "context": "优势失误",
-      "move_no": 7,
-      "to_play": "B",
-      "before_winrate_pct": 78.3,
-      "drop_pct": 2.9,
-      "raw_drop_pct": 54.5,
-      "cluster_size": 3,
-      "actual": "F15",
-      "best": "O17",
-      "pv": [
-        "O17",
-        "R5",
-        "P4",
-        "R8",
-        "C3",
-        "D3",
-        "C4",
-        "D5"
-      ],
-      "pv_xy": [
-        [
-          13,
-          2
-        ],
-        [
-          16,
-          14
-        ],
-        [
-          14,
-          15
-        ],
-        [
-          16,
-          11
-        ],
-        [
-          2,
-          16
-        ],
-        [
-          3,
-          16
-        ],
-        [
-          2,
-          15
-        ],
-        [
-          3,
-          14
-        ]
-      ],
-      "actual_xy": [
-        5,
-        4
-      ],
-      "best_xy": [
-        13,
-        2
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 5,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 7,
-          "y": 2,
-          "c": "W"
-        },
-        {
-          "x": 3,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 15,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 16,
-          "c": "B"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -51.61,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 16,
-      "game": "[芒果25437]vs[44自在]1771393429030021951.sgf",
-      "title": "开局中腹别先开战",
-      "template": "布局中腹稳重",
-      "slogan": "开局占中要稳重，别急着战斗",
-      "problem": "这手还能更稳。你当时本来是优势局面，实战下了D10，KataGo更推荐C14，这手胜率掉了2.7%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向有些偏，先后手价值被对手拿走。",
-      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走C14。主线参考：C14 -> C8 -> R3 ...。",
-      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
-      "phase": "布局",
-      "zone": "中腹",
-      "context": "优势失误",
-      "move_no": 9,
-      "to_play": "B",
-      "before_winrate_pct": 79.4,
-      "drop_pct": 2.7,
-      "raw_drop_pct": 57.0,
-      "cluster_size": 3,
-      "actual": "D10",
-      "best": "C14",
-      "pv": [
-        "C14",
-        "C8",
-        "R3",
-        "Q3",
-        "R4",
-        "R6",
-        "R5",
-        "Q5"
-      ],
-      "pv_xy": [
-        [
-          2,
-          5
-        ],
-        [
-          2,
-          11
-        ],
-        [
-          16,
-          16
-        ],
-        [
-          15,
-          16
-        ],
-        [
-          16,
-          15
-        ],
-        [
-          16,
-          13
-        ],
-        [
-          16,
-          14
-        ],
-        [
-          15,
-          14
-        ]
-      ],
-      "actual_xy": [
-        3,
-        9
-      ],
-      "best_xy": [
-        2,
-        5
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 3,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 2,
-          "y": 13,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 13,
-          "c": "B"
-        },
-        {
-          "x": 2,
-          "y": 14,
-          "c": "W"
-        },
-        {
-          "x": 3,
-          "y": 15,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 15,
-          "c": "W"
-        },
-        {
-          "x": 5,
-          "y": 16,
-          "c": "W"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -54.33,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 17,
-      "game": "[芒果25437]vs[幸福的人20]1772180911030034963.sgf",
-      "title": "开局边上先稳形再扩张",
-      "template": "布局边上稳形",
-      "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时本来是优势局面，实战下了C14，KataGo更推荐C5，这手胜率掉了2.2%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑C5。主线参考：C5 -> O17 -> C17 ...。",
-      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
-      "phase": "布局",
-      "zone": "边上",
-      "context": "优势失误",
-      "move_no": 5,
-      "to_play": "B",
-      "before_winrate_pct": 77.7,
-      "drop_pct": 2.2,
-      "raw_drop_pct": 53.6,
-      "cluster_size": 1,
-      "actual": "C14",
-      "best": "C5",
-      "pv": [
-        "C5",
-        "O17",
-        "C17",
-        "C16",
-        "D17",
-        "F17",
-        "E17",
-        "E16"
-      ],
-      "pv_xy": [
-        [
-          2,
-          14
-        ],
-        [
-          13,
-          2
-        ],
-        [
-          2,
-          2
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          4,
-          2
-        ],
-        [
-          4,
-          3
-        ]
-      ],
-      "actual_xy": [
-        2,
-        5
-      ],
-      "best_xy": [
-        2,
-        14
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 3,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 15,
-          "y": 3,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 15,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 16,
-          "c": "B"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -51.41,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 18,
-      "game": "[芒果25437]vs[xyl1968030]1772076981030041544.sgf",
-      "title": "开局边上先稳形再扩张",
-      "template": "布局边上稳形",
-      "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时本来是优势局面，实战下了C6，KataGo更推荐D15，这手胜率掉了1.9%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑D15。主线参考：D15 -> P17 -> C3 ...。",
-      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
-      "phase": "布局",
-      "zone": "边上",
-      "context": "优势失误",
-      "move_no": 5,
-      "to_play": "B",
-      "before_winrate_pct": 77.0,
-      "drop_pct": 1.9,
-      "raw_drop_pct": 53.6,
-      "cluster_size": 1,
-      "actual": "C6",
-      "best": "D15",
-      "pv": [
-        "D15",
-        "P17",
-        "C3",
-        "D3",
-        "C4",
-        "D5",
-        "C5",
-        "C7"
-      ],
-      "pv_xy": [
-        [
-          3,
-          4
-        ],
-        [
-          14,
-          2
-        ],
-        [
-          2,
-          16
-        ],
-        [
-          3,
-          16
-        ],
-        [
-          2,
-          15
-        ],
-        [
-          3,
-          14
-        ],
-        [
-          2,
-          14
-        ],
-        [
-          2,
-          12
-        ]
-      ],
-      "actual_xy": [
-        2,
-        13
-      ],
-      "best_xy": [
-        3,
-        4
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 3,
-          "y": 2,
-          "c": "B"
-        },
-        {
-          "x": 16,
-          "y": 3,
-          "c": "B"
-        },
-        {
-          "x": 3,
-          "y": 15,
-          "c": "W"
-        },
-        {
-          "x": 16,
-          "y": 15,
-          "c": "W"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -51.73,
-      "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
-    },
-    {
-      "id": 19,
-      "game": "[刘星66858]vs[芒果25437]1771741421030033717.sgf",
-      "title": "开局边上先稳形再扩张",
-      "template": "布局边上稳形",
-      "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了Q17，KataGo更推荐Q4，这手胜率掉了1.3%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑Q4。主线参考：Q4 -> D4 -> Q16 ...。",
-      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
-      "phase": "布局",
-      "zone": "边上",
-      "context": "逆风失误",
-      "move_no": 2,
-      "to_play": "W",
-      "before_winrate_pct": 22.5,
-      "drop_pct": 1.3,
-      "raw_drop_pct": 56.6,
-      "cluster_size": 3,
-      "actual": "Q17",
-      "best": "Q4",
-      "pv": [
-        "Q4",
-        "D4",
-        "Q16",
-        "R3",
-        "Q3",
-        "R4",
-        "Q5",
-        "R6"
-      ],
-      "pv_xy": [
-        [
-          15,
-          15
-        ],
-        [
-          3,
-          15
-        ],
-        [
-          15,
-          3
-        ],
-        [
-          16,
-          16
-        ],
-        [
-          15,
-          16
-        ],
-        [
-          16,
-          15
-        ],
-        [
-          15,
-          14
-        ],
-        [
-          16,
-          13
-        ]
-      ],
-      "actual_xy": [
-        15,
-        2
-      ],
-      "best_xy": [
-        15,
-        15
-      ],
-      "board_size": 19,
-      "stones": [
-        {
-          "x": 3,
-          "y": 3,
-          "c": "B"
-        }
-      ],
-      "verify_status": "ok",
-      "verify_drop_delta_pct": -55.34,
+      "verify_drop_delta_pct": -57.36,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     },
     {
       "id": 20,
-      "game": "[kimi201803]vs[芒果25437]1771826016030053882.sgf",
-      "title": "开局边上先稳形再扩张",
-      "template": "布局边上稳形",
-      "slogan": "开局占边要稳，优势别扩张",
-      "problem": "这手还能更稳。你当时在追分局面，实战下了R16，KataGo更推荐D16，这手胜率掉了1.2%。开局边上先求稳形和连络，别急着把战线拉长。方向偏得比较远，把关键大点让给了对手。",
-      "fix": "先把边线要点和己方联络走厚，再考虑压迫和扩张。优先考虑D16。主线参考：D16 -> Q16 -> D4 ...。",
-      "action": "前30手下边上时，先做两问：我这块稳吗？有断点吗？然后再决定是否进攻。",
+      "game": "[芒果25437]vs[逆子爱下棋]1770984400030032148.sgf",
+      "title": "开局中腹别先开战",
+      "template": "布局中腹稳重",
+      "slogan": "开局占中要稳重，别急着战斗",
+      "problem": "这手还能更稳。你当时本来是优势局面，实战下了G5，KataGo更推荐D3，这手胜率掉了6.2%。布局阶段中腹价值要靠角边支撑，太早开战容易两头落空。方向有些偏，先后手价值被对手拿走。",
+      "fix": "先拿角边要点、搭好外势，再进中腹发力。推荐先走D3。主线参考：D3 -> C3 -> E3 ...。",
+      "action": "前30手想下中腹前，先确认角边还有没有更大的点。",
       "phase": "布局",
-      "zone": "边上",
-      "context": "逆风失误",
-      "move_no": 2,
-      "to_play": "W",
-      "before_winrate_pct": 22.4,
-      "drop_pct": 1.2,
-      "raw_drop_pct": 57.3,
+      "zone": "中腹",
+      "context": "优势失误",
+      "move_no": 15,
+      "to_play": "B",
+      "before_winrate_pct": 74.1,
+      "drop_pct": 6.2,
+      "raw_drop_pct": 44.0,
       "cluster_size": 2,
-      "actual": "R16",
-      "best": "D16",
+      "actual": "G5",
+      "best": "D3",
       "pv": [
-        "D16",
-        "Q16",
-        "D4",
-        "C17",
-        "D17",
-        "C16",
-        "D15",
-        "C14"
+        "D3",
+        "C3",
+        "E3",
+        "C4",
+        "C9",
+        "E17",
+        "E18",
+        "F18"
       ],
       "pv_xy": [
         [
           3,
-          3
+          16
         ],
         [
-          15,
-          3
+          2,
+          16
         ],
         [
-          3,
+          4,
+          16
+        ],
+        [
+          2,
           15
         ],
         [
           2,
+          10
+        ],
+        [
+          4,
           2
         ],
         [
-          3,
-          2
+          4,
+          1
         ],
         [
-          2,
-          3
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          2,
-          5
+          5,
+          1
         ]
       ],
       "actual_xy": [
-        16,
-        3
+        6,
+        14
       ],
       "best_xy": [
         3,
-        3
+        16
       ],
       "board_size": 19,
       "stones": [
         {
+          "x": 3,
+          "y": 2,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 16,
+          "y": 3,
+          "c": "B"
+        },
+        {
+          "x": 2,
+          "y": 4,
+          "c": "B"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 5,
+          "c": "W"
+        },
+        {
+          "x": 2,
+          "y": 13,
+          "c": "B"
+        },
+        {
+          "x": 5,
+          "y": 14,
+          "c": "W"
+        },
+        {
+          "x": 3,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 6,
+          "y": 15,
+          "c": "B"
+        },
+        {
           "x": 15,
           "y": 15,
+          "c": "W"
+        },
+        {
+          "x": 5,
+          "y": 16,
           "c": "B"
         }
       ],
       "verify_status": "ok",
-      "verify_drop_delta_pct": -56.06,
+      "verify_drop_delta_pct": -37.84,
       "quiz_prompt": "你会下红点还是绿点？点一下棋盘试试！"
     }
   ]

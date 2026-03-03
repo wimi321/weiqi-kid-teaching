@@ -27,6 +27,7 @@ CRITICAL_JSON = ROOT / "review_output_mgqp_full28" / "critical_turning_points.js
 SGF_DIR = ROOT / "data" / "mgqp_raw" / "mgqp"
 OUT_JSON = ROOT / "review_output_mgqp_full28" / "kid_teaching_data.json"
 VERIFY_REPORT_JSON = ROOT / "review_output_mgqp_full28" / "kid_teaching_verification.json"
+VERIFY_CACHE_JSON = ROOT / "review_output_mgqp_full28" / "kid_teaching_verify_cache.json"
 
 LETTERS = "ABCDEFGHJKLMNOPQRSTUVWXYZ"
 
@@ -42,7 +43,7 @@ class Scenario:
 
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="生成互动教学题并逐题KataGo复核跌幅")
+    p = argparse.ArgumentParser(description="生成互动教学题：候选池复核后再选题，避免低质量入选")
     p.add_argument("--critical-json", type=Path, default=CRITICAL_JSON, help="关键转折点JSON")
     p.add_argument("--sgf-dir", type=Path, default=SGF_DIR, help="SGF目录")
     p.add_argument("--out-json", type=Path, default=OUT_JSON, help="输出教学JSON")
@@ -53,6 +54,18 @@ def parse_args() -> argparse.Namespace:
         help="复核报告JSON",
     )
     p.add_argument("--target", type=int, default=20, help="入选题数量")
+    p.add_argument(
+        "--candidate-multiplier",
+        type=int,
+        default=3,
+        help="复核候选池倍数（候选池=target*倍数）",
+    )
+    p.add_argument(
+        "--min-verified-drop",
+        type=float,
+        default=0.04,
+        help="复核后最小跌幅阈值（0-1）",
+    )
     p.add_argument("--katago-bin", type=Path, default=Path("/opt/homebrew/bin/katago"))
     p.add_argument(
         "--katago-config",
@@ -72,6 +85,17 @@ def parse_args() -> argparse.Namespace:
         choices=["auto", "black", "white", "side_to_move"],
         default="auto",
         help="复核winrate视角",
+    )
+    p.add_argument(
+        "--verify-cache-json",
+        type=Path,
+        default=VERIFY_CACHE_JSON,
+        help="复核缓存JSON（减少重复运算）",
+    )
+    p.add_argument(
+        "--disable-verify-cache",
+        action="store_true",
+        help="禁用复核缓存",
     )
     p.add_argument("--skip-verify", action="store_true", help="跳过逐题KataGo复核")
     return p.parse_args()
@@ -601,15 +625,118 @@ def verify_point_with_katago(
     return q
 
 
+VERIFY_FIELD_KEYS = {
+    "verify_status",
+    "color",
+    "actual",
+    "best",
+    "pv",
+    "before_winrate",
+    "context",
+    "zone",
+    "winrate_drop",
+    "score_drop",
+    "verify_best_winrate",
+    "verify_actual_winrate",
+    "verify_drop_delta",
+}
+
+
+def file_fingerprint(path: Path) -> str:
+    try:
+        st = path.stat()
+        resolved = path.resolve()
+        return f"{resolved}:{st.st_size}:{int(st.st_mtime)}"
+    except OSError:
+        return str(path)
+
+
+def build_verify_cache_key(
+    point: Dict[str, object],
+    *,
+    visits: int,
+    perspective: str,
+    rules: str,
+    model_fp: str,
+    config_fp: str,
+) -> str:
+    return "|".join(
+        [
+            str(point.get("game", "")),
+            str(point.get("move_no", "")),
+            str(point.get("actual", "")),
+            str(point.get("best", "")),
+            f"v={visits}",
+            f"p={perspective}",
+            f"r={rules}",
+            f"m={model_fp}",
+            f"c={config_fp}",
+        ]
+    )
+
+
+def load_verify_cache(path: Path) -> Dict[str, Dict[str, object]]:
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {}
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(raw, dict):
+        return {}
+    items = raw.get("items", {})
+    if not isinstance(items, dict):
+        return {}
+    out: Dict[str, Dict[str, object]] = {}
+    for k, v in items.items():
+        if not isinstance(k, str) or not isinstance(v, dict):
+            continue
+        out[k] = dict(v)
+    return out
+
+
+def save_verify_cache(path: Path, items: Dict[str, Dict[str, object]]) -> None:
+    payload = {
+        "updated_at": __import__("datetime").datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "entries": len(items),
+        "items": items,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def merge_cached_verify(point: Dict[str, object], cached: Dict[str, object]) -> Dict[str, object]:
+    q = dict(point)
+    q["raw_winrate_drop"] = float(point.get("winrate_drop", 0.0))
+    for k, v in cached.items():
+        if k in VERIFY_FIELD_KEYS:
+            q[k] = v
+    return q
+
+
+def extract_verify_fields(point: Dict[str, object]) -> Dict[str, object]:
+    out: Dict[str, object] = {}
+    for k in VERIFY_FIELD_KEYS:
+        if k in point:
+            out[k] = point[k]
+    return out
+
+
 def main() -> int:
     args = parse_args()
     points = json.loads(args.critical_json.read_text(encoding="utf-8"))
     points = sorted(points, key=lambda x: float(x.get("winrate_drop", 0.0)), reverse=True)
     sgf_map = find_sgf_files(args.sgf_dir)
-    selected = select_points(points, sgf_map, target=args.target)
+    candidate_target = min(
+        len(points),
+        max(args.target, args.target * max(1, args.candidate_multiplier)),
+    )
+    candidate_points = select_points(points, sgf_map, target=candidate_target)
 
     game_cache: Dict[str, GameRecord] = {}
     verified_points: List[Dict[str, object]] = []
+    selected_points: List[Dict[str, object]] = []
+    eligible_points: List[Dict[str, object]] = []
     verify_summary = {
         "enabled": not args.skip_verify,
         "katago_bin": str(args.katago_bin),
@@ -617,19 +744,44 @@ def main() -> int:
         "katago_model": str(args.katago_model),
         "visits": args.verify_visits,
         "winrate_perspective": args.winrate_perspective,
+        "candidate_pool_target": candidate_target,
+        "candidate_pool_size": len(candidate_points),
+        "min_verified_drop": args.min_verified_drop,
         "verified_ok": 0,
         "verified_failed": 0,
+        "verify_cache_enabled": not args.disable_verify_cache,
+        "verify_cache_json": str(args.verify_cache_json),
+        "verify_cache_hits": 0,
+        "verify_cache_misses": 0,
         "items": [],
     }
 
     if args.skip_verify:
-        verified_points = selected
+        for p in candidate_points:
+            q = dict(p)
+            q["verify_status"] = "skipped"
+            q["raw_winrate_drop"] = float(p.get("winrate_drop", 0.0))
+            verified_points.append(q)
+        eligible_points = [
+            p
+            for p in verified_points
+            if float(p.get("winrate_drop", p.get("raw_winrate_drop", 0.0)))
+            >= args.min_verified_drop
+        ]
+        eligible_points.sort(key=lambda x: float(x.get("winrate_drop", 0.0)), reverse=True)
+        selected_points = select_points(eligible_points, sgf_map, target=args.target)
     else:
         if args.winrate_perspective == "auto":
             perspective = detect_winrate_perspective(args.katago_config)
         else:
             perspective = args.winrate_perspective
         verify_summary["winrate_perspective"] = perspective
+        model_fp = file_fingerprint(args.katago_model)
+        config_fp = file_fingerprint(args.katago_config)
+        cache_items: Dict[str, Dict[str, object]] = {}
+        if not args.disable_verify_cache:
+            cache_items = load_verify_cache(args.verify_cache_json)
+        verify_summary["verify_cache_entries_before"] = len(cache_items)
 
         with KataGoAnalyzer(
             bin_path=args.katago_bin,
@@ -640,13 +792,14 @@ def main() -> int:
             rules=args.verify_rules,
             timeout_sec=args.verify_timeout_sec,
         ) as analyzer:
-            for p in selected:
+            for p in candidate_points:
                 game_name = str(p.get("game", ""))
                 sgf_path = sgf_map.get(game_name)
                 if sgf_path is None:
                     q = dict(p)
                     q["verify_status"] = "missing_sgf"
                     q["raw_winrate_drop"] = float(p.get("winrate_drop", 0.0))
+                    q["verify_cache"] = "none"
                     verified_points.append(q)
                     verify_summary["verified_failed"] += 1
                     verify_summary["items"].append(
@@ -657,50 +810,89 @@ def main() -> int:
                         }
                     )
                     continue
-                game = game_cache.get(game_name)
-                if game is None:
-                    game = parse_sgf(sgf_path)
-                    game_cache[game_name] = game
-                try:
-                    q = verify_point_with_katago(
-                        point=p,
-                        game=game,
-                        analyzer=analyzer,
-                        winrate_perspective=perspective,
-                    )
-                except Exception as exc:
-                    q = dict(p)
-                    q["verify_status"] = f"error:{exc}"
-                    q["raw_winrate_drop"] = float(p.get("winrate_drop", 0.0))
+
+                cache_key = build_verify_cache_key(
+                    p,
+                    visits=args.verify_visits,
+                    perspective=perspective,
+                    rules=args.verify_rules,
+                    model_fp=model_fp,
+                    config_fp=config_fp,
+                )
+                cached = cache_items.get(cache_key) if not args.disable_verify_cache else None
+                if cached is not None:
+                    q = merge_cached_verify(p, cached)
+                    q["verify_cache"] = "hit"
+                    verify_summary["verify_cache_hits"] += 1
+                else:
+                    game = game_cache.get(game_name)
+                    if game is None:
+                        game = parse_sgf(sgf_path)
+                        game_cache[game_name] = game
+                    try:
+                        q = verify_point_with_katago(
+                            point=p,
+                            game=game,
+                            analyzer=analyzer,
+                            winrate_perspective=perspective,
+                        )
+                    except Exception as exc:
+                        q = dict(p)
+                        q["verify_status"] = f"error:{exc}"
+                        q["raw_winrate_drop"] = float(p.get("winrate_drop", 0.0))
+                    q["verify_cache"] = "miss"
+                    verify_summary["verify_cache_misses"] += 1
+                    if not args.disable_verify_cache:
+                        cache_items[cache_key] = extract_verify_fields(q)
+
                 verified_points.append(q)
                 status = str(q.get("verify_status", ""))
                 if status == "ok":
                     verify_summary["verified_ok"] += 1
                 else:
                     verify_summary["verified_failed"] += 1
+                raw_drop = float(q.get("raw_winrate_drop", q.get("winrate_drop", 0.0)))
+                verified_drop = float(q.get("winrate_drop", raw_drop))
                 verify_summary["items"].append(
                     {
                         "game": game_name,
                         "move_no": q.get("move_no"),
                         "status": status,
-                        "raw_drop_pct": round(float(q.get("raw_winrate_drop", 0.0)) * 100, 2),
-                        "verified_drop_pct": round(float(q.get("winrate_drop", 0.0)) * 100, 2),
-                        "drop_delta_pct": round(
-                            (float(q.get("winrate_drop", 0.0)) - float(q.get("raw_winrate_drop", 0.0)))
-                            * 100,
-                            2,
-                        ),
+                        "cache": q.get("verify_cache", "none"),
+                        "raw_drop_pct": round(raw_drop * 100, 2),
+                        "verified_drop_pct": round(verified_drop * 100, 2),
+                        "drop_delta_pct": round((verified_drop - raw_drop) * 100, 2),
                     }
                 )
+        if not args.disable_verify_cache:
+            save_verify_cache(args.verify_cache_json, cache_items)
+        verify_summary["verify_cache_entries_after"] = len(cache_items)
 
-    # Keep selected order by verified (or original) drop descending after verification.
+    # Keep verified pool sorted by verified drop descending.
     verified_points.sort(
         key=lambda x: float(x.get("winrate_drop", x.get("raw_winrate_drop", 0.0))),
         reverse=True,
     )
+    if not args.skip_verify:
+        eligible_points = [
+            p
+            for p in verified_points
+            if str(p.get("verify_status", "")) == "ok"
+            and float(p.get("winrate_drop", 0.0)) >= args.min_verified_drop
+        ]
+        eligible_points.sort(key=lambda x: float(x.get("winrate_drop", 0.0)), reverse=True)
+        selected_points = select_points(eligible_points, sgf_map, target=args.target)
+
+    selected_points.sort(
+        key=lambda x: float(x.get("winrate_drop", x.get("raw_winrate_drop", 0.0))),
+        reverse=True,
+    )
+    verify_summary["eligible_points"] = len(eligible_points)
+    verify_summary["selected_points"] = len(selected_points)
+    verify_summary["selected_target"] = args.target
 
     examples = []
-    for idx, p in enumerate(verified_points, start=1):
+    for idx, p in enumerate(selected_points, start=1):
         game_name = str(p["game"])
         sgf_path = sgf_map.get(game_name)
         if sgf_path is None:
