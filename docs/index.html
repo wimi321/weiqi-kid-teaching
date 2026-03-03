@@ -558,6 +558,7 @@
       let showBest = false;
       let revealAnswer = false;
       let guessed = null;
+      let pvSource = "best";
       const PV_MARK_LIMIT = 4;
 
       document.body.setAttribute("data-view-mode", viewMode);
@@ -580,14 +581,24 @@
         return index % 2 === 0 ? toPlay : oppositeStone(toPlay);
       }
 
+      function activePv(ex) {
+        const actualPvOk = Array.isArray(ex.actual_pv_xy) && ex.actual_pv_xy.length > 0;
+        const useActual = pvSource === "actual" && actualPvOk;
+        const xy = useActual ? ex.actual_pv_xy : ex.pv_xy;
+        const startColor = useActual ? oppositeStone(ex.to_play) : ex.to_play;
+        const label = useActual ? "错误点后续变化" : "推荐点后续变化";
+        return { xy, startColor, label };
+      }
+
       function formatPvText(ex, limit = 3) {
-        if (!Array.isArray(ex.pv_xy) || ex.pv_xy.length === 0) return "后续变化：-";
-        const seq = ex.pv_xy
+        const pv = activePv(ex);
+        if (!Array.isArray(pv.xy) || pv.xy.length === 0) return `${pv.label}：-`;
+        const seq = pv.xy
           .slice(0, limit)
-          .map((_, i) => toPlayStoneName(pvStoneColor(ex.to_play, i)))
+          .map((_, i) => toPlayStoneName(pvStoneColor(pv.startColor, i)))
           .join("→");
-        const suffix = ex.pv_xy.length > limit ? "..." : "";
-        return `后续变化：${seq}${suffix}`;
+        const suffix = pv.xy.length > limit ? "..." : "";
+        return `${pv.label}：${seq}${suffix}`;
       }
 
       function formatGamePair(gameName) {
@@ -616,6 +627,7 @@
       function resetExampleForMode() {
         const ex = data.examples[current];
         guessed = null;
+        pvSource = "best";
         if (viewMode === "teach") {
           revealAnswer = false;
           showWrong = false;
@@ -828,6 +840,7 @@
         ex.stones.forEach((s) => drawStone(s.x, s.y, step, pad, s.c));
 
         const showPvMoves = !!guessed;
+        const pv = activePv(ex);
 
         if (viewMode === "teach") {
           if (revealAnswer) {
@@ -839,10 +852,10 @@
           if (!showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "target");
           if (showBest && ex.best_xy) markAt(ex.best_xy[0], ex.best_xy[1], step, pad, "best");
         }
-        if (showPvMoves && Array.isArray(ex.pv_xy)) {
-          ex.pv_xy.slice(0, PV_MARK_LIMIT).forEach((xy, i) => {
+        if (showPvMoves && Array.isArray(pv.xy)) {
+          pv.xy.slice(0, PV_MARK_LIMIT).forEach((xy, i) => {
             if (!Array.isArray(xy) || xy.length < 2) return;
-            const color = pvStoneColor(ex.to_play, i);
+            const color = pvStoneColor(pv.startColor, i);
             if (!color) return;
             drawStone(xy[0], xy[1], step, pad, color);
             drawMoveNumber(xy[0], xy[1], step, pad, i + 1, color);
@@ -880,24 +893,33 @@
         const ex = data.examples[current];
         if (viewMode === "explain") {
           statusBox.className = "status";
-          statusBox.textContent = `讲解模式：已显示 PV 第1~4手。若要自己做题，请切到教学模式。`;
+          if (equalXY(ex.actual_xy, p)) {
+            pvSource = "actual";
+            statusBox.textContent = `讲解模式：已显示错误点后续变化（第1~4手）。`;
+          } else {
+            pvSource = "best";
+            statusBox.textContent = `讲解模式：已显示推荐点后续变化（第1~4手）。`;
+          }
           renderBoard();
           return;
         }
         revealAnswer = true;
         if (equalXY(ex.best_xy, p)) {
+          pvSource = "best";
           statusBox.className = "status good";
-          statusBox.textContent = "太棒了！你点中了推荐点，已显示 PV 第1~4手。";
+          statusBox.textContent = "太棒了！你点中了推荐点，已显示推荐点后续变化（第1~4手）。";
           showWrong = false;
           showBest = true;
         } else if (equalXY(ex.actual_xy, p)) {
+          pvSource = "actual";
           statusBox.className = "status bad";
-          statusBox.textContent = "这是红点错误位。已显示 PV 第1~4手，记住口号：" + ex.slogan;
+          statusBox.textContent = "这是红点错误位。已显示错误点后续变化（第1~4手），记住口号：" + ex.slogan;
           showWrong = true;
           showBest = true;
         } else {
+          pvSource = "best";
           statusBox.className = "status";
-          statusBox.textContent = "这个点还不够稳。已公布答案，对比红绿点再看一遍。";
+          statusBox.textContent = "这个点还不够稳。已公布答案并显示推荐点后续变化（第1~4手）。";
           showWrong = true;
           showBest = true;
         }
@@ -914,6 +936,7 @@
         showWrong = true;
         showBest = true;
         guessed = null;
+        pvSource = "best";
         statusBox.className = "status";
         statusBox.textContent = `已公布答案：红点是实战，绿点是推荐。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;
         updatePanel();
@@ -924,6 +947,7 @@
         showWrong = true;
         showBest = false;
         guessed = null;
+        pvSource = "best";
         const ex = data.examples[current];
         statusBox.className = "status";
         statusBox.textContent = `红点是这盘容易踩坑的位置。轮到${toPlayStoneName(ex.to_play)}走，推荐下一手是 ${ex.best || "-"}`;
@@ -935,6 +959,7 @@
         showWrong = false;
         showBest = true;
         guessed = null;
+        pvSource = "best";
         updatePanel();
         refreshButtons();
         renderBoard();
@@ -944,6 +969,7 @@
         showWrong = true;
         showBest = true;
         guessed = null;
+        pvSource = "best";
         const ex = data.examples[current];
         statusBox.className = "status";
         statusBox.textContent = `红绿对比：看清“哪里容易错，哪里更稳”。当前应走：${ex.best || "-"}；${formatPvText(ex)}`;

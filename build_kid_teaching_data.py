@@ -562,6 +562,7 @@ def verify_point_with_katago(
     )
     actual_wr: Optional[float] = None
     actual_lead: Optional[float] = None
+    actual_pv: List[str] = []
     if actual_info is not None:
         aw = actual_info.get("winrate")
         if isinstance(aw, (int, float)):
@@ -574,6 +575,9 @@ def verify_point_with_katago(
         al = actual_info.get("scoreLead")
         if isinstance(al, (int, float)):
             actual_lead = float(al)
+        apv = actual_info.get("pv")
+        if isinstance(apv, list):
+            actual_pv = [str(m).strip().upper() for m in apv if isinstance(m, str) and str(m).strip()]
     else:
         after = analyzer.analyze_position(
             size=game.size,
@@ -593,6 +597,12 @@ def verify_point_with_katago(
         rl = root_after.get("scoreLead")
         if isinstance(rl, (int, float)):
             actual_lead = -float(rl)
+        after_infos = after.get("moveInfos", [])
+        if isinstance(after_infos, list) and after_infos:
+            top_after = after_infos[0]
+            apv = top_after.get("pv")
+            if isinstance(apv, list):
+                actual_pv = [str(m).strip().upper() for m in apv if isinstance(m, str) and str(m).strip()]
 
     if actual_wr is None:
         q["verify_status"] = "no_actual_winrate"
@@ -614,6 +624,7 @@ def verify_point_with_katago(
         if isinstance(best_info.get("pv"), list)
         else []
     )
+    q["actual_pv"] = actual_pv[:8]
     q["before_winrate"] = before_wr
     q["context"] = context_for_before_wr(before_wr)
     q["zone"] = zone_for_gtp(actual_move, game.size)
@@ -631,6 +642,7 @@ VERIFY_FIELD_KEYS = {
     "actual",
     "best",
     "pv",
+    "actual_pv",
     "before_winrate",
     "context",
     "zone",
@@ -662,6 +674,7 @@ def build_verify_cache_key(
 ) -> str:
     return "|".join(
         [
+            "schema=v2",
             str(point.get("game", "")),
             str(point.get("move_no", "")),
             str(point.get("actual", "")),
@@ -820,6 +833,8 @@ def main() -> int:
                     config_fp=config_fp,
                 )
                 cached = cache_items.get(cache_key) if not args.disable_verify_cache else None
+                if cached is not None and "actual_pv" not in cached:
+                    cached = None
                 if cached is not None:
                     q = merge_cached_verify(p, cached)
                     q["verify_cache"] = "hit"
@@ -921,6 +936,17 @@ def main() -> int:
             xy = gtp_to_xy(m, game.size)
             if xy is not None:
                 pv_xy.append(xy)
+        actual_pv_raw = p.get("actual_pv", [])
+        actual_pv = [
+            str(m).strip().upper()
+            for m in actual_pv_raw
+            if isinstance(m, str) and str(m).strip()
+        ]
+        actual_pv_xy = []
+        for m in actual_pv:
+            xy = gtp_to_xy(m, game.size)
+            if xy is not None:
+                actual_pv_xy.append(xy)
         examples.append(
             {
                 "id": idx,
@@ -944,6 +970,8 @@ def main() -> int:
                 "best": best,
                 "pv": pv,
                 "pv_xy": pv_xy,
+                "actual_pv": actual_pv,
+                "actual_pv_xy": actual_pv_xy,
                 "actual_xy": gtp_to_xy(actual, game.size),
                 "best_xy": gtp_to_xy(best, game.size),
                 "board_size": game.size,
