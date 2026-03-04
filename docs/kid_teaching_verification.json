@@ -1,0 +1,21 @@
+{
+  "enabled": false,
+  "katago_bin": "/opt/homebrew/bin/katago",
+  "katago_config": "/Users/haoc/.katago/configs/analysis_example.cfg",
+  "katago_model": "/Users/haoc/.katago/models/latest-kata1.bin.gz",
+  "visits": 1200,
+  "winrate_perspective": "auto",
+  "candidate_pool_target": 18,
+  "candidate_pool_size": 4,
+  "min_verified_drop": 0.04,
+  "verified_ok": 0,
+  "verified_failed": 0,
+  "verify_cache_enabled": true,
+  "verify_cache_json": "/Users/haoc/Developer/wq20260301/review_output_mgqp_full28/kid_teaching_verify_cache_latest2.json",
+  "verify_cache_hits": 0,
+  "verify_cache_misses": 0,
+  "items": [],
+  "eligible_points": 4,
+  "selected_points": 4,
+  "selected_target": 20
+}

@@ -982,9 +982,17 @@ def main() -> int:
             }
         )
 
+    source_games = len(
+        {
+            str(p.get("game", "")).strip()
+            for p in selected_points
+            if str(p.get("game", "")).strip()
+        }
+    )
+
     payload = {
         "student_id": "芒果25437",
-        "source_games": 28,
+        "source_games": source_games,
         "teaching_examples": len(examples),
         "generated_at": __import__("datetime").datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "verify": verify_summary,
